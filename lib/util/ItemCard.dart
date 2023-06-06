@@ -1,11 +1,14 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+List<Map<String, dynamic>> ItemList = [];
 class ItemCard extends StatefulWidget {
   final String name;
   final String image;
   final String price;
-  const ItemCard({super.key, required this.name, required this.image, required this.price});
+  final String quantity;
+  const ItemCard({super.key, required this.name, required this.image, required this.price, required this.quantity});
 
   @override
   State<ItemCard> createState() => _ItemCardState();
@@ -66,7 +69,14 @@ class _ItemCardState extends State<ItemCard> {
               ElevatedButton(
                   onPressed: () {}, child: const Text("buy")),
               ElevatedButton(
-                  onPressed: () {}, child: const Text("Add")),
+                  onPressed: () {
+                  ItemList.add({
+                    'name':widget.name,
+                    'price': "\u20B9 ${widget.price}",
+                    'image':widget.image,
+                    'quantity':widget.quantity
+                  });
+                  }, child: const Text("Add")),
             ],
           )
         ],
