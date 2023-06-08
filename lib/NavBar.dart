@@ -58,16 +58,16 @@ class _NavBarState extends State<NavBar> {
     setState(() {
       switch (index) {
         case 0:
-          _child = HomeScreen();
-          print(index);
+          _child = const HomeScreen();
+
           break;
         case 1:
-          _child = AddCart();
-          print(index);
+          _child = const AddCart();
+
           break;
         case 2:
-          _child = Setting();
-          print(index);
+          _child = const Setting();
+
 
           break;
       }
