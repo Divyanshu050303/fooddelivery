@@ -1,6 +1,5 @@
-import 'dart:ffi';
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 List<Map<String, dynamic>> ItemList = [];
 class ItemCard extends StatefulWidget {
@@ -20,15 +19,12 @@ class _ItemCardState extends State<ItemCard> {
     return    Container(
       width: 150,
       height: 210,
-      // color: Colors.pinkAccent.shade100,
       decoration: BoxDecoration(
         gradient:  LinearGradient(
           colors: [Colors.pinkAccent.shade100, Colors.white,Colors.white],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-
         ),
-
         border: Border.all(
             style: BorderStyle.solid,
             color: Colors.black,
