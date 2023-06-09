@@ -79,7 +79,8 @@ class _SettingState extends State<Setting> {
                                 "Name",
                                 style: TextStyle(color: Colors.black),
                               ),
-                              focusColor: Colors.black
+                              focusColor: Colors.black,
+                              suffixIcon: const Icon(Icons.edit)
 
                             ),
                           )),
@@ -98,10 +99,13 @@ class _SettingState extends State<Setting> {
                                 "Email",
                                 style: TextStyle(color: Colors.black),
                               ),
-                              focusColor: Colors.black
+                              focusColor: Colors.black,
+                                suffixIcon: const Icon(Icons.edit)
 
                             ),
-                          )),
+                            
+                          )
+                          ),
                           Padding(padding:EdgeInsets.only(left: mediaQueryData.size.width*0.1, right:  mediaQueryData.size.width*0.1, top: 10),child:
                           TextField(
                             keyboardType: TextInputType.text,
@@ -110,14 +114,17 @@ class _SettingState extends State<Setting> {
                                 borderRadius:BorderRadius.circular(10),
                               ),
                               focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black, width: 2)
+                                borderSide: BorderSide(color: Colors.black, width: 2),
                               ),
                               hintText: "Number",
                               label:const Text(
-                                "NUmber",
+                                "Number",
                                 style: TextStyle(color: Colors.black),
                               ),
-                              focusColor: Colors.black
+                              focusColor: Colors.black,
+                                suffixIcon: const Icon(Icons.edit),
+
+
 
                             ),
                           ))

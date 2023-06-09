@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddelivery/screen/AddItem.dart';
 
 class Owner extends StatefulWidget {
   const Owner({Key? key}) : super(key: key);
@@ -25,36 +26,41 @@ class _OwnerState extends State<Owner> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                        color: const Color.fromRGBO(116, 149, 255, 0.8),
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black38,
-                              blurRadius: 2,
-                              spreadRadius: 2,
-                              offset: Offset(0, 3))
-                        ]),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text("0", style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.black,
-                          decoration: TextDecoration.none,
-                        ),),
-                        Text(
-                          "Add Item",
-                          style: TextStyle(
-                            fontSize: 20,
+                  GestureDetector(
+                    onTap:(){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const Additem()));
+                    },
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          color: const Color.fromRGBO(116, 149, 255, 0.8),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black38,
+                                blurRadius: 2,
+                                spreadRadius: 2,
+                                offset: Offset(0, 3))
+                          ]),
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text("0", style: TextStyle(
+                            fontSize: 30,
                             color: Colors.black,
                             decoration: TextDecoration.none,
+                          ),),
+                          Text(
+                            "Add Item",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              decoration: TextDecoration.none,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Container(
