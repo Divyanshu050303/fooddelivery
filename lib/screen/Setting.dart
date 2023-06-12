@@ -101,9 +101,7 @@ class _SettingState extends State<Setting> {
                               ),
                               focusColor: Colors.black,
                                 suffixIcon: const Icon(Icons.edit)
-
                             ),
-                            
                           )
                           ),
                           Padding(padding:EdgeInsets.only(left: mediaQueryData.size.width*0.1, right:  mediaQueryData.size.width*0.1, top: 10),child:
