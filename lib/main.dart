@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fooddelivery/screen/SplashScreen.dart';
+import 'package:fooddelivery/screen/Verify.dart';
 
 
 import 'NavBar.dart';
@@ -19,6 +21,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const NavBar(),
+      // home: const SignIn(),
+      // home: const SplashScreen(),
+      // home: const Verify(),
     );
   }
 }
