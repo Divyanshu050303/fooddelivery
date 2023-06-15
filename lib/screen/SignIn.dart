@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/screen/SignUp.dart';
 import 'package:video_player/video_player.dart';
@@ -6,6 +7,7 @@ import 'Verify.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
+  static String verify="";
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -14,7 +16,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   late VideoPlayerController _videoPlayerController;
   final ScrollController _scrollController = ScrollController();
-
+  String _phoneNumber="";
 
   @override
   void initState() {
@@ -75,13 +77,27 @@ class _SignInState extends State<SignIn> {
                       ),
                       focusColor: Colors.black,
                     ),
+                    onChanged: (value){
+                    _phoneNumber=value;
+                      }
+                    ,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: ElevatedButton(
-                      onPressed: () {
-                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const Verify()));
+                      onPressed: () async{
+                        await FirebaseAuth.instance.verifyPhoneNumber(
+                          phoneNumber: _phoneNumber,
+                          verificationCompleted: (PhoneAuthCredential credential) {},
+                          verificationFailed: (FirebaseAuthException e) {},
+                          codeSent: (String verificationId, int? resendToken) {
+                            SignIn.verify=verificationId;
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const Verify()));
+                          },
+                          codeAutoRetrievalTimeout: (String verificationId) {},
+                        );
+
                       },
                       child: const Text("Send Code")),
                 ),
@@ -128,7 +144,7 @@ class _SignInState extends State<SignIn> {
 
   _scrollTop() {
     _scrollController.animateTo(0.0,
-        duration: Duration(milliseconds: 100), curve: Curves.easeInOut);
+        duration: const Duration(milliseconds: 100), curve: Curves.easeInOut);
     // _Shift = true;
   }
 }

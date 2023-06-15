@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
+
+import '../NavBar.dart';
+import 'SignIn.dart';
 
 class Verify extends StatefulWidget {
   const Verify({Key? key}) : super(key: key);
@@ -12,7 +16,7 @@ class Verify extends StatefulWidget {
 class _VerifyState extends State<Verify> {
   late VideoPlayerController _videoPlayerController;
   final ScrollController _scrollController = ScrollController();
-
+  final FirebaseAuth auth=FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -36,6 +40,7 @@ class _VerifyState extends State<Verify> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData=MediaQuery.of(context);
+    String code="";
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -224,7 +229,18 @@ class _VerifyState extends State<Verify> {
                     ],)),
                 ),
                 SizedBox(height: mediaQueryData.size.height*0.05,),
-                ElevatedButton(onPressed: (){}, child: const Text("Verify",style: TextStyle(fontSize: 20),))
+                ElevatedButton(onPressed: () async{
+                  try {
+                    PhoneAuthCredential credential = PhoneAuthProvider
+                        .credential(
+                        verificationId: SignIn.verify, smsCode: code);
+                    await auth.signInWithCredential(credential);
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const NavBar()));
+                  }
+                  catch(e){
+
+                  }
+                }, child: const Text("Verify",style: TextStyle(fontSize: 20),))
               ],
             ),
           ),
