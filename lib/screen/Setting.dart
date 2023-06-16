@@ -3,8 +3,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/screen/Owner.dart';
+import 'package:fooddelivery/screen/SignIn.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
+import '../Services/SigningClass.dart';
 import 'addAddress.dart';
 
 class Setting extends StatefulWidget {
@@ -221,40 +225,48 @@ class _SettingState extends State<Setting> {
                     )),
                 Padding(
                     padding: EdgeInsets.only(top: 20),
-                    child: Container(
-                      width: mediaQueryData.size.width * 0.81,
-                      height: mediaQueryData.size.height * 0.07,
-                      decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                              colors: [Colors.white, Colors.white]),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                spreadRadius: 2,
-                                blurRadius: 2,
-                                offset: Offset(0, 3))
+                    child: GestureDetector(
+                      onTap: (){
+                        final provider =
+                        Provider.of<SingingAuth>(context, listen: false);
+                        provider.logout();
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const SignIn()));
+                      },
+                      child: Container(
+                        width: mediaQueryData.size.width * 0.81,
+                        height: mediaQueryData.size.height * 0.07,
+                        decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                                colors: [Colors.white, Colors.white]),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  spreadRadius: 2,
+                                  blurRadius: 2,
+                                  offset: Offset(0, 3))
+                            ],
+                            border: Border.all(
+                                color: Colors.black,
+                                width: 2,
+                                style: BorderStyle.solid), borderRadius: BorderRadius.circular(10)),
+                        child: const Row(
+                          children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              Icons.logout,
+                              size: 30,
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              "Logout",
+                              style: TextStyle(fontSize: 25),
+                            )
                           ],
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 2,
-                              style: BorderStyle.solid), borderRadius: BorderRadius.circular(10)),
-                      child: const Row(
-                        children: [
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(
-                            Icons.logout,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            "Logout",
-                            style: TextStyle(fontSize: 25),
-                          )
-                        ],
+                        ),
                       ),
                     ))
               ],
