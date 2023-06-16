@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fooddelivery/screen/SignUp.dart';
+
+import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
+import '../Services/SigningClass.dart';
 import 'Verify.dart';
 
 class SignIn extends StatefulWidget {
@@ -109,10 +111,16 @@ class _SignInState extends State<SignIn> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.asset(
-                      "assets/google.png",
-                      width: 40,
-                      height: 40,
+                    GestureDetector(
+                      onTap: (){
+                         final provider=Provider.of<SingingAuth>(context, listen: false);
+                         provider.googleLogin();
+                      },
+                      child: Image.asset(
+                        "assets/google.png",
+                        width: 40,
+                        height: 40,
+                      ),
                     ),
                     Image.asset(
                       "assets/facebook.png",
@@ -121,21 +129,6 @@ class _SignInState extends State<SignIn> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: mediaQueryData.size.height * 0.05,
-                ),
-                GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUp()));
-                  },
-                  child: const Text(
-                    "Sign up",
-                    style: TextStyle(
-                        fontSize: 25,
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue),
-                  ),
-                )
               ],
             ),
           ),
