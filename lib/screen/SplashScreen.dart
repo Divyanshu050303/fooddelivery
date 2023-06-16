@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:fooddelivery/NavBar.dart';
-import 'package:fooddelivery/screen/SignIn.dart';
+import 'package:fooddelivery/main.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -28,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const NavBar()));
+          context, MaterialPageRoute(builder: (context) =>  HomePage()));
     });
   }
 
