@@ -17,9 +17,11 @@ class _SignInState extends State<SignIn> {
   late VideoPlayerController _videoPlayerController;
   final ScrollController _scrollController = ScrollController();
   String _phoneNumber="";
+  TextEditingController countryController = TextEditingController();
 
   @override
   void initState() {
+    countryController.text = "+91";
     super.initState();
     _videoPlayerController =
         VideoPlayerController.asset('assets/yummydelight.mp4');
@@ -46,9 +48,9 @@ class _SignInState extends State<SignIn> {
         children: [
           _videoPlayerController.value.isInitialized
               ? AspectRatio(
-                  aspectRatio: _videoPlayerController.value.aspectRatio,
-                  child: VideoPlayer(_videoPlayerController),
-                )
+            aspectRatio: _videoPlayerController.value.aspectRatio,
+            child: VideoPlayer(_videoPlayerController),
+          )
               : Container(),
           SingleChildScrollView(
             controller: _scrollController,
@@ -69,7 +71,7 @@ class _SignInState extends State<SignIn> {
                           borderRadius: BorderRadius.circular(10)),
                       focusedBorder: const OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Colors.black, width: 2)),
+                          BorderSide(color: Colors.black, width: 2)),
                       hintText: "Phone Number",
                       label: const Text(
                         "Phone Number",
@@ -78,8 +80,8 @@ class _SignInState extends State<SignIn> {
                       focusColor: Colors.black,
                     ),
                     onChanged: (value){
-                    _phoneNumber=value;
-                      }
+                      _phoneNumber=value;
+                    }
                     ,
                   ),
                 ),
@@ -88,7 +90,7 @@ class _SignInState extends State<SignIn> {
                   child: ElevatedButton(
                       onPressed: () async{
                         await FirebaseAuth.instance.verifyPhoneNumber(
-                          phoneNumber: _phoneNumber,
+                          phoneNumber:countryController.text+_phoneNumber,
                           verificationCompleted: (PhoneAuthCredential credential) {},
                           verificationFailed: (FirebaseAuthException e) {},
                           codeSent: (String verificationId, int? resendToken) {
