@@ -40,6 +40,8 @@ dependencies:
   video_player: ^2.6.1
   chewie: ^1.5.0
   firebase_auth: ^4.6.2
+  pinput: ^2.2.31
+  firebase_app_check: ^0.1.4+3
 
 dev_dependencies:
   flutter_test:
