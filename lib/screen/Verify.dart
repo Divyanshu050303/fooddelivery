@@ -19,6 +19,7 @@ class _VerifyState extends State<Verify> {
   final ScrollController _scrollController = ScrollController();
   final FirebaseAuth auth=FirebaseAuth.instance;
 
+
   @override
   void initState() {
     super.initState();
@@ -41,7 +42,7 @@ class _VerifyState extends State<Verify> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData=MediaQuery.of(context);
-    String code="";
+    var _code="";
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -63,7 +64,7 @@ class _VerifyState extends State<Verify> {
                     length: 6,
                     showCursor: true,
                      onChanged: (value){
-                      code=value;
+                      _code=value;
                      },
                   )
                 ),
@@ -72,7 +73,7 @@ class _VerifyState extends State<Verify> {
                   try {
                     PhoneAuthCredential credential = PhoneAuthProvider
                         .credential(
-                        verificationId: SignIn.verify, smsCode: code);
+                        verificationId: SignIn.verify, smsCode: _code);
                     await auth.signInWithCredential(credential);
                     Navigator.pushNamedAndRemoveUntil(context, "Navbar", (route) => false);
                   }
