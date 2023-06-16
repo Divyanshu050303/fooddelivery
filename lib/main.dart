@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/screen/SplashScreen.dart';
@@ -6,13 +7,25 @@ import 'package:fooddelivery/screen/SignIn.dart';
 
 
 import 'NavBar.dart';
+import 'firebase_options.dart';
 
-void main() async{
+bool shouldUseFirebaseEmulator = false;
+
+late final FirebaseApp app;
+late final FirebaseAuth auth;
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  app = await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  auth = FirebaseAuth.instanceFor(app: app);
+
+  if (shouldUseFirebaseEmulator) {
+    await auth.useAuthEmulator('localhost', 9099);
+  }
+
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -26,7 +39,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const SignIn(),
       // home: const SplashScreen(),
-      // home: const Verify(), //home: const NavBar(),
+      // home: const Verify(),
+      // home: const NavBar(),
       debugShowCheckedModeBanner: false,
     );
   }
