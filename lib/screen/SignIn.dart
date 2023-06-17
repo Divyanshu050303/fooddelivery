@@ -1,20 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
-
 import '../Services/SigningClass.dart';
 import 'Verify.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
   static String verify="";
-
   @override
   State<SignIn> createState() => _SignInState();
 }
-
 class _SignInState extends State<SignIn> {
   late VideoPlayerController _videoPlayerController;
   final ScrollController _scrollController = ScrollController();
@@ -136,7 +132,6 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
-
   _scrollTop() {
     _scrollController.animateTo(0.0,
         duration: const Duration(milliseconds: 100), curve: Curves.easeInOut);
