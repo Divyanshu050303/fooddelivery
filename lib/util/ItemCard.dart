@@ -12,6 +12,7 @@ class ItemCard extends StatefulWidget {
 }
 
 class _ItemCardState extends State<ItemCard> {
+
   @override
   Widget build(BuildContext context) {
 
@@ -81,6 +82,7 @@ class _ItemCardState extends State<ItemCard> {
     );
   }
   void _showBottomSheet(BuildContext context) {
+    int total=int.parse(widget.price);
     int qua=int.parse(widget.quantity);
     int quantity=1;
     showModalBottomSheet(
@@ -90,121 +92,208 @@ class _ItemCardState extends State<ItemCard> {
           height: 300,
           width: MediaQuery.of(context).size.width,
           color: Colors.cyan,
-          child: Padding(padding: const EdgeInsets.only(bottom: 50),
-            child: Row(
-                children: [
-                  const SizedBox(width: 20,),
-                Image.asset(widget.image, width: 150,height: 250,),
-
-                 Column(
-                  children: [
-                      Padding(padding:const EdgeInsets.only(top:50,bottom: 30, left: 20),child: Text(widget.name, style: const TextStyle(fontSize: 20),)),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left: 14.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                              onTap: (){
-                                qua-=1;
-                                setState(() {
-                                  quantity=qua;
-
-                                });
-                              },
-                              child:Container(
-                                width: 40,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      Colors.white,
-                                      Colors.white
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                  border: Border.all(
-                                      style: BorderStyle.solid,
-                                      color: Colors.black,
-                                      width: 1),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 3,
-                                        offset: const Offset(0, 3))
-                                  ],
-                                ),
-                                alignment: Alignment.center,
-                                child:const Text("-" ),
-                              )),
-                          Container(
-                              width: 40,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Colors.white,
-                                    Colors.white
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                                border: Border.all(
-                                    style: BorderStyle.solid,
-                                    color: Colors.black,
-                                    width: 1),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 3,
-                                      offset: const Offset(0, 3))
-                                ],
-                              ),
-                              alignment: Alignment.center,
-                              child:  Text(quantity.toString())),
-                          GestureDetector(
-                              onTap: (){
-                                qua+=1;
-                                setState(() {
-                                  quantity=qua;
-                                });
-                              },
-                              child:
-                              Container(
-                                width: 40,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      Colors.white,
-                                      Colors.white
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                  border: Border.all(
-                                      style: BorderStyle.solid,
-                                      color: Colors.black,
-                                      width: 1),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 3,
-                                        offset: const Offset(0, 3))
-                                  ],
-                                ),
-                                alignment: Alignment.center,child: const Text("+"),)),
+          child: Column(
+            children: [
+              Padding(padding: const EdgeInsets.only( top: 30, left: 20),
+                child: Row(
+                    children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black38,
+                            spreadRadius: 2,
+                            blurRadius: 2,
+                            offset: Offset(0,3)
+                          ),
                         ],
+                        borderRadius: BorderRadius.circular(10)
                       ),
+                        child: Image.asset(widget.image, width: 150)),
+
+                     Column(
+                      children: [
+                          Padding(padding:const EdgeInsets.only(top:50,bottom: 30, left: 20),child: Text(widget.name, style: const TextStyle(fontSize: 20),)),
+
+                        Padding(
+                          padding: const EdgeInsets.only(left: 14.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GestureDetector(
+                                  onTap: (){
+                                    qua-=1;
+                                    setState(() {
+                                      quantity=qua;
+                                      total=int.parse(widget.price)*quantity;
+                                    });
+                                  },
+                                  child:Container(
+                                    width: 40,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      gradient: const LinearGradient(
+                                        colors: [
+                                          Colors.white,
+                                          Colors.white
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                      border: Border.all(
+                                          style: BorderStyle.solid,
+                                          color: Colors.black,
+                                          width: 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black.withOpacity(0.5),
+                                            spreadRadius: 2,
+                                            blurRadius: 3,
+                                            offset: const Offset(0, 3))
+                                      ],
+                                    ),
+                                    alignment: Alignment.center,
+                                    child:const Text("-" ),
+                                  )),
+                              const SizedBox(width: 3,),
+                              Container(
+                                  width: 40,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                      colors: [
+                                        Colors.white,
+                                        Colors.white
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                    border: Border.all(
+                                        style: BorderStyle.solid,
+                                        color: Colors.black,
+                                        width: 1),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black.withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 3,
+                                          offset: const Offset(0, 3))
+                                    ],
+                                  ),
+                                  alignment: Alignment.center,
+                                  child:  Text(quantity.toString())),
+                              SizedBox(width: 3,),
+                              GestureDetector(
+                                  onTap: (){
+                                    qua+=1;
+                                    setState(() {
+                                      quantity=qua;
+                                      total=int.parse(widget.price)*quantity;
+                                    });
+                                  },
+                                  child:
+                                  Container(
+                                    width: 40,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      gradient: const LinearGradient(
+                                        colors: [
+                                          Colors.white,
+                                          Colors.white
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                      border: Border.all(
+                                          style: BorderStyle.solid,
+                                          color: Colors.black,
+                                          width: 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black.withOpacity(0.5),
+                                            spreadRadius: 2,
+                                            blurRadius: 3,
+                                            offset: const Offset(0, 3))
+                                      ],
+                                    ),
+                                    alignment: Alignment.center,child: const Text("+"),)),
+                            ],
+                          ),
+                        ),
+
+                      ],
+                    )
+                  ],)
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 50, left: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Colors.white,
+                              Colors.white
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 3,
+                            spreadRadius: 2,
+                            offset: Offset(0,3),
+                          )
+                          ],
+                          border: Border.all(
+                              style: BorderStyle.solid,
+                              color: Colors.black,
+                              width: 1
+                          )
+                      ),
+                      width: 80,
+                      height: 40,
+                      // color: Colors.white,
+                      // alignment: Alignment.bottomLeft,
+                      child: Text(total.toString()),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Colors.yellowAccent,
+                              Colors.yellowAccent
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 3,
+                            spreadRadius: 2,
+                            offset: Offset(0,3),
+                          )
+                          ],
+                          border: Border.all(
+                              style: BorderStyle.solid,
+                              color: Colors.black,
+                              width: 1
+                          )
+                      ),
+                      width: 120,
+                      height: 40,
+                      // color: Colors.white,
+                      // alignment: Alignment.bottomLeft,
+                      child:     const Text("buy",textAlign: TextAlign.center, style: TextStyle(fontSize: 20,)),
                     ),
                   ],
-                )
-              ],),
+                ),
+              )
+            ],
           ),
         );
       },
