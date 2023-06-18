@@ -118,10 +118,16 @@ class _SignInState extends State<SignIn> {
                         height: 40,
                       ),
                     ),
-                    Image.asset(
-                      "assets/facebook.png",
-                      width: 40,
-                      height: 40,
+                    GestureDetector(
+                      onTap: (){
+                        final provider =Provider.of<SingingAuth>(context, listen: false);
+                        provider.FacebookLogin();
+                      },
+                      child: Image.asset(
+                        "assets/facebook.png",
+                        width: 40,
+                        height: 40,
+                      ),
                     ),
                   ],
                 ),
