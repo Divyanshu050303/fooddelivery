@@ -1,7 +1,9 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fooddelivery/screen/EditItem.dart';
 import 'package:fooddelivery/screen/Owner.dart';
 import 'package:fooddelivery/screen/SignIn.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -32,6 +34,7 @@ class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -63,10 +66,7 @@ class _SettingState extends State<Setting> {
                           //   child:
                           // ),
                           Image.asset(
-                            "assets/person.png",
-                            width: 100,
-                            height: 100,
-                            fit:BoxFit.fitWidth,
+                              "assets/person.png",width: 100, height: 100, fit: BoxFit.fill,
                           ),
                           Padding(padding:EdgeInsets.only(left: mediaQueryData.size.width*0.1, right:  mediaQueryData.size.width*0.1, top: 10),child:
                           TextField(
@@ -137,6 +137,7 @@ class _SettingState extends State<Setting> {
                     padding: const EdgeInsets.only(top: 20),
                     child: GestureDetector(
                       onTap: () {
+                        EditItem().method();
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => const Owner()));
                       },
@@ -144,7 +145,7 @@ class _SettingState extends State<Setting> {
                         width: mediaQueryData.size.width * 0.81,
                         height: mediaQueryData.size.height * 0.07,
                         decoration: BoxDecoration(
-                          
+
                             gradient: const LinearGradient(
                                 colors: [Colors.white, Colors.white]),
                             boxShadow: const [
@@ -154,7 +155,7 @@ class _SettingState extends State<Setting> {
                                   blurRadius: 2,
                                   offset: Offset(0, 3))
                             ],
-                            
+
                             border: Border.all(
                                 color: Colors.black,
                                 width: 2,
