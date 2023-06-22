@@ -68,12 +68,17 @@ class _ItemCardState extends State<ItemCard> {
                   }, child: const Text("buy")),
               ElevatedButton(
                   onPressed: () {
+                    if(ItemList.any((map) => map['name'] == widget.name)){
+                      int index = ItemList.indexWhere((map) => map['name'] == widget.name);
+                      ItemList[index]['quantity']=(int.parse(widget.quantity)+1).toString();
+                    }
+                    else{
                   ItemList.add({
                     'name':widget.name,
                     'price': "\u20B9 ${widget.price}",
                     'image':widget.image,
                     'quantity':widget.quantity
-                  });
+                  });}
                   }, child: const Text("Add")),
             ],
           )
@@ -181,7 +186,8 @@ class _ItemCardState extends State<ItemCard> {
                                     ],
                                   ),
                                   alignment: Alignment.center,
-                                  child:  Text(quantity.toString())),
+                                  child:  Text(quantity.toString())
+                              ),
                               SizedBox(width: 3,),
                               GestureDetector(
                                   onTap: (){
@@ -258,7 +264,7 @@ class _ItemCardState extends State<ItemCard> {
                       height: 40,
                       // color: Colors.white,
                       // alignment: Alignment.bottomLeft,
-                      child: Text(total.toString()),
+                      child: Text(total.toString(),style: TextStyle(fontSize: 20),textAlign: TextAlign.center,),
                     ),
                     Container(
                       decoration: BoxDecoration(
