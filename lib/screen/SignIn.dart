@@ -120,8 +120,8 @@ class _SignInState extends State<SignIn> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        final provider =Provider.of<SingingAuth>(context, listen: false);
-                        provider.FacebookLogin();
+                        // final provider =Provider.of<SingingAuth>(context, listen: false);
+                        // provider.FacebookLogin();
                       },
                       child: Image.asset(
                         "assets/facebook.png",
