@@ -16,7 +16,7 @@ class ItemEdit extends StatefulWidget {
 }
 
 class _ItemEditState extends State<ItemEdit> {
-  TextEditingController _controllerName = TextEditingController();
+    TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerPrice = TextEditingController();
   TextEditingController _controllerquantity = TextEditingController();
   bool _name=false;
@@ -62,7 +62,7 @@ class _ItemEditState extends State<ItemEdit> {
                     width: mediaQueryData.size.width * 0.06,
                   ),
                   const Text(
-                    "Add item",
+                    "Edit itemDetail ",
                     style: TextStyle(
                         fontSize: 20,
                         decoration: TextDecoration.none,
@@ -105,9 +105,9 @@ class _ItemEditState extends State<ItemEdit> {
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
                                 BorderSide(color: Colors.black, width: 2)),
-                            hintText: "ItemName",
-                            label:   Text(
-                              widget.itemName,
+                            hintText:widget.itemName ,
+                            label:   const Text(
+                              "ItemName",
                               style: TextStyle(color: Colors.black),
                             ),
                             focusColor: Colors.black,
@@ -134,9 +134,9 @@ class _ItemEditState extends State<ItemEdit> {
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
                                 BorderSide(color: Colors.black, width: 2)),
-                            hintText: "Price",
-                            label:   Text(
-                              widget.itemPrice,
+                            hintText:widget.itemPrice ,
+                            label:   const Text(
+                              "Price",
                               style: TextStyle(color: Colors.black),
                             ),
                             focusColor: Colors.black,
@@ -163,66 +163,14 @@ class _ItemEditState extends State<ItemEdit> {
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
                                 BorderSide(color: Colors.black, width: 2)),
-                            hintText: "Quantity",
-                            label:   Text(
-                              widget.itemQuantity,
+                            hintText: widget.itemQuantity,
+                            label:   const Text(
+                              "Quantity",
                               style: TextStyle(color: Colors.black),
                             ),
                             focusColor: Colors.black,
                           ),
                         )),
-                    // Container(
-                    //   padding: EdgeInsets.only(
-                    //     top: MediaQuery.of(context).size.height * 0.01,
-                    //     left: MediaQuery.of(context).size.width > 400
-                    //         ? mediaQueryData.size.width * 0.35
-                    //         : mediaQueryData.size.width * .06,
-                    //     right: MediaQuery.of(context).size.width > 400
-                    //         ? mediaQueryData.size.width * 0.35
-                    //         : mediaQueryData.size.width * .03,
-                    //   ),
-                    //   width: MediaQuery.of(context).size.width > 400
-                    //       ? mediaQueryData.size.width * 0.65
-                    //       : mediaQueryData.size.width * .9,
-                    //   child: DropdownButton<String>(
-                    //       value: dropdownValue,
-                    //       icon: Padding(
-                    //           padding: EdgeInsets.only(
-                    //               left: mediaQueryData.size.width > 1000
-                    //                   ? mediaQueryData.size.width * 0.25
-                    //                   : mediaQueryData.size.width * 0.5),
-                    //           child: const Icon(
-                    //             Icons.arrow_drop_down,
-                    //             color: Colors.black,
-                    //           )),
-                    //       elevation: 30,
-                    //       style: const TextStyle(
-                    //         color: Colors.black,
-                    //       ),
-                    //       underline: Container(
-                    //         height: 2,
-                    //         width: 40,
-                    //         color: Colors.black,
-                    //       ),
-                    //       onChanged: (String? value) {
-                    //         setState(() {
-                    //           dropdownValue = value!;
-                    //         });
-                    //       },
-                    //       items:
-                    //       list.map<DropdownMenuItem<String>>((String value) {
-                    //         return DropdownMenuItem<String>(
-                    //             value: value,
-                    //             child: Padding(
-                    //               padding: EdgeInsets.only(
-                    //                   left: mediaQueryData.size.width * .008),
-                    //               child: Text(
-                    //                 value,
-                    //                 style: TextStyle(fontSize: 15),
-                    //               ),
-                    //             ));
-                    //       }).toList()),
-                    // ),
                     Container(
                       color: Colors.cyan,
                       width: MediaQuery.of(context).size.width > 400
@@ -278,7 +226,7 @@ class _ItemEditState extends State<ItemEdit> {
                       padding: const EdgeInsets.only(top: 15),
                       child: ElevatedButton(
                         onPressed: () {
-                          // _Update();
+                          _Update();
                         },
                         child: const Text("Upload"),
                       ),
@@ -331,7 +279,7 @@ class _ItemEditState extends State<ItemEdit> {
     DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
 
     // Specify the path to the value you want to update
-    DatabaseReference valueReference = databaseReference.child('yourNode/yourValue');
+    DatabaseReference valueReference = databaseReference.child('ite');
 
     // Update the value
     valueReference.set('New Value')
