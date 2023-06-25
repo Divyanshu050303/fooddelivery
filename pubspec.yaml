@@ -50,6 +50,7 @@ dependencies:
   firebase_storage: ^11.2.3
   firebase_storage_web: ^3.6.3
   firebase_database: ^10.2.3
+  super_banners: ^0.0.1
 #  http: ^1.0.0
   http: ^0.13.0
 
