@@ -23,7 +23,6 @@ Future<void> main() async {
   if (shouldUseFirebaseEmulator) {
     await auth.useAuthEmulator('localhost', 9099);
   }
-
   runApp(const MyApp());
 }
 
@@ -55,9 +54,8 @@ class HomePage extends StatelessWidget {
               } else if (snapsot.hasData) {
                 return const NavBar();
               } else if (snapsot.hasError) {
-                return const Center(child: Text("Something Went Worng!"));
+                return const Center(child: Text("Something Went Wrong!"));
               } else {
-
                 return const SignIn();
               }
             },
