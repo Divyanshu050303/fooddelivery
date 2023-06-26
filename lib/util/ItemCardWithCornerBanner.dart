@@ -8,13 +8,14 @@ class ItemCardWithCornerBanner extends StatefulWidget {
   final String image;
   final String price;
   final String quantity;
-
+  final String Sale;
   const ItemCardWithCornerBanner(
       {super.key,
         required this.name,
         required this.image,
         required this.price,
-        required this.quantity});
+        required this.quantity,
+      required this.Sale});
 
   @override
   State<ItemCardWithCornerBanner> createState() => _ItemCardWithCornerBannerState();
@@ -204,7 +205,7 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
                                     ),
                                     alignment: Alignment.center,
                                     child: Text(quantity.toString())),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
                                 GestureDetector(
