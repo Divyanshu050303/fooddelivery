@@ -53,22 +53,17 @@ class _NavBarState extends State<NavBar> {
       ),
     );
   }
-
   void _handleNavigationChange(int index) {
     setState(() {
       switch (index) {
         case 0:
           _child = const HomeScreen();
-
           break;
         case 1:
           _child = const AddCart();
-
           break;
         case 2:
           _child = const Setting();
-
-
           break;
       }
       _child = AnimatedSwitcher(
