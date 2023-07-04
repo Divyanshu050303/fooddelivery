@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/util/ItemCardWithCornerBanner.dart';
 
+import '../Services/JsonData.dart';
 import '../util/ItemCard.dart';
 import 'MoreItem.dart';
 
@@ -13,6 +14,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String _sale="";
+  // AddressWriteRead addAddress=AddressWriteRead();
+  // @override
+  // void initState() {
+  //   addAddress.readData();
+  //   super.initState();
+  //
+  // }
 
   @override
   Widget build(BuildContext context) {
