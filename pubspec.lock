@@ -310,6 +310,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_decorated_text:
+    dependency: "direct main"
+    description:
+      name: flutter_decorated_text
+      sha256: "1d64775d5240ef55c49969b443b80e1d0fb982c1ce1079e50cd85c7567913381"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.14"
   flutter_lints:
     dependency: "direct dev"
     description:

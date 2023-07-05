@@ -55,6 +55,7 @@ dependencies:
   http: ^0.13.0
   path_provider: ^2.0.15
   shared_preferences: ^2.2.0
+  flutter_decorated_text: ^1.0.14
 
 
 dev_dependencies:
