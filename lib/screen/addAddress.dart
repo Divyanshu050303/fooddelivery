@@ -4,6 +4,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fooddelivery/NavBar.dart';
 import 'package:fooddelivery/screen/updateAddress.dart';
 import 'Address.dart';
 
@@ -127,7 +128,9 @@ Widget listItem({required Map address}){
               child: Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const NavBar()), (route) => false);
+                      },
                       icon: const Icon(
                         Icons.arrow_back_outlined,
                         color: Colors.black,
