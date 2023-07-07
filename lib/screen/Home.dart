@@ -13,15 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _sale="";
-  // AddressWriteRead addAddress=AddressWriteRead();
-  // @override
-  // void initState() {
-  //   addAddress.readData();
-  //   super.initState();
-  //
-  // }
-
+  final String _sale="";
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
