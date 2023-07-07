@@ -9,8 +9,8 @@ import 'addAddress.dart';
 
 class UpdateAddress extends StatefulWidget {
   final String addressKey;
-  const UpdateAddress({super.key , required this.addressKey});
 
+  const UpdateAddress({super.key, required this.addressKey});
 
   @override
   State<UpdateAddress> createState() => _UpdateAddressState();
@@ -25,38 +25,44 @@ class _UpdateAddressState extends State<UpdateAddress> {
   String _roadno = "";
   String _building = "";
   final ScrollController _scrollController = ScrollController();
-  final   _controllerName = TextEditingController();
-  final   _controllerPhone = TextEditingController();
-  final  _controllerPincode = TextEditingController();
-  final   _controllerState = TextEditingController();
-  final   _controllerCity = TextEditingController();
-  final   _controllerRoadNo = TextEditingController();
-  final     _controllerBuilding = TextEditingController();
+  final _controllerName = TextEditingController();
+  final _controllerPhone = TextEditingController();
+  final _controllerPincode = TextEditingController();
+  final _controllerState = TextEditingController();
+  final _controllerCity = TextEditingController();
+  final _controllerRoadNo = TextEditingController();
+  final _controllerBuilding = TextEditingController();
   late DatabaseReference dbref;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    dbref=FirebaseDatabase.instance.ref().child("UserAddress").child(FirebaseAuth.instance.currentUser!.uid);
+    dbref = FirebaseDatabase.instance
+        .ref()
+        .child("UserAddress")
+        .child(FirebaseAuth.instance.currentUser!.uid);
+    getAddressData();
   }
-  void getAddressData() async{
-    DataSnapshot snapshot=await dbref.child(widget.addressKey).get();
-    Map addressData=snapshot.value as Map;
-    _controllerName.text=addressData['_name'];
-    _name=addressData['_name'];
-    _controllerPhone.text=addressData['_phoneNumber'];
-    _phoneNumber=addressData['_phoneNumber'];
-    _controllerPincode.text=addressData['_pincode'];
-    _pincode=addressData['_pincode'];
-    _controllerState.text=addressData['_state'];
-    _state=addressData['_state'];
-    _controllerCity.text=addressData['_city'];
-    _city=addressData['_city'];
-    _controllerRoadNo.text=addressData['_road'];
-    _roadno=addressData['_road'];
-    _controllerBuilding.text=addressData['_building'];
-    _building=addressData['_building'];
+
+  void getAddressData() async {
+    DataSnapshot snapshot = await dbref.child(widget.addressKey).get();
+    Map addressData = snapshot.value as Map;
+    _controllerName.text = addressData['_name'];
+
+    _controllerPhone.text = addressData['_phoneNumber'];
+
+    _controllerPincode.text = addressData['_pincode'];
+
+    _controllerState.text = addressData['_state'];
+
+    _controllerCity.text = addressData['_city'];
+
+    _controllerRoadNo.text = addressData['_road'];
+
+    _controllerBuilding.text = addressData['_building'];
   }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -66,7 +72,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
         height: mediaQueryData.size.height,
         decoration: const BoxDecoration(
           gradient:
-          LinearGradient(colors: [Colors.white, Colors.cyan, Colors.white]),
+              LinearGradient(colors: [Colors.white, Colors.cyan, Colors.white]),
         ),
         child: SingleChildScrollView(
           controller: _scrollController,
@@ -84,7 +90,11 @@ class _UpdateAddressState extends State<UpdateAddress> {
                     children: [
                       IconButton(
                           onPressed: () {
-                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const Address()), (route) => false);
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Address()),
+                                (route) => false);
                           },
                           icon: const Icon(
                             Icons.arrow_back_outlined,
@@ -323,10 +333,24 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                   "_building": _controllerState.text,
                                   "_road": _controllerRoadNo.text
                                 };
-                                dbref.child(widget.addressKey).update(jason).then((value)=>{
-                                Fluttertoast.showToast(msg: "Address Updated Successfully!",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.BOTTOM,backgroundColor: Colors.grey,textColor: Colors.white ),
-                                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const Address()), (route) => false)
-                                });
+                                dbref
+                                    .child(widget.addressKey)
+                                    .update(jason)
+                                    .then((value) => {
+                                          Fluttertoast.showToast(
+                                              msg:
+                                                  "Address Updated Successfully!",
+                                              toastLength: Toast.LENGTH_LONG,
+                                              gravity: ToastGravity.BOTTOM,
+                                              backgroundColor: Colors.grey,
+                                              textColor: Colors.white),
+                                          Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const Address()),
+                                              (route) => false)
+                                        });
                                 _controllerRoadNo.clear();
                                 _controllerBuilding.clear();
                                 _controllerCity.clear();
