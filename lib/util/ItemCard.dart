@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddelivery/screen/orderSummary.dart';
 
 List<Map<String, dynamic>> ItemList = [];
 
@@ -194,7 +195,7 @@ class _ItemCardState extends State<ItemCard> {
                                     ),
                                     alignment: Alignment.center,
                                     child: Text(quantity.toString())),
-                                SizedBox(
+                                const SizedBox(
                                   width: 3,
                                 ),
                                 GestureDetector(
@@ -265,44 +266,47 @@ class _ItemCardState extends State<ItemCard> {
                               width: 1)),
                       width: 80,
                       height: 40,
-                      // color: Colors.white,
-                      // alignment: Alignment.bottomLeft,
+
                       child: Text(
                         total.toString(),
                         style: TextStyle(fontSize: 20),
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Colors.yellowAccent, Colors.yellowAccent],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 3,
-                              spreadRadius: 2,
-                              offset: Offset(0, 3),
-                            )
-                          ],
-                          border: Border.all(
-                              style: BorderStyle.solid,
-                              color: Colors.black,
-                              width: 1)),
-                      width: 120,
-                      height: 40,
-                      // color: Colors.white,
-                      // alignment: Alignment.bottomLeft,
-                      child: const Text("buy",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 20,
-                          )),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(image: '',name: '',quantity: '',)));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [Colors.yellowAccent, Colors.yellowAccent],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 3,
+                                spreadRadius: 2,
+                                offset: Offset(0, 3),
+                              )
+                            ],
+                            border: Border.all(
+                                style: BorderStyle.solid,
+                                color: Colors.black,
+                                width: 1)),
+                        width: 120,
+                        height: 40,
+                        child:  const Text("buy",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 20,
+                              )),
+                        ),
                     ),
+
                   ],
                 ),
               )
