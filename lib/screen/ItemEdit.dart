@@ -31,8 +31,8 @@ class _ItemEditState extends State<ItemEdit> {
       width: mediaQueryData.size.width,
       height: mediaQueryData.size.height,
       decoration: const BoxDecoration(
-          gradient:
-          LinearGradient(colors: [Colors.cyan, Colors.white, Colors.cyan])),
+         color: Colors.black
+      ),
       child: Column(
         children: [
           Container(
