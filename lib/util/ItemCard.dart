@@ -104,7 +104,7 @@ class _ItemCardState extends State<ItemCard> {
         return Container(
           height: 300,
           width: MediaQuery.of(context).size.width,
-          color: Colors.cyan,
+          color: Colors.cyan.shade50,
           child: Column(
             children: [
               Padding(
@@ -275,15 +275,11 @@ class _ItemCardState extends State<ItemCard> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(image: '',name: '',quantity: '',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(image: '',name: '',quantity: '', price: '',)));
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Colors.yellowAccent, Colors.yellowAccent],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
+                             color: Colors.black,
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: const [
                               BoxShadow(
@@ -302,6 +298,7 @@ class _ItemCardState extends State<ItemCard> {
                         child:  const Text("buy",
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                color:Colors.white,
                                 fontSize: 20,
                               )),
                         ),
