@@ -116,7 +116,7 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
         return Container(
           height: 300,
           width: MediaQuery.of(context).size.width,
-          color: Colors.cyan,
+          color: Colors.cyan.shade50,
           child: Column(
             children: [
               Padding(
@@ -288,15 +288,11 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(image:widget.image, name: widget.name,quantity:widget.quantity,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(image:widget.image, name: widget.name,quantity:widget.quantity,price: widget.price,)));
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Colors.yellowAccent, Colors.yellowAccent],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
+                            color: Colors.black,
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: const [
                               BoxShadow(
@@ -318,6 +314,7 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 20,
+                              color: Colors.white
                             )),
                       ),
                     ),
