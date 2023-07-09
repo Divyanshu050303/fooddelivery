@@ -1,3 +1,4 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -18,6 +19,8 @@ class Address extends StatefulWidget {
 class _AddressState extends State<Address> {
   Query dbref=FirebaseDatabase.instance.ref().child("UserAddress").child(FirebaseAuth.instance.currentUser!.uid);
   DatabaseReference reference=FirebaseDatabase.instance.ref().child("UserAddress").child(FirebaseAuth.instance.currentUser!.uid);
+
+
 Widget listItem({required Map address}){
   return Container(
     margin: const EdgeInsets.all(10),
@@ -106,100 +109,117 @@ Widget listItem({required Map address}){
       width: mediaQueryData.size.width,
       height: mediaQueryData.size.height,
       decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.white, Colors.cyan, Colors.white])),
-      child: Column(
-        children: [
-          Container(
-            width: mediaQueryData.size.width,
-            height: mediaQueryData.size.height * 0.1,
-            decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: [Colors.greenAccent, Colors.greenAccent]),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 2,
-                      spreadRadius: 2,
-                      color: Colors.black.withOpacity(0.8),
-                      offset: const Offset(0, 2))
-                ]),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 14.0),
-              child: Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const NavBar()), (route) => false);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_outlined,
-                        color: Colors.black,
-                      )),
-                  const Text(
-                    "My Addresses",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        decoration: TextDecoration.none),
-                  ),
-                  SizedBox(
-                    width: mediaQueryData.size.width * 0.14,
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      )),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
-                      ))
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: mediaQueryData.size.height * .02,
-          ),
-          GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) =>const AddAddress()));
-            },
-            child: Container(
-              height: mediaQueryData.size.height*0.08,
-              width: mediaQueryData.size.width,
-              decoration: const BoxDecoration(
-                  gradient:
-                      LinearGradient(colors: [Colors.black45, Colors.black54])),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 14.0),
-                child: Row(
-                  children: [
-                    Icon(Icons.add,color: Colors.white,),
-                    SizedBox(width: 10,),
-                    Text("Add Address", style: TextStyle(fontSize: 20, color: Colors.white, decoration: TextDecoration.none),)
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: mediaQueryData.size.width,
-            height: mediaQueryData.size.height*0.8,
-            child: FirebaseAnimatedList(
-              query: dbref,
-              itemBuilder: (BuildContext context, DataSnapshot snapshot,Animation<double> animation,int index){
-                Map address=snapshot.value as Map;
-                address['key']=snapshot.key;
-                return listItem(address:address);
-              },
-            ),
-          )
-        ],
+         color: Colors.black
       ),
+      child: Stack(
+        children:[ Container(
+          height: mediaQueryData.size.height * 0.93,
+          width: mediaQueryData.size.width,
+          child:
+              Container(
+                width: mediaQueryData.size.width,
+                height: mediaQueryData.size.height ,
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                ),
+                child: Padding(
+                  padding:   EdgeInsets.only(bottom: mediaQueryData.size.height * 0.77, left: 20),
+                  child: Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>    NavBar(count: 2)), (route) => false);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_outlined,
+                            color: Colors.white,
+                          )),
+                      const Text(
+                        "My Addresses",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            decoration: TextDecoration.none),
+                      ),
+                      SizedBox(
+                        width: mediaQueryData.size.width * 0.14,
+                      ),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          )),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.shopping_cart,
+                            color: Colors.white,
+                          ))
+                     ]
+                  ),
+
+              ),)),
+              Positioned(
+                top: 80,
+                child:  ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    width: mediaQueryData.size.width,
+                    height: mediaQueryData.size.height*0.9,
+                    color: Colors.cyan.shade50,
+                    child: Column(
+                      children: [
+                          GestureDetector(
+                            onTap: (){
+                              print("Clicked");
+                              Navigator.push(context, MaterialPageRoute(builder: (context) =>const AddAddress()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top:18.0),
+                              child: Container(
+                              height: mediaQueryData.size.height*0.07,
+
+                              decoration: const BoxDecoration(
+                                color: Colors.blue
+
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.only(left: 14.0),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.add,color: Colors.white,),
+                                    SizedBox(width: 10,),
+                                    Text("Add Address", style: TextStyle(fontSize: 20, color: Colors.white, decoration: TextDecoration.none),)
+                                  ],
+                                ),
+
+                        ),
+              ),
+                            ),
+                          ),
+                        Positioned(
+                                  top: mediaQueryData.size.height*0.3,
+                          child: SizedBox(
+                            width: mediaQueryData.size.width,
+                            height: mediaQueryData.size.height*0.7,
+                            child: FirebaseAnimatedList(
+                              query: dbref,
+                              itemBuilder: (BuildContext context, DataSnapshot snapshot,Animation<double> animation,int index){
+                                Map address=snapshot.value as Map;
+                                address['key']=snapshot.key;
+
+                                return listItem(address:address);
+                              },
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ), ),
+
+      ]),
     );
   }
 }

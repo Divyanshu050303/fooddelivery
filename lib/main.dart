@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
               if (provider.isSigningIn) {
                 return buildLoading();
               } else if (snapsot.hasData) {
-                return const NavBar();
+                return   NavBar(count: 0,);
               } else if (snapsot.hasError) {
                 return const Center(child: Text("Something Went Wrong!"));
               } else {

@@ -150,7 +150,7 @@ class _SelectAddressState extends State<SelectAddress> {
                   IconButton(
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                            builder: (context) => const NavBar()), (
+                            builder: (context) =>   NavBar(count: 0,)), (
                             route) => false);
                       },
                       icon: const Icon(

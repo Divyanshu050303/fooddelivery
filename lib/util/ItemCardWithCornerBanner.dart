@@ -37,6 +37,7 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
+          borderRadius: BorderRadius.circular(10),
           border: Border.all(
               style: BorderStyle.solid, color: Colors.black, width: 1),
           boxShadow: [
@@ -49,11 +50,14 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
         ),
         child: Column(
           children: [
-            Image.asset(
-              widget.image,
-              width: 150,
-              height: 100,
-              fit: BoxFit.fitWidth,
+            ClipRRect(
+        borderRadius:BorderRadius.circular(10),
+              child: Image.asset(
+                widget.image,
+                width: 150,
+                height: 100,
+                fit: BoxFit.fitWidth,
+              ),
             ),
             Text(
               widget.name,
@@ -68,6 +72,9 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.tealAccent
+                  ),
                     onPressed: () {
                       _showBottomSheet(context);
                     },
@@ -95,6 +102,7 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
         ),
       ),
       CornerBanner(
+        elevation: 3,
           bannerColor: Colors.black,
           bannerPosition: CornerBannerPosition.topLeft,
           shadowColor: Colors.black.withOpacity(0.8),

@@ -6,7 +6,8 @@ import 'package:fooddelivery/screen/Home.dart';
 import 'package:fooddelivery/screen/Setting.dart';
 
 class NavBar extends StatefulWidget {
-  const NavBar({Key? key}) : super(key: key);
+  int count;
+    NavBar({Key? key, required this.count}) : super(key: key);
 
   @override
   State<NavBar> createState() => _NavBarState();
@@ -24,11 +25,7 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Yummy Delight"),
-        elevation: 0,
-        backgroundColor: Colors.cyan.shade200,
-      ),
+
       body:
       _child,
       extendBody: true,
@@ -39,13 +36,13 @@ class _NavBarState extends State<NavBar> {
           FluidNavBarIcon(icon: Icons.settings),
         ],
         style: FluidNavBarStyle(
-            barBackgroundColor: Colors.cyan.shade200,
+            barBackgroundColor: Colors.cyan.shade50,
             iconSelectedForegroundColor: Colors.black,
-            iconUnselectedForegroundColor: Colors.white
+            iconUnselectedForegroundColor: Colors.black
 
         ),
         onChange: _handleNavigationChange,
-        defaultIndex: 0,
+        defaultIndex: widget.count,
         itemBuilder: (icon, item) => Semantics(
           // label: icon.extras!["label"],
           child: item,

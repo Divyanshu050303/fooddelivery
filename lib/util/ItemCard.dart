@@ -34,6 +34,7 @@ class _ItemCardState extends State<ItemCard> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
+          borderRadius: BorderRadius.circular(10),
           border: Border.all(
               style: BorderStyle.solid, color: Colors.black, width: 1),
           boxShadow: [
@@ -46,11 +47,14 @@ class _ItemCardState extends State<ItemCard> {
         ),
         child: Column(
           children: [
-            Image.asset(
-              widget.image,
-              width: 150,
-              height: 100,
-              fit: BoxFit.fitWidth,
+            ClipRRect(
+              borderRadius:BorderRadius.circular(10),
+              child: Image.asset(
+                widget.image,
+                width: 150,
+                height: 100,
+                fit: BoxFit.fitWidth,
+              ),
             ),
             Text(
               widget.name,
@@ -65,10 +69,15 @@ class _ItemCardState extends State<ItemCard> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
+
                     onPressed: () {
                       _showBottomSheet(context);
                     },
-                    child: const Text("buy")),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.tealAccent,
+                      
+                    ),
+                    child: const Text("Buy")),
                 ElevatedButton(
                     onPressed: () {
                       if (ItemList.any((map) => map['name'] == widget.name)) {
