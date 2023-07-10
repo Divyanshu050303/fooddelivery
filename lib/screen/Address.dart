@@ -1,6 +1,4 @@
-import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -333,7 +331,8 @@ class _AddAddressState extends State<AddAddress> {
                                            "_building": _building,
                                            "_road": _roadno
                                          };
-                                         addressWriteRead.CreateDataBase("UserAddress",jasonData,FirebaseAuth.instance.currentUser!.uid, recordCount);
+                                         addressWriteRead.CreateDataBase("UserAddress",jasonData,FirebaseAuth.instance.currentUser!.uid);
+
                                          Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context)=>const Address()), (route) => false);
                                          Fluttertoast.showToast(msg: "Address Added Successfully!",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.BOTTOM,backgroundColor: Colors.grey,textColor: Colors.white );
                                          _controllerRoadNo.clear();

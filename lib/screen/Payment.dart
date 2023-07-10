@@ -1,6 +1,8 @@
+import 'package:easy_upi_payment/easy_upi_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fooddelivery/screen/orderSummary.dart';
+
 
 class Payment extends StatefulWidget {
   String image, name, quantity, price;
@@ -285,7 +287,7 @@ class _PaymentState extends State<Payment> {
                                     width: mediaQueryData.size.width * 0.355,
                                   ),
                                     Text("\u20B9${widget.price}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16,
                                           decoration: TextDecoration.none,
                                           color: Colors.black)),
@@ -305,7 +307,7 @@ class _PaymentState extends State<Payment> {
             decoration: BoxDecoration(
                 color: Colors.cyan.shade50,
                 border:
-                    Border(top: BorderSide(color: Colors.black, width: 0.5))),
+                    const Border(top: BorderSide(color: Colors.black, width: 0.5))),
             child: Center(
               child: Row(
                 children: [
@@ -322,21 +324,37 @@ class _PaymentState extends State<Payment> {
                   SizedBox(
                     width: mediaQueryData.size.width * 0.4,
                   ),
-                  Container(
-                    width: mediaQueryData.size.width * 0.33,
-                    height: mediaQueryData.size.height * 0.07,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    color: Colors.black,
+                  GestureDetector(
+                   onTap: () async{
+                     const EasyUpiPaymentModel _model = EasyUpiPaymentModel(
+                       payeeVpa: 'cheenu.aryan220402@okaxis',
+                       payeeName: 'Divyanshu',
+                       amount: 5.0,
+                       description: 'Testing payment',
+                     );
+                      final res= await EasyUpiPaymentPlatform.instance.startPayment(_model) ;
+                     if (res != null) {
+                       print('Payment successful');
+                     } else {
+                       print('Payment failed');
+                     }
+                    },
+                    child: Container(
+                      width: mediaQueryData.size.width * 0.33,
+                      height: mediaQueryData.size.height * 0.07,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      color: Colors.black,
+                      ),
+                      child: const Center(
+                          child: Text(
+                        "Continue",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            decoration: TextDecoration.none),
+                      )),
                     ),
-                    child: const Center(
-                        child: Text(
-                      "Continue",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          decoration: TextDecoration.none),
-                    )),
                   )
                 ],
               ),
@@ -346,4 +364,7 @@ class _PaymentState extends State<Payment> {
       ),
     );
   }
+  // Create a function to initiate the UPI payment
+
+
 }

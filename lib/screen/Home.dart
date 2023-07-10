@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.only(left: 92.0),
                       child: IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.search,
                             color: Colors.white,
                           )),
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: EdgeInsets.only(left: 4),
                               child: Text(
                                 "South Indian",
-                                style: TextStyle(fontSize: 30),
+                                style: TextStyle(fontSize: 30, ),
                               ),
                             ),
                             Row(
