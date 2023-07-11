@@ -6,6 +6,7 @@ import 'package:fooddelivery/screen/SelectedAddress.dart';
 class OrderSummary extends StatefulWidget {
   String image, name, quantity, price;
 
+
   OrderSummary(
       {super.key,
       required this.image,
@@ -18,6 +19,7 @@ class OrderSummary extends StatefulWidget {
 }
 
 class _OrderSummaryState extends State<OrderSummary> {
+  Map<dynamic, dynamic> map={};
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -100,7 +102,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const SelectAddress()));
+                                              SelectAddress(name: widget.name, quantity: widget.quantity, price: widget.price, image: widget.image,)));
                               },
                               child: Container(
                                 height: 30,
