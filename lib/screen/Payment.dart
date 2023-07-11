@@ -166,7 +166,7 @@ class _PaymentState extends State<Payment> {
                                     height: 35,
                                   ),
                                   onChanged: (value) {
-                                    print("Cash on Delivery");
+
                                     setState(() {
                                       selectedOption = value;
                                     });
