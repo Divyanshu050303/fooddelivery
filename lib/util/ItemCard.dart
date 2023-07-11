@@ -284,7 +284,7 @@ class _ItemCardState extends State<ItemCard> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(image: '',name: '',quantity: '', price: '',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(image: widget.image,name: widget.name,quantity: widget.quantity, price: widget.price,)));
                       },
                       child: Container(
                         decoration: BoxDecoration(
