@@ -1,11 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class AddressWriteRead{
   final databaseref= FirebaseDatabase.instance.ref("UserAddress");
-  int total=0;
-  void CreateDataBase(String path, Map<String, dynamic> data,String email){
-    databaseref.child(email).child(total.toString()).set(data);
-    total++;
-  }
+  final DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
 
+
+  void CreateDataBase(String path, Map<String, dynamic> data,String email,int count){
+    final uniqueKey=databaseReference.child("UserAddress").child(FirebaseAuth.instance.currentUser!.uid).push().key;
+    databaseref.child(email).child(uniqueKey!).set(data);
+
+  }
 }
