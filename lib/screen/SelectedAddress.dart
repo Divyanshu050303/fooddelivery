@@ -3,120 +3,78 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fooddelivery/screen/updateAddress.dart';
-
-import '../NavBar.dart';
+import 'package:fooddelivery/screen/orderSummary.dart';
 import 'Address.dart';
 
 class SelectAddress extends StatefulWidget {
-  const SelectAddress({super.key});
+  String image, name, quantity, price;
+
+  SelectAddress(
+      {super.key,
+      required this.image,
+      required this.name,
+      required this.quantity,
+      required this.price});
 
   @override
   State<SelectAddress> createState() => _SelectAddressState();
 }
 
 class _SelectAddressState extends State<SelectAddress> {
-  Query dbref = FirebaseDatabase.instance.ref().child("UserAddress").child(
-      FirebaseAuth.instance.currentUser!.uid);
-  DatabaseReference reference = FirebaseDatabase.instance.ref().child(
-      "UserAddress").child(FirebaseAuth.instance.currentUser!.uid);
+  String selectredAddres = "";
+  Query dbref = FirebaseDatabase.instance
+      .ref()
+      .child("UserAddress")
+      .child(FirebaseAuth.instance.currentUser!.uid);
+  DatabaseReference reference = FirebaseDatabase.instance
+      .ref()
+      .child("UserAddress")
+      .child(FirebaseAuth.instance.currentUser!.uid);
+  // Map<dynamic,dynamic>_address={};
+
 
   Widget listItem({required Map address}) {
-    return   Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          RadioListTile(value: "Tie", groupValue: "Time pass", onChanged: (val){print("Time");})
-        ],
-      ),
-    );
-
-    // return Scaffold(
-    // body: Container(
-    // margin: const EdgeInsets.all(10),
-    // padding: const EdgeInsets.all(10),
-    // height: 190,
-    // width: 200,
-    // decoration:const BoxDecoration(
-    //     gradient: LinearGradient(colors: [Colors.white24,Colors.white24])
-    // ),
-    // child: Column(
-    //   mainAxisAlignment: MainAxisAlignment.center,
-    //   crossAxisAlignment: CrossAxisAlignment.start,
-    //   children: [
-    //     Text(
-    //       address['_name'],
-    //       style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w400,decoration: TextDecoration.none,color: Colors.black),
-    //     ),
-    //     const SizedBox(
-    //       height: 5,
-    //     ),
-    //     Text(
-    //       address['_building'].toString(),
-    //       style: const TextStyle(fontSize:18 , fontWeight: FontWeight.w400,decoration: TextDecoration.none,color: Colors.black),
-    //     ),
-    //     const SizedBox(
-    //       height: 5,
-    //     ),
-    //     Text(
-    //       address['_road'],
-    //       style: const TextStyle(fontSize:18 , fontWeight: FontWeight.w400,decoration: TextDecoration.none,color: Colors.black),
-    //     ),Text(
-    //       address['_city'],
-    //       style: const TextStyle(fontSize:18 , fontWeight: FontWeight.w400,decoration: TextDecoration.none,color: Colors.black),
-    //     ),Text(
-    //       address['_state']+" "+address['_pincode'],
-    //       style: const TextStyle(fontSize:18 , fontWeight: FontWeight.w400,decoration: TextDecoration.none,color: Colors.black),
-    //     ),
-    //     Text(
-    //       "Phone Number"+ ":"+address['_phoneNumber'],
-    //       style: const TextStyle(fontSize:18 , fontWeight: FontWeight.w400,decoration: TextDecoration.none,color: Colors.black),
-    //     ),
-    //     Row(
-    //       mainAxisAlignment: MainAxisAlignment.end,
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: [
-    //         GestureDetector(
-    //           onTap: () {
-    //             Navigator.push(context, MaterialPageRoute(builder: (_) => UpdateAddress(addressKey: address['key'])));
-    //           },
-    //           child: const Row(
-    //             children: [
-    //               Icon(
-    //                 Icons.edit,
-    //                 // color: Theme.of(context).primaryColor,
-    //                 color: Colors.black,
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //         const SizedBox(
-    //           width: 6,
-    //         ),
-    //         GestureDetector(
-    //           onTap: () {
-    //             reference.child(address['key']).remove();
-    //             Fluttertoast.showToast(msg: "Address Deleted Successfully!",toastLength:Toast.LENGTH_SHORT,gravity: ToastGravity.BOTTOM,backgroundColor: Colors.grey,textColor: Colors.white );
-    //           },
-    //           child: const Row(
-    //             children: [
-    //               Icon(
-    //                 Icons.delete,
-    //                 color: Colors.black,
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       ],
-    //     )
-    //   ],
-    // ),
-    // child: RadioListTile(value: "Title",onChanged: (val){print("TimePass");},groupValue: "Time pass",
-
-    //     ),
-    //   ),
-    // );
-
+    return Column(children: [
+      SizedBox(
+          width: 400,
+          height: 210,
+          child: Scaffold(
+            backgroundColor: Colors.white38,
+            body: Container(
+              child: RadioListTile(
+                title: Column(
+                  children: [
+         Padding(
+           padding: const EdgeInsets.only(right: 58.0),
+           child: Text(address['_name'],style: const TextStyle(fontSize: 20, ),textAlign: TextAlign.start,),
+         ),
+                    Text(address['_building'] +
+                        "\n" +
+                        address['_road'] +
+                        "\n" +
+                        address['_city'] +
+                        "\n" +
+                        address['_state'] +
+                        " " +
+                        address['_pincode'] +
+                        "\n" +
+                        "Phone Number" +
+                        ":" +
+                        address['_phoneNumber']),
+                  ],
+                ),
+                value: address['_name'],
+                groupValue: selectredAddres,
+                onChanged: (value) {
+                  setState(() {
+                    selectredAddres = value!;
+                     // OrderSummary().map=address;
+                  });
+                },
+              ),
+            ),
+          ))
+    ]);
   }
 
   @override
@@ -125,43 +83,43 @@ class _SelectAddressState extends State<SelectAddress> {
     return Container(
       width: mediaQueryData.size.width,
       height: mediaQueryData.size.height,
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.white, Colors.cyan, Colors.white])),
-      child: Column(
-        children: [
-          Container(
+      decoration: const BoxDecoration(color: Colors.black),
+      child: Stack(children: [
+        SizedBox(
+            height: mediaQueryData.size.height * 0.93,
             width: mediaQueryData.size.width,
-            height: mediaQueryData.size.height * 0.1,
-            decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: [Colors.greenAccent, Colors.greenAccent]),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 2,
-                      spreadRadius: 2,
-                      color: Colors.black.withOpacity(0.8),
-                      offset: const Offset(0, 2))
-                ]),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 14.0),
-              child: Row(
-                children: [
+            child: Container(
+              width: mediaQueryData.size.width,
+              height: mediaQueryData.size.height,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                    bottom: mediaQueryData.size.height * 0.77, left: 20),
+                child: Row(children: [
                   IconButton(
                       onPressed: () {
-                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                            builder: (context) =>   NavBar(count: 0,)), (
-                            route) => false);
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => OrderSummary(
+                                      name: widget.name,
+                                      price: widget.price,
+                                      image: widget.image,
+                                      quantity: widget.quantity,
+                                    )),
+                            (route) => false);
                       },
                       icon: const Icon(
                         Icons.arrow_back_outlined,
-                        color: Colors.black,
+                        color: Colors.white,
                       )),
                   const Text(
                     "My Addresses",
                     style: TextStyle(
                         fontSize: 20,
-                        color: Colors.black,
+                        color: Colors.white,
                         decoration: TextDecoration.none),
                   ),
                   SizedBox(
@@ -171,7 +129,7 @@ class _SelectAddressState extends State<SelectAddress> {
                       onPressed: () {},
                       icon: const Icon(
                         Icons.search,
-                        color: Colors.black,
+                        color: Colors.white,
                       )),
                   IconButton(
                       onPressed: () {},
@@ -179,54 +137,80 @@ class _SelectAddressState extends State<SelectAddress> {
                         Icons.shopping_cart,
                         color: Colors.white,
                       ))
+                ]),
+              ),
+            )),
+        Positioned(
+          top: 80,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Container(
+              width: mediaQueryData.size.width,
+              height: mediaQueryData.size.height * 0.95,
+              color: Colors.cyan.shade50,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AddAddress()));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 18.0),
+                      child: Container(
+                        height: mediaQueryData.size.height * 0.07,
+                        decoration: const BoxDecoration(color: Colors.blue),
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 14.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Add Address",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    decoration: TextDecoration.none),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: mediaQueryData.size.height * 0.3,
+                    child: SizedBox(
+                      width: mediaQueryData.size.width,
+                      height: mediaQueryData.size.height * 0.8,
+                      child: FirebaseAnimatedList(
+                        query: dbref,
+                        itemBuilder: (BuildContext context,
+                            DataSnapshot snapshot,
+                            Animation<double> animation,
+                            int index) {
+                          Map address = snapshot.value as Map;
+                          address['key'] = snapshot.key;
+
+                          return listItem(address: address);
+                        },
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: mediaQueryData.size.height * .02,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AddAddress()));
-            },
-            child: Container(
-              height: mediaQueryData.size.height * 0.08,
-              width: mediaQueryData.size.width,
-              decoration: const BoxDecoration(
-                  gradient:
-                  LinearGradient(colors: [Colors.black45, Colors.black54])),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 14.0),
-                child: Row(
-                  children: [
-                    Icon(Icons.add, color: Colors.white,),
-                    SizedBox(width: 10,),
-                    Text("Add Address", style: TextStyle(fontSize: 20,
-                        color: Colors.white,
-                        decoration: TextDecoration.none),)
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: mediaQueryData.size.width,
-            height: mediaQueryData.size.height * 0.8,
-            child: FirebaseAnimatedList(
-              query: dbref,
-              itemBuilder: (BuildContext context, DataSnapshot snapshot,
-                  Animation<double> animation, int index) {
-                Map address = snapshot.value as Map;
-                address['key'] = snapshot.key;
-                return listItem(address: address);
-              },
-            ),
-          )
-        ],
-      ),
+        ),
+      ]),
     );
   }
 }
-
