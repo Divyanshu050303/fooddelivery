@@ -331,8 +331,8 @@ class _AddAddressState extends State<AddAddress> {
                                            "_building": _building,
                                            "_road": _roadno
                                          };
-                                         int count=addressWriteRead.FindCount();
-                                         addressWriteRead.CreateDataBase("UserAddress",jasonData,FirebaseAuth.instance.currentUser!.uid,count);
+
+                                         addressWriteRead.CreateDataBase("UserAddress",jasonData,FirebaseAuth.instance.currentUser!.uid);
 
                                          Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context)=>const Address()), (route) => false);
                                          Fluttertoast.showToast(msg: "Address Added Successfully!",toastLength:Toast.LENGTH_LONG,gravity: ToastGravity.BOTTOM,backgroundColor: Colors.grey,textColor: Colors.white );
