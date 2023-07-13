@@ -6,7 +6,7 @@ class AddressWriteRead{
   final DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
 
 
-  void CreateDataBase(String path, Map<String, dynamic> data,String email,int count){
+  void CreateDataBase(String path, Map<String, dynamic> data,String email){
     final uniqueKey=databaseReference.child("UserAddress").child(FirebaseAuth.instance.currentUser!.uid).push().key;
     databaseref.child(email).child(uniqueKey!).set(data);
 
