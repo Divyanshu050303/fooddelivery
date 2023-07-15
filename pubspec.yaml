@@ -58,6 +58,7 @@ dependencies:
   flutter_decorated_text: ^1.0.14
   flutter_statusbarcolor_ns: ^0.5.0
   easy_upi_payment: ^0.1.4
+  connectivity_plus: ^4.0.1
 
 
 

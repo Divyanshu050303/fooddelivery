@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "256494617093",
+    "firebase_url": "https://food-c1a5f-default-rtdb.firebaseio.com",
     "project_id": "food-c1a5f",
     "storage_bucket": "food-c1a5f.appspot.com"
   },
@@ -14,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "256494617093-nmbt1urreolrg9qcsl7v4155qb8c8d8o.apps.googleusercontent.com",
+          "client_id": "256494617093-8og5vcdas4rq5nvgjpo3ubm55fc49b3v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fooddelivery",
+            "certificate_hash": "809b093b79dd35ca73400d246f5818b0c26d949e"
+          }
+        },
+        {
+          "client_id": "256494617093-o88a7jl2upspt2rcjmlo43di9tnih1oq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +38,13 @@
             {
               "client_id": "256494617093-nmbt1urreolrg9qcsl7v4155qb8c8d8o.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "256494617093-aleedqsc8l2bqt68piimbtkcngj280u1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fooddelivery"
+              }
             }
           ]
         }
