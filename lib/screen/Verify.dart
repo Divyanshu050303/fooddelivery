@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
 import 'package:video_player/video_player.dart';
 
@@ -75,10 +76,15 @@ class _VerifyState extends State<Verify> {
                         .credential(
                         verificationId: SignIn.verify, smsCode: _code);
                     await auth.signInWithCredential(credential);
-                    Navigator.pushNamedAndRemoveUntil(context, "Navbar", (route) => false);
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder:(context)=>NavBar(count: 0) ), (route) => false);
                   }
                   catch(e){
-
+                    Fluttertoast.showToast(
+                        msg: "Wrong Otp!",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.grey,
+                        textColor: Colors.white);
                   }
                 }, child: const Text("Verify",style: TextStyle(fontSize: 20),))
               ],
