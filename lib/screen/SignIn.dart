@@ -1,7 +1,9 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
+import '../NavBar.dart';
 import '../Services/SigningClass.dart';
 import 'Verify.dart';
 
@@ -14,8 +16,21 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   late VideoPlayerController _videoPlayerController;
   final ScrollController _scrollController = ScrollController();
-  String _phoneNumber="";
+  String _phoneNumber = "";
   TextEditingController countryController = TextEditingController();
+bool result=false;
+  Future checkInternetConnectivity() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.none) {
+      setState(() {
+        result = false;
+      });
+    } else {
+      setState(() {
+        result = true;
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -28,6 +43,22 @@ class _SignInState extends State<SignIn> {
       _videoPlayerController.play();
       _videoPlayerController.setLooping(true);
     });
+    checkInternetConnectivity();
+
+    if(result){
+        AlertDialog(
+        title: const Text("Network Error"),
+        content: const Text("Please Check you Internet Connection"),
+        actions: [
+          TextButton(
+            child: const Text('Cancel'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    }
   }
 
   @override
@@ -111,6 +142,9 @@ class _SignInState extends State<SignIn> {
                       onTap: (){
                          final provider=Provider.of<SingingAuth>(context, listen: false);
                          provider.googleLogin();
+                         if(provider.isSigningIn){
+                           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>NavBar(count: 0,)), (route) => false);
+                         }
                       },
                       child: Image.asset(
                         "assets/google.png",
