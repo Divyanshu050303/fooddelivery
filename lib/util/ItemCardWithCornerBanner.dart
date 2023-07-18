@@ -73,13 +73,17 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.tealAccent
+                    primary: Colors.tealAccent.shade200
                   ),
                     onPressed: () {
                       _showBottomSheet(context);
                     },
-                    child: const Text("buy")),
+                    child: const Text("Buy", style: TextStyle(color: Colors.black),)),
                 ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black26,
+
+                    ),
                     onPressed: () {
                       if (ItemList.any((map) => map['name'] == widget.name)) {
                         int index = ItemList.indexWhere(
