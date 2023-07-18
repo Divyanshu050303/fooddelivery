@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fooddelivery/screen/orderSummary.dart';
 import 'Address.dart';
 
@@ -21,6 +20,7 @@ class SelectAddress extends StatefulWidget {
 }
 
 class _SelectAddressState extends State<SelectAddress> {
+  Map<dynamic, dynamic> map={};
   String selectredAddres = "";
   Query dbref = FirebaseDatabase.instance
       .ref()
@@ -34,47 +34,54 @@ class _SelectAddressState extends State<SelectAddress> {
 
 
   Widget listItem({required Map address}) {
-    return Column(children: [
-      SizedBox(
-          width: 400,
-          height: 210,
-          child: Scaffold(
-            backgroundColor: Colors.white38,
-            body: Container(
-              child: RadioListTile(
-                title: Column(
-                  children: [
-         Padding(
-           padding: const EdgeInsets.only(right: 58.0),
-           child: Text(address['_name'],style: const TextStyle(fontSize: 20, ),textAlign: TextAlign.start,),
-         ),
-                    Text(address['_building'] +
-                        "\n" +
-                        address['_road'] +
-                        "\n" +
-                        address['_city'] +
-                        "\n" +
-                        address['_state'] +
-                        " " +
-                        address['_pincode'] +
-                        "\n" +
-                        "Phone Number" +
-                        ":" +
-                        address['_phoneNumber']),
-                  ],
+    MediaQueryData mediaQueryData=MediaQuery.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(top:18.0),
+      child: Column(children: [
+        SizedBox(
+            width: mediaQueryData.size.width,
+            height: mediaQueryData.size.height*0.2,
+            child: Scaffold(
+              backgroundColor: Colors.white38,
+              body: Container(
+                child: RadioListTile(
+                  title: Stack(
+                    children: [
+           Padding(
+             padding: const EdgeInsets.only(right: 58.0),
+             child: Text(address['_name'],style: const TextStyle(fontSize: 20, ),textAlign: TextAlign.start,),
+           ),
+                      Padding(
+                        padding: const EdgeInsets.only(top:20.0),
+                        child: Text(address['_building'] +
+                            "\n" +
+                            address['_road'] +
+                            "\n" +
+                            address['_city'] +
+                            "\n" +
+                            address['_state'] +
+                            " " +
+                            address['_pincode'] +
+                            "\n" +
+                            "Phone Number" +
+                            ":" +
+                            address['_phoneNumber']),
+                      ),
+                    ],
+                  ),
+                  value: address['_name'],
+                  groupValue: selectredAddres,
+                  onChanged: (value) {
+                    setState(() {
+                      selectredAddres = value!;
+                    ;
+                    });
+                  },
                 ),
-                value: address['_name'],
-                groupValue: selectredAddres,
-                onChanged: (value) {
-                  setState(() {
-                    selectredAddres = value!;
-                     // OrderSummary().map=address;
-                  });
-                },
               ),
-            ),
-          ))
-    ]);
+            ))
+      ]),
+    );
   }
 
   @override
