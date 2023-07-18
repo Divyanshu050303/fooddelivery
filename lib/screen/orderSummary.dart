@@ -5,15 +5,12 @@ import 'package:fooddelivery/screen/SelectedAddress.dart';
 
 class OrderSummary extends StatefulWidget {
   String image, name, quantity, price;
-
-
   OrderSummary(
       {super.key,
       required this.image,
       required this.name,
       required this.quantity,
-      required this.price});
-
+      required this.price  });
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
 }
