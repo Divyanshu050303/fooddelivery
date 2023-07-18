@@ -77,8 +77,12 @@ class _ItemCardState extends State<ItemCard> {
                       primary: Colors.tealAccent,
                       
                     ),
-                    child: const Text("Buy")),
+                    child: const Text("Buy", style: TextStyle(color: Colors.black),)),
                 ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black26,
+
+                    ),
                     onPressed: () {
                       if (ItemList.any((map) => map['name'] == widget.name)) {
                         int index = ItemList.indexWhere(
