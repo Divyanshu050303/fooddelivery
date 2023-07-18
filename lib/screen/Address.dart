@@ -19,27 +19,7 @@ class _AddAddressState extends State<AddAddress> {
 
   DatabaseReference reference=FirebaseDatabase.instance.ref().child("UserAddress").child(FirebaseAuth.instance.currentUser!.uid);
   int recordCount = 0;
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   reference.once().then((DataSnapshot snapshot) {
-  //     recordCount = snapshot.value?.snapshot.length ?? 0;
-  //     print('Total number of records: $recordCount');
-  //   } as FutureOr Function(DatabaseEvent value));
-  //   }
-    // Future<int> getNumberOfRecord() async {
-    //
-    //   final categoriesNumbersResponse = await FirebaseDatabase.instance
-    //       .reference()
-    //       .child('UserAddress')
-    //       .child(FirebaseAuth.instance.currentUser!.uid!)
-    //       .once();
-    //   var categoryNodes = [];
-    //   categoriesNumbersResponse.value.forEach((v) => categoryNodes.add(v));
-    //   int numberOfCategories = categoryNodes.length;
-    //   return numberOfCategories;
-    // }
+
   String _name = "";
   String _phoneNumber = "";
   String _pincode = "";
