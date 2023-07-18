@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 // import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -23,16 +23,20 @@ class SingingAuth extends ChangeNotifier{
       isSigningIn = false;
       return;
     } else {
-      final googleAuth = await user.authentication;
+      try {
+        final googleAuth = await user.authentication;
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
 
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
+        await FirebaseAuth.instance.signInWithCredential(credential);
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
+        isSigningIn = false;
+      }
+      catch(e){
 
-      // isSigningIn = false;
+      }
     }
   }
 
@@ -40,10 +44,11 @@ class SingingAuth extends ChangeNotifier{
     await googleSignIn.disconnect();
     FirebaseAuth.instance.signOut();
     _isSigningIn=false;
+    print("logout");
   }
-  // Future FacebookLogin() async{
-  //   final LoginResult loginResult=await FacebookAuth.instance.login();
-  //   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
-  //   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  // }
+// Future FacebookLogin() async{
+//   final LoginResult loginResult=await FacebookAuth.instance.login();
+//   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+//   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+// }
 }
