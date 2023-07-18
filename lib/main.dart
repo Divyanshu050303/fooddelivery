@@ -46,7 +46,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
       body: ChangeNotifierProvider(
           create: (_) => SingingAuth(),
-          child: StreamBuilder(
+          child:MaterialApp(debugShowCheckedModeBanner: false,
+          home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapsot) {
               final provider = Provider.of<SingingAuth>(context);
@@ -60,7 +61,7 @@ class HomePage extends StatelessWidget {
                 return const SignIn();
               }
             },
-          )));
+          ))));
 
   Widget buildLoading() => const Stack(
         fit: StackFit.expand,
