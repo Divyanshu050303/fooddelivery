@@ -254,7 +254,7 @@ class _SettingState extends State<Setting> {
                                   final provider =
                                   Provider.of<SingingAuth>(context, listen: false);
                                   provider.logout();
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const SignIn()));
+                                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const SignIn()));
                                 },
                                 child: Container(
                                   width: mediaQueryData.size.width * 0.81,
