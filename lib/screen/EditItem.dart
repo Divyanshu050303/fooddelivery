@@ -26,25 +26,23 @@ class _EditItemState extends State<EditItem> {
       color: Colors.cyan.shade50,
       child: Column(
         children: [
-          Stack(
-            children:[ Container(
+          Stack(children: [
+            Container(
               width: mediaQueryData.size.width,
-              height: mediaQueryData.size.height ,
+              height: mediaQueryData.size.height,
               // color: Colors.cyan,
-              decoration:   BoxDecoration(
-                  color: Colors.black,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black,
-                        blurRadius: 2,
-                        spreadRadius: 4,
-                        offset: Offset(0, 3))
-                  ]),
+              decoration: const BoxDecoration(color: Colors.black, boxShadow: [
+                BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 2,
+                    spreadRadius: 4,
+                    offset: Offset(0, 3))
+              ]),
               child: Padding(
-                padding: EdgeInsets.only(bottom: mediaQueryData.size.height * 0.85, left: 30),
+                padding: EdgeInsets.only(
+                    bottom: mediaQueryData.size.height * 0.85, left: 30),
                 child: Row(
                   children: [
-
                     GestureDetector(
                         onTap: () {
                           // dataList.clear();
@@ -52,11 +50,10 @@ class _EditItemState extends State<EditItem> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const Owner()),
-                                  (route) => false);
+                              (route) => false);
                         },
                         child: const Icon(
                           Icons.arrow_back,
-
                           color: Colors.white,
                         )),
                     SizedBox(
@@ -76,20 +73,19 @@ class _EditItemState extends State<EditItem> {
                 ),
               ),
             ),
-              Positioned(
-                top: 80,
-                child:  ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
-                  child: Container(
+            Positioned(
+              top: 80,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: Container(
                   height: mediaQueryData.size.height * 0.98,
                   width: mediaQueryData.size.width,
                   padding: const EdgeInsets.only(bottom: 40),
-                  decoration:   BoxDecoration(
-                      color: Colors.cyan.shade50
-                  ),
+                  decoration: BoxDecoration(color: Colors.cyan.shade50),
                   child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: mediaQueryData.size.width > 900 ? 3 : 2,
+                          crossAxisCount:
+                              mediaQueryData.size.width > 900 ? 3 : 2,
                           mainAxisSpacing: mediaQueryData.size.width * 0.09,
                           childAspectRatio: 0.8),
                       itemCount: dataList.length,
@@ -100,80 +96,95 @@ class _EditItemState extends State<EditItem> {
                                 right: mediaQueryData.size.width * 0.045),
                             child: GridTile(
                                 child: GestureDetector(
-                                  onLongPress: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ItemEdit(itemName:dataList[index]['itemName'],itemPrice:dataList[index]['itemPrice'],itemQuantity:dataList[index]['itemQuantity'],image:dataList[index]['image'] )));
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Colors.pinkAccent.shade100,
-                                          Colors.white,
-                                          Colors.white
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                      border: Border.all(
-                                          style: BorderStyle.solid,
-                                          color: Colors.black,
-                                          width: 1),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.black.withOpacity(0.5),
-                                            spreadRadius: 2,
-                                            blurRadius: 3,
-                                            offset: const Offset(0, 3))
-                                      ],
-                                    ),
-                                    child: ListView(
-                                      // controller: _scrollController,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Image.network(
-                                                dataList[index]['image'],
-                                                width: 150,
-                                                height: 111,
-                                                fit: BoxFit.fitWidth,
-                                              ),
-                                              Text(
-                                                dataList[index]['itemName'],
-                                                style: const TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    decoration: TextDecoration.none),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                              Text(
-                                                dataList[index]['itemPrice'],
-                                                style: const TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.black,
-                                                    decoration: TextDecoration.none),
-                                              ),
-                                              IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      dataList.removeAt(index);
-                                                    });
-                                                    deleteDocumentByValue('itemDetail','itemName',dataList[index]['itemName'], dataList[index]['image']);
-                                                  },
-                                                  icon: const Icon(
-                                                    Icons.delete_forever_rounded,
-                                                    color: Colors.black,
-                                                  ))
-                                            ],
-                                          ),
-                                        ]),
+                              onLongPress: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ItemEdit(
+                                            itemName: dataList[index]
+                                                ['itemName'],
+                                            itemPrice: dataList[index]
+                                                ['itemPrice'],
+                                            itemQuantity: dataList[index]
+                                                ['itemQuantity'],
+                                            image: dataList[index]['image'])));
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.pinkAccent.shade100,
+                                      Colors.white,
+                                      Colors.white
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
                                   ),
-                                )));
-                      }
-                  ),
+                                  border: Border.all(
+                                      style: BorderStyle.solid,
+                                      color: Colors.black,
+                                      width: 1),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black.withOpacity(0.5),
+                                        spreadRadius: 2,
+                                        blurRadius: 3,
+                                        offset: const Offset(0, 3))
+                                  ],
+                                ),
+                                child: ListView(
+                                    // controller: _scrollController,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Image.network(
+                                            dataList[index]['image'],
+                                            width: 150,
+                                            height: 111,
+                                            fit: BoxFit.fitWidth,
+                                          ),
+                                          Text(
+                                            dataList[index]['itemName'],
+                                            style: const TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.black,
+                                                decoration:
+                                                    TextDecoration.none),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          Text(
+                                            dataList[index]['itemPrice'],
+                                            style: const TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.black,
+                                                decoration:
+                                                    TextDecoration.none),
+                                          ),
+                                          IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  dataList.removeAt(index);
+                                                });
+                                                deleteDocumentByValue(
+                                                    'itemDetail',
+                                                    'itemName',
+                                                    dataList[index]['itemName'],
+                                                    dataList[index]['image']);
+                                              },
+                                              icon: const Icon(
+                                                Icons.delete_forever_rounded,
+                                                color: Colors.black,
+                                              ))
+                                        ],
+                                      ),
+                                    ]),
+                              ),
+                            )));
+                      }),
+                ),
               ),
-                ),)
+            )
           ]),
-
         ],
       ),
     );
@@ -189,13 +200,14 @@ class _EditItemState extends State<EditItem> {
         documentSnapshot.data() as Map<String, dynamic>;
         // for(var map in dataList){
         //   if(map!=data){
-          dataList.add(data);
+        dataList.add(data);
         //   }
         // }
       });
     });
     print(dataList.length);
   }
+
   void deleteDocumentByValue(String collectionName, String fieldName, dynamic value, String imagePath) {
     FirebaseFirestore.instance
         .collection(collectionName)
@@ -208,6 +220,7 @@ class _EditItemState extends State<EditItem> {
     });
     deleteImage(imagePath);
   }
+
   Future<void> deleteImage(String imagePath) async {
     final Reference storageRef = FirebaseStorage.instance.ref().child(imagePath);
     try {
@@ -218,4 +231,3 @@ class _EditItemState extends State<EditItem> {
     }
   }
 }
-
