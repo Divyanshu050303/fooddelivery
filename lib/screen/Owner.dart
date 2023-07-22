@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/screen/AddItem.dart';
 import 'package:fooddelivery/screen/EditItem.dart';
+import 'package:fooddelivery/screen/Orders.dart';
+
+import 'Sales.dart';
 
 class Owner extends StatefulWidget {
   const Owner({Key? key}) : super(key: key);
@@ -38,10 +41,10 @@ class _OwnerState extends State<Owner> {
             // color: Colors.black26,
             child: Padding(
               padding: EdgeInsets.only(
-                  bottom: mediaQueryData.size.height * 0.77, left: 30),
+                  bottom: mediaQueryData.size.height * 0.77, left: 10),
               child:   Row(
                 children: [
-                   IconButton(onPressed: (){Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomePage()), (route) => false);}, icon: const Icon(Icons.arrow_back)),
+                   IconButton(onPressed: (){Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomePage()), (route) => false);}, icon: const Icon(Icons.arrow_back, color: Colors.white,)),
                   const Text(
                     "Owner Dashboard",
                     style: TextStyle(
@@ -85,23 +88,23 @@ class _OwnerState extends State<Owner> {
                                       spreadRadius: 2,
                                       offset: Offset(0, 3))
                                 ]),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text("0", style: TextStyle(
-                                  fontSize: 30,
-                                  color: Colors.black,
-                                  decoration: TextDecoration.none,
-                                ),),
-                                Text(
-                                  "Add Item",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black,
-                                    decoration: TextDecoration.none,
+                            child: const Padding(
+                              padding: EdgeInsets.only(top:35.0),
+                              child: Column(
+
+                                children: [
+                                Icon(Icons.add, color: Colors.black,size: 30,),
+                                  SizedBox(height: 10,),
+                                  Text(
+                                    "Add Item",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      decoration: TextDecoration.none,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -142,68 +145,78 @@ class _OwnerState extends State<Owner> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                          width: 150,
-                          height: 150,
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(137, 244, 224, 0.8),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black38,
-                                    blurRadius: 2,
-                                    spreadRadius: 2,
-                                    offset: Offset(0, 3))
-                              ]),
-                          child:  const Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("0",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  color: Colors.black,
-                                  decoration: TextDecoration.none,
-                                ),),
-                              Text(
-                                "Sale",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  decoration: TextDecoration.none,
+                        GestureDetector(
+                          onTap:(){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>const Sales()));
+                          },
+                          child: Container(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                                color: const Color.fromRGBO(137, 244, 224, 0.8),
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black38,
+                                      blurRadius: 2,
+                                      spreadRadius: 2,
+                                      offset: Offset(0, 3))
+                                ]),
+                            child:  const Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text("0",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.black,
+                                    decoration: TextDecoration.none,
+                                  ),),
+                                Text(
+                                  "Sale",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    decoration: TextDecoration.none,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 150,
-                          height: 150,
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(230, 128, 250, 0.8),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black38,
-                                    blurRadius: 2,
-                                    spreadRadius: 2,
-                                    offset: Offset(0, 3))
-                              ]),
-                          child: const Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("0",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  color: Colors.black,
-                                  decoration: TextDecoration.none,
-                                ),),
-                              Text("User",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  decoration: TextDecoration.none,
-                                ),),
-                            ],
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder:(context)=>const Ordres()));
+                          },
+                          child: Container(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                                color: const Color.fromRGBO(230, 128, 250, 0.8),
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black38,
+                                      blurRadius: 2,
+                                      spreadRadius: 2,
+                                      offset: Offset(0, 3))
+                                ]),
+                            child: const Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text("0",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.black,
+                                    decoration: TextDecoration.none,
+                                  ),),
+                                Text("Orders",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    decoration: TextDecoration.none,
+                                  ),),
+                              ],
+                            ),
                           ),
                         )
                       ],
