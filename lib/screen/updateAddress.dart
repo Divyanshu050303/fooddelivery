@@ -76,16 +76,14 @@ class _UpdateAddressState extends State<UpdateAddress> {
         ),
         child: SingleChildScrollView(
           controller: _scrollController,
-          child: Column(
+          child: Stack(
             children: [
               Container(
                 width: mediaQueryData.size.width,
-                height: mediaQueryData.size.height * 0.1,
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [Colors.greenAccent, Colors.greenAccent])),
+                height: mediaQueryData.size.height ,
+                color: Colors.black,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 12.0, left: 5),
+                  padding:   EdgeInsets.only(bottom: mediaQueryData.size.height*0.85, left: 5),
                   child: Row(
                     children: [
                       IconButton(
@@ -98,13 +96,13 @@ class _UpdateAddressState extends State<UpdateAddress> {
                           },
                           icon: const Icon(
                             Icons.arrow_back_outlined,
-                            color: Colors.black,
+                            color: Colors.white,
                             size: 25,
                           )),
                       const Text(
                         "Update Address",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20,
                             decoration: TextDecoration.none),
                       )
@@ -112,258 +110,262 @@ class _UpdateAddressState extends State<UpdateAddress> {
                   ),
                 ),
               ),
-              SingleChildScrollView(
-                controller: _scrollController,
-                child: SizedBox(
-                  width: mediaQueryData.size.width,
-                  height: mediaQueryData.size.height * 0.8,
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: Stack(
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: mediaQueryData.size.height * 0.03,
-                                left: 7,
-                                right: 7),
-                            child: TextField(
-                              controller: _controllerName,
-                              onChanged: (value) => {_name = value},
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+              Positioned(
+                top: 80,
+                child:  ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    color: Colors.cyan.shade50,
+                    width: mediaQueryData.size.width,
+                    height: mediaQueryData.size.height * 0.9,
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      child: Stack(
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  top: mediaQueryData.size.height * 0.03,
+                                  left: 7,
+                                  right: 7),
+                              child: TextField(
+                                controller: _controllerName,
+                                onChanged: (value) => {_name = value},
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: _name.isEmpty
+                                              ? Colors.red
+                                              : Colors.black,
+                                          width: 2)),
+                                  hintText: _name,
+                                  // label: const Text(
+                                  //   "Name (Required)*",
+                                  //   style: TextStyle(color: Colors.black),
+                                  // ),
+                                  focusColor: Colors.black,
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: _name.isEmpty
-                                            ? Colors.red
-                                            : Colors.black,
-                                        width: 2)),
-                                hintText: _name,
-                                // label: const Text(
-                                //   "Name (Required)*",
-                                //   style: TextStyle(color: Colors.black),
-                                // ),
-                                focusColor: Colors.black,
-                              ),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: mediaQueryData.size.height * 0.13,
-                                left: 7,
-                                right: 7),
-                            child: TextField(
-                              controller: _controllerPhone,
-                              onChanged: (value) => {_phoneNumber = value},
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  top: mediaQueryData.size.height * 0.13,
+                                  left: 7,
+                                  right: 7),
+                              child: TextField(
+                                controller: _controllerPhone,
+                                onChanged: (value) => {_phoneNumber = value},
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: _phoneNumber.isEmpty
+                                              ? Colors.red
+                                              : Colors.black,
+                                          width: 2)),
+                                  hintText: "Phone Number (Required)*",
+                                  label: const Text(
+                                    "Phone Number (Required)*",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  focusColor: Colors.black,
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: _phoneNumber.isEmpty
-                                            ? Colors.red
-                                            : Colors.black,
-                                        width: 2)),
-                                hintText: "Phone Number (Required)*",
-                                label: const Text(
-                                  "Phone Number (Required)*",
-                                  style: TextStyle(color: Colors.black),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  top: mediaQueryData.size.height * 0.23,
+                                  left: 7,
+                                  right: 7),
+                              child: TextField(
+                                controller: _controllerPincode,
+                                onChanged: (value) => {_pincode = value},
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: _pincode.isEmpty
+                                              ? Colors.red
+                                              : Colors.black,
+                                          width: 2)),
+                                  hintText: "Pincode  (Required)*",
+                                  label: const Text(
+                                    "Pincode (Required)*",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  focusColor: Colors.black,
                                 ),
-                                focusColor: Colors.black,
-                              ),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: mediaQueryData.size.height * 0.23,
-                                left: 7,
-                                right: 7),
-                            child: TextField(
-                              controller: _controllerPincode,
-                              onChanged: (value) => {_pincode = value},
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: _pincode.isEmpty
-                                            ? Colors.red
-                                            : Colors.black,
-                                        width: 2)),
-                                hintText: "Pincode  (Required)*",
-                                label: const Text(
-                                  "Pincode (Required)*",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                focusColor: Colors.black,
-                              ),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: mediaQueryData.size.height * 0.33,
-                                left: 7,
-                                right: 7),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: TextField(
-                                    onChanged: (value) => {_state = value},
-                                    controller: _controllerState,
-                                    keyboardType: TextInputType.text,
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  top: mediaQueryData.size.height * 0.33,
+                                  left: 7,
+                                  right: 7),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: TextField(
+                                      onChanged: (value) => {_state = value},
+                                      controller: _controllerState,
+                                      keyboardType: TextInputType.text,
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: _state.isEmpty
+                                                    ? Colors.red
+                                                    : Colors.black,
+                                                width: 2)),
+                                        hintText: "State (Required)*",
+                                        label: const Text(
+                                          "State (Required)*",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                        focusColor: Colors.black,
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: _state.isEmpty
-                                                  ? Colors.red
-                                                  : Colors.black,
-                                              width: 2)),
-                                      hintText: "State (Required)*",
-                                      label: const Text(
-                                        "State (Required)*",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      focusColor: Colors.black,
                                     ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 7,
-                                ),
-                                Expanded(
-                                  child: TextField(
-                                    onChanged: (value) => {_city = value},
-                                    controller: _controllerCity,
-                                    keyboardType: TextInputType.text,
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                  const SizedBox(
+                                    width: 7,
+                                  ),
+                                  Expanded(
+                                    child: TextField(
+                                      onChanged: (value) => {_city = value},
+                                      controller: _controllerCity,
+                                      keyboardType: TextInputType.text,
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: _city.isEmpty
+                                                    ? Colors.red
+                                                    : Colors.black,
+                                                width: 2)),
+                                        hintText: "City (Required)*",
+                                        label: const Text(
+                                          "City (Required)*",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                        focusColor: Colors.black,
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: _city.isEmpty
-                                                  ? Colors.red
-                                                  : Colors.black,
-                                              width: 2)),
-                                      hintText: "City (Required)*",
-                                      label: const Text(
-                                        "City (Required)*",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      focusColor: Colors.black,
                                     ),
                                   ),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  top: mediaQueryData.size.height * 0.43,
+                                  left: 7,
+                                  right: 7),
+                              child: TextField(
+                                onChanged: (value) => {_building = value},
+                                controller: _controllerBuilding,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: _building.isEmpty
+                                              ? Colors.red
+                                              : Colors.black,
+                                          width: 2)),
+                                  hintText: "House No. Building Name (Required)*",
+                                  label: const Text(
+                                    "House No. Building Name (Required)*",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  focusColor: Colors.black,
                                 ),
-                              ],
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: mediaQueryData.size.height * 0.43,
-                                left: 7,
-                                right: 7),
-                            child: TextField(
-                              onChanged: (value) => {_building = value},
-                              controller: _controllerBuilding,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  top: mediaQueryData.size.height * 0.53,
+                                  left: 7,
+                                  right: 7),
+                              child: TextField(
+                                onChanged: (value) => {_roadno = value},
+                                controller: _controllerRoadNo,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: _roadno.isEmpty
+                                              ? Colors.red
+                                              : Colors.black,
+                                          width: 2)),
+                                  hintText: "Road Name, Area, Colony(required*)",
+                                  label: const Text(
+                                    "Road Name, Area, Colony(required)*",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  focusColor: Colors.black,
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: _building.isEmpty
-                                            ? Colors.red
-                                            : Colors.black,
-                                        width: 2)),
-                                hintText: "House No. Building Name (Required)*",
-                                label: const Text(
-                                  "House No. Building Name (Required)*",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                focusColor: Colors.black,
+                              )),
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  top: mediaQueryData.size.height * 0.63,
+                                  left: 7,
+                                  right: 7),
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  Map<String, String> jason = {
+                                    "_name": _controllerName.text,
+                                    "_phoneNumber": _controllerPhone.text,
+                                    "_pincode": _controllerPincode.text,
+                                    "_state": _controllerState.text,
+                                    "_city": _controllerCity.text,
+                                    "_building": _controllerState.text,
+                                    "_road": _controllerRoadNo.text
+                                  };
+                                  dbref
+                                      .child(widget.addressKey)
+                                      .update(jason)
+                                      .then((value) => {
+                                    Fluttertoast.showToast(
+                                        msg:
+                                        "Address Updated Successfully!",
+                                        toastLength: Toast.LENGTH_LONG,
+                                        gravity: ToastGravity.BOTTOM,
+                                        backgroundColor: Colors.grey,
+                                        textColor: Colors.white),
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            const Address()),
+                                            (route) => false)
+                                  });
+                                  _controllerRoadNo.clear();
+                                  _controllerBuilding.clear();
+                                  _controllerCity.clear();
+                                  _controllerPhone.clear();
+                                  _controllerPincode.clear();
+                                  _controllerName.clear();
+                                  _controllerState.clear();
+                                },
+                                child: const Text("Update Address"),
                               ),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(
-                                top: mediaQueryData.size.height * 0.53,
-                                left: 7,
-                                right: 7),
-                            child: TextField(
-                              onChanged: (value) => {_roadno = value},
-                              controller: _controllerRoadNo,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: _roadno.isEmpty
-                                            ? Colors.red
-                                            : Colors.black,
-                                        width: 2)),
-                                hintText: "Road Name, Area, Colony(required*)",
-                                label: const Text(
-                                  "Road Name, Area, Colony(required)*",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                focusColor: Colors.black,
-                              ),
-                            )),
-                        Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                top: mediaQueryData.size.height * 0.63,
-                                left: 7,
-                                right: 7),
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                Map<String, String> jason = {
-                                  "_name": _controllerName.text,
-                                  "_phoneNumber": _controllerPhone.text,
-                                  "_pincode": _controllerPincode.text,
-                                  "_state": _controllerState.text,
-                                  "_city": _controllerCity.text,
-                                  "_building": _controllerState.text,
-                                  "_road": _controllerRoadNo.text
-                                };
-                                dbref
-                                    .child(widget.addressKey)
-                                    .update(jason)
-                                    .then((value) => {
-                                          Fluttertoast.showToast(
-                                              msg:
-                                                  "Address Updated Successfully!",
-                                              toastLength: Toast.LENGTH_LONG,
-                                              gravity: ToastGravity.BOTTOM,
-                                              backgroundColor: Colors.grey,
-                                              textColor: Colors.white),
-                                          Navigator.pushAndRemoveUntil(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const Address()),
-                                              (route) => false)
-                                        });
-                                _controllerRoadNo.clear();
-                                _controllerBuilding.clear();
-                                _controllerCity.clear();
-                                _controllerPhone.clear();
-                                _controllerPincode.clear();
-                                _controllerName.clear();
-                                _controllerState.clear();
-                              },
-                              child: const Text("Update Address"),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
