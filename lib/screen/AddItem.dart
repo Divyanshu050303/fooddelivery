@@ -340,14 +340,16 @@ class _AdditemState extends State<Additem> {
         'itemPrice':_price,
         'itemQuantity':_quantity,
         'image':image,
-        'foodType':dropdownValue
+        'foodType':dropdownValue,
+        'sale':''
       });await FirebaseFirestore.instance.collection('itemDetail').add({
         'id':dropdownValue+itemNumber.toString(),
         'itemName':_name,
         'itemPrice':_price,
         'itemQuantity':_quantity,
         'image':image,
-        'foodType':dropdownValue
+        'foodType':dropdownValue,
+        'sale':''
       });
       south+=1;
       itemNumber+=1;
@@ -360,14 +362,16 @@ class _AdditemState extends State<Additem> {
         'itemPrice':_price,
         'itemQuantity':_quantity,
         'image':image,
-        'foodType':dropdownValue
+        'foodType':dropdownValue,
+        'sale':''
       });  await FirebaseFirestore.instance.collection('itemDetail').add({
         'id':dropdownValue+itemNumber.toString(),
         'itemName':_name,
         'itemPrice':_price,
         'itemQuantity':_quantity,
         'image':image,
-        'foodType':dropdownValue
+        'foodType':dropdownValue,
+        'sale':''
       });
       momo+=1;
       itemNumber+=1;
@@ -380,14 +384,16 @@ class _AdditemState extends State<Additem> {
         'itemPrice':_price,
         'itemQuantity':_quantity,
         'image':image,
-        'foodType':dropdownValue
+        'foodType':dropdownValue,
+        'sale':''
       });  await FirebaseFirestore.instance.collection('itemDetail').add({
         'id':dropdownValue+itemNumber.toString(),
         'itemName':_name,
         'itemPrice':_price,
         'itemQuantity':_quantity,
         'image':image,
-        'foodType':dropdownValue
+        'foodType':dropdownValue,
+        'sale':''
       });
       cont+=1;
       itemNumber+=1;
@@ -400,14 +406,16 @@ class _AdditemState extends State<Additem> {
         'itemPrice':_price,
         'itemQuantity':_quantity,
         'image':image,
-        'foodType':dropdownValue
+        'foodType':dropdownValue,
+        'sale':''
       });await FirebaseFirestore.instance.collection('itemDetail').add({
         'id':dropdownValue+itemNumber.toString(),
         'itemName':_name,
         'itemPrice':_price,
         'itemQuantity':_quantity,
         'image':image,
-        'foodType':dropdownValue
+        'foodType':dropdownValue,
+        'sale':''
       });
       cake+=1;
       itemNumber+=1;
@@ -420,7 +428,8 @@ class _AdditemState extends State<Additem> {
       'itemPrice':_price,
       'itemQuantity':_quantity,
       'image':image,
-      'foodType':dropdownValue
+      'foodType':dropdownValue,
+      'sale':''
     });
     await FirebaseFirestore.instance.collection('itemDetail').add({
       'id':dropdownValue+itemNumber.toString(),
@@ -428,7 +437,8 @@ class _AdditemState extends State<Additem> {
       'itemPrice':_price,
       'itemQuantity':_quantity,
       'image':image,
-      'foodType':dropdownValue
+      'foodType':dropdownValue,
+      'sale':''
     });
     cold+=1;
     itemNumber+=1;
