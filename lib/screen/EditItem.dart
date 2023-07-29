@@ -191,6 +191,7 @@ class _EditItemState extends State<EditItem> {
   }
 
   void getDataFromFirestore() {
+    bool t=true;
     FirebaseFirestore.instance
         .collection('itemDetail')
         .get()
@@ -199,13 +200,20 @@ class _EditItemState extends State<EditItem> {
         Map<String, dynamic> data =
         documentSnapshot.data() as Map<String, dynamic>;
         // for(var map in dataList){
-        //   if(map!=data){
+        var name=data['itemName'];
+        for(var s in dataList) {
+          if(s.containsValue(name)){
+            t=false;
+          }
+        }
+        if(t){
         dataList.add(data);
-        //   }
+        }
+
+
         // }
       });
     });
-    print(dataList.length);
   }
 
   void deleteDocumentByValue(String collectionName, String fieldName, dynamic value, String imagePath) {
@@ -225,7 +233,7 @@ class _EditItemState extends State<EditItem> {
     final Reference storageRef = FirebaseStorage.instance.ref().child(imagePath);
     try {
       await storageRef.delete();
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Deleted Succefully")));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Deleted Successfully")));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar( SnackBar(content: Text("Error deleting image: $e")));
     }
