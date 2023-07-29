@@ -16,14 +16,21 @@ class ItemEdit extends StatefulWidget {
 }
 
 class _ItemEditState extends State<ItemEdit> {
-    final TextEditingController _controllerName = TextEditingController();
-  final TextEditingController _controllerPrice = TextEditingController();
-  final TextEditingController _controllerquantity = TextEditingController();
-  bool _name=false;
-  bool _image=false;
-  bool _price=false;
-  bool _quantity=false;
+    final  _controllerName = TextEditingController();
+  final   _controllerPrice = TextEditingController();
+  final   _controllerquantity = TextEditingController();
+  final _controllerImage=TextEditingController();
   File? selectedImage;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controllerName.text= widget.itemName;
+    _controllerquantity.text=widget.itemQuantity;
+    _controllerPrice.text=widget.itemPrice;
+    _controllerImage.text=widget.image;
+  }
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData=MediaQuery.of(context);
@@ -74,9 +81,6 @@ class _ItemEditState extends State<ItemEdit> {
                                     controller: _controllerName,
                                     onChanged: (value){
                                       widget.itemName=value;
-                                      setState(() {
-                                        _name=true;
-                                      });
                                     },
                                     keyboardType: TextInputType.text,
                                     decoration: InputDecoration(
@@ -87,10 +91,10 @@ class _ItemEditState extends State<ItemEdit> {
                                           borderSide:
                                           BorderSide(color: Colors.black, width: 2)),
                                       hintText:widget.itemName ,
-                                      label:   const Text(
-                                        "ItemName",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
+                                      // label:   const Text(
+                                      //   "ItemName",
+                                      //   style: TextStyle(color: Colors.black),
+                                      // ),
                                       focusColor: Colors.black,
                                     ),
                                   )),
@@ -102,9 +106,6 @@ class _ItemEditState extends State<ItemEdit> {
                                   child: TextField(
                                     onChanged: (value){
                                       widget.itemPrice=value;
-                                      setState(() {
-                                        _price=true;
-                                      });
                                     },
                                     controller: _controllerPrice,
                                     keyboardType: TextInputType.text,
@@ -116,10 +117,10 @@ class _ItemEditState extends State<ItemEdit> {
                                           borderSide:
                                           BorderSide(color: Colors.black, width: 2)),
                                       hintText:widget.itemPrice ,
-                                      label:   const Text(
-                                        "Price",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
+                                      // label:   const Text(
+                                      //   "Price",
+                                      //   style: TextStyle(color: Colors.black),
+                                      // ),
                                       focusColor: Colors.black,
                                     ),
                                   )),
@@ -131,9 +132,6 @@ class _ItemEditState extends State<ItemEdit> {
                                   child: TextField(
                                     onChanged: (value){
                                       widget.itemQuantity=value;
-                                      setState(() {
-                                        _quantity=true;
-                                      });
                                     },
                                     controller: _controllerquantity,
                                     keyboardType: TextInputType.text,
@@ -145,14 +143,14 @@ class _ItemEditState extends State<ItemEdit> {
                                           borderSide:
                                           BorderSide(color: Colors.black, width: 2)),
                                       hintText: widget.itemQuantity,
-                                      label:   const Text(
-                                        "Quantity",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
+                                      // label:   const Text(
+                                      //   "Quantity",
+                                      //   style: TextStyle(color: Colors.black),
+                                      // ),
                                       focusColor: Colors.black,
                                     ),
                                   )),
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
                               Container(
                                 color: Colors.cyan.shade50,
                                 width: MediaQuery.of(context).size.width > 400
@@ -166,7 +164,7 @@ class _ItemEditState extends State<ItemEdit> {
                                       width: 100,
                                       height: 100,
                                     )
-                                        :   Placeholder(child: Image.network(widget.image,width: 100, height: 100 ,fit: BoxFit.fill,),),
+                                        :   Placeholder(child: Image.network(widget.image ,width: 100, height: 100 ,fit: BoxFit.fill,),),
                                     Row(
                                       children: [
                                         Padding(
@@ -182,18 +180,12 @@ class _ItemEditState extends State<ItemEdit> {
                                           child: GestureDetector(
                                               onTap: () {
                                                 capturePhoto();
-                                                setState(() {
-                                                  _image=true;
-                                                });
                                               },
                                               child: const Icon(Icons.camera_alt_rounded)),
                                         ),
                                         GestureDetector(
                                             onTap: () {
                                               selectPhoto();
-                                              setState(() {
-                                                _image=true;
-                                              });
                                             },
                                             child: const Padding(
                                               padding: EdgeInsets.only(top:7.0),
