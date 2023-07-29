@@ -110,7 +110,7 @@ class _OwnerState extends State<Owner> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            EditItem().method();
+                            // EditItem().method();
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>EditItem()));
                           },
                           child: Container(
