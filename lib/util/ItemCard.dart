@@ -92,7 +92,7 @@ class _ItemCardState extends State<ItemCard> {
                       } else {
                         ItemList.add({
                           'name': widget.name,
-                          'price': "\u20B9 ${widget.price}",
+                          'price':" ${widget.price}",
                           'image': widget.image,
                           'quantity': widget.quantity
                         });
