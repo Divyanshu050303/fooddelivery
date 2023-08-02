@@ -1,5 +1,4 @@
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/screen/AddCart.dart';
 import 'package:fooddelivery/screen/Home.dart';
@@ -18,12 +17,16 @@ class _NavBarState extends State<NavBar> {
 
   @override
   void initState() {
-    _child = HomeScreen();
+    _child = const HomeScreen();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    int count =0;
+    setState(() {
+      count=widget.count;
+    });
     return Scaffold(
 
       body:
@@ -42,7 +45,7 @@ class _NavBarState extends State<NavBar> {
 
         ),
         onChange: _handleNavigationChange,
-        defaultIndex: widget.count,
+        defaultIndex: count,
         itemBuilder: (icon, item) => Semantics(
           // label: icon.extras!["label"],
           child: item,
