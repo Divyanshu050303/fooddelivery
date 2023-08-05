@@ -14,6 +14,8 @@ class OrderSummary extends StatefulWidget {
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
 }
+String addressName="";
+String allAddress="";
 
 class _OrderSummaryState extends State<OrderSummary> {
   Map<dynamic, dynamic> map={};
@@ -79,18 +81,18 @@ class _OrderSummaryState extends State<OrderSummary> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 12),
+                        padding: const EdgeInsets.only(left: 9),
                         child: Row(
                           children: [
                             const Text(
-                              "delivered to:",
+                              "Delivered to:",
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 18,
                                   color: Colors.black,
                                   decoration: TextDecoration.none),
                             ),
                             SizedBox(
-                              width: mediaQueryData.size.width * 0.4,
+                              width: mediaQueryData.size.width * 0.36,
                               height: 50,
                             ),
                             GestureDetector(
@@ -119,7 +121,23 @@ class _OrderSummaryState extends State<OrderSummary> {
                             )
                           ],
                         ),
-                      )
+                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(left:25.0),
+                          child: Row(
+                          children: [
+                            Text(addressName, style: const TextStyle(fontSize: 20, decoration: TextDecoration.none, color: Colors.black),),
+                          ],
+                      ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left:25, top: 7),
+                          child: Row(
+                          children: [
+                            Text(allAddress, style: const TextStyle(fontSize: 14, decoration: TextDecoration.none, color: Colors.black),),
+                          ],
+                      ),
+                        )
                     ],
                   ),
                 ),
@@ -132,7 +150,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                 height: mediaQueryData.size.height * 0.2,
                 decoration: BoxDecoration(
                     color: Colors.cyan.shade50,
-                    border: Border(top: BorderSide(color: Colors.black,width: 0.3))
+                    border: const Border(top: BorderSide(color: Colors.black,width: 0.3))
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 25.0),
@@ -180,7 +198,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 19.0, top: 10),
+                            padding: const EdgeInsets.only(left: 19.0, top: 10),
                             child: Row(
                               children: [
                                 const Text(
@@ -216,7 +234,7 @@ class _OrderSummaryState extends State<OrderSummary> {
 
                 decoration: BoxDecoration(
                     color: Colors.cyan.shade50,
-                  border: Border(top: BorderSide(color: Colors.black,width: 0.3))
+                  border: const Border(top: BorderSide(color: Colors.black,width: 0.3))
                 ),
                 child: Column(
                   children: [
@@ -315,9 +333,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      child: LineWidget(),
-                    ),
+                    LineWidget(),
                     const SizedBox(
                       height: 10,
                     ),
@@ -356,7 +372,7 @@ class _OrderSummaryState extends State<OrderSummary> {
             decoration: BoxDecoration(
                 color: Colors.cyan.shade50,
                 border:
-                Border(top: BorderSide(color: Colors.black, width: 0.5))),
+                const Border(top: BorderSide(color: Colors.black, width: 0.5))),
             child: Center(
               child: Row(
                 children: [
