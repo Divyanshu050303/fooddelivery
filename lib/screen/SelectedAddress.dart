@@ -43,46 +43,58 @@ class _SelectAddressState extends State<SelectAddress> {
             height: mediaQueryData.size.height*0.2,
             child: Scaffold(
               backgroundColor: Colors.white38,
-              body: Container(
-                child: RadioListTile(
-                  title: Stack(
-                    children: [
+              body: RadioListTile(
+                title: Stack(
+                  children: [
            Padding(
              padding: const EdgeInsets.only(right: 58.0),
              child: Text(address['_name'],style: const TextStyle(fontSize: 20, ),textAlign: TextAlign.start,),
            ),
-                      Padding(
-                        padding: const EdgeInsets.only(top:20.0),
-                        child: Text(address['_building'] +
-                            "\n" +
-                            address['_road'] +
-                            "\n" +
-                            address['_city'] +
-                            "\n" +
-                            address['_state'] +
-                            " " +
-                            address['_pincode'] +
-                            "\n" +
-                            "Phone Number" +
-                            ":" +
-                            address['_phoneNumber']),
-                      ),
-                    ],
-                  ),
-                  value: address['_name'],
-                  groupValue: selectredAddres,
-                  onChanged: (value) {
-                    setState(() {
-                      selectredAddres = value!;
-                    ;
-                    });
-                  },
+                    Padding(
+                      padding: const EdgeInsets.only(top:20.0),
+                      child: Text(address['_building'] +
+                          "\n" +
+                          address['_road'] +
+                          "\n" +
+                          address['_city'] +
+                          "\n" +
+                          address['_state'] +
+                          " " +
+                          address['_pincode'] +
+                          "\n" +
+                          "Phone Number" +
+                          ":" +
+                          address['_phoneNumber']),
+                    ),
+                  ],
                 ),
+                value: address['_name'],
+                groupValue: selectredAddres,
+                onChanged: (value) {
+                  setState(() {
+                    selectredAddres = value!;
+                    addressName=value;
+                    allAddress=address['_building'] +
+                        "\n" +
+                        address['_road'] +
+                        "\n" +
+                        address['_city'] +
+                        "\n" +
+                        address['_state'] +
+                        " " +
+                        address['_pincode'] +
+                        "\n" +
+                        "Phone Number" +
+                        ":" +
+                        address['_phoneNumber'];
+                  });
+                },
               ),
             ))
       ]),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
