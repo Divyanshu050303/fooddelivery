@@ -5,6 +5,7 @@ import 'package:fooddelivery/screen/EditItem.dart';
 import 'package:fooddelivery/screen/Orders.dart';
 
 import 'Sales.dart';
+import 'editSales.dart';
 
 class Owner extends StatefulWidget {
   const Owner({Key? key}) : super(key: key);
@@ -147,7 +148,7 @@ class _OwnerState extends State<Owner> {
                       children: [
                         GestureDetector(
                           onTap:(){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>const Sales()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  editSale()));
                           },
                           child: Container(
                             width: 150,
