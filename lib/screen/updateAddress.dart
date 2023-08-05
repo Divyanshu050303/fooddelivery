@@ -142,10 +142,6 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                               : Colors.black,
                                           width: 2)),
                                   hintText: _name,
-                                  // label: const Text(
-                                  //   "Name (Required)*",
-                                  //   style: TextStyle(color: Colors.black),
-                                  // ),
                                   focusColor: Colors.black,
                                 ),
                               )),
@@ -299,6 +295,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                 onChanged: (value) => {_roadno = value},
                                 controller: _controllerRoadNo,
                                 keyboardType: TextInputType.text,
+
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
