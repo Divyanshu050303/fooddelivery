@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fooddelivery/screen/updateAddress.dart';
 
 import '../Services/JsonData.dart';
 import 'addAddress.dart';
@@ -64,7 +65,7 @@ class _AddAddressState extends State<AddAddress> {
                       children: [
                         IconButton(
                             onPressed: () {
-                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const Address()), (route) => false);
+                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>total==0? Address():UpdateAddress(addressKey: '',)), (route) => false);
                             },
                             icon: const Icon(
                               Icons.arrow_back_outlined,
