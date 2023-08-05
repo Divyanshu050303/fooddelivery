@@ -1,15 +1,19 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fooddelivery/screen/EditItem.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'Owner.dart';
+
 class ItemEdit extends StatefulWidget {
 
-    String itemName, itemPrice, itemQuantity, image;
-    ItemEdit(  {super.key, required this.itemName,required this.itemPrice, required this.itemQuantity, required this.image });
+    String itemName, itemPrice, itemQuantity, image, id;
+    ItemEdit(  {super.key, required this.itemName,required this.itemPrice, required this.itemQuantity, required this.image, required this.id });
 
   @override
   State<ItemEdit> createState() => _ItemEditState();
@@ -200,7 +204,7 @@ class _ItemEditState extends State<ItemEdit> {
                                 padding: const EdgeInsets.only(top: 15),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    _Update();
+                                    _Update(_controllerName.text, _controllerImage.text,_controllerquantity.text, _controllerPrice.text, widget.id);
                                   },
                                   child: const Text("Upload"),
                                 ),
@@ -252,11 +256,38 @@ class _ItemEditState extends State<ItemEdit> {
           gravity: ToastGravity.BOTTOM);
     }
   }
-  void _Update() {
-    DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
-    DatabaseReference valueReference = databaseReference.child('itemDetails');
-    valueReference.set('New Value')
-        .then((_) => print('Value updated successfully.'))
-        .catchError((error) => print('Error updating value: $error'));
+  void _Update(String name, String image, String quantity, String price, String id) {
+    final CollectionReference collectionReference = FirebaseFirestore.instance.collection("itemDetail");
+    final DocumentReference documentReference=collectionReference.doc(id);
+
+    documentReference.update({
+      "itemName":name,
+      "image":image,
+      "itemQuantity":quantity,
+      "itemPrice":price
+    }).then((_) =>{
+
+        Fluttertoast.showToast(
+        msg: "Update Successfully",
+        toastLength: Toast.LENGTH_SHORT,
+        textColor: Colors.black,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.white,
+        gravity: ToastGravity.BOTTOM),
+      dataList.clear(),
+      documentId.clear(),
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+              const Owner()),
+              (route) => false)
+    }).catchError((error) => {Fluttertoast.showToast(
+        msg: "Something Went Wrong",
+        toastLength: Toast.LENGTH_SHORT,
+        textColor: Colors.black,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.white,
+        gravity: ToastGravity.BOTTOM)});
   }
 }
