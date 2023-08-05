@@ -15,8 +15,28 @@ class EditItem extends StatefulWidget {
 }
 
 List<Map<String, dynamic>> dataList = [];
+List<String> documentId = [];
 
 class _EditItemState extends State<EditItem> {
+  bool loading = true;
+
+  Future<void> loadData() async {
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      loading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDataFromFirestore();
+    if (dataList.isEmpty) {
+      loadData();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -82,105 +102,120 @@ class _EditItemState extends State<EditItem> {
                   width: mediaQueryData.size.width,
                   padding: const EdgeInsets.only(bottom: 40),
                   decoration: BoxDecoration(color: Colors.cyan.shade50),
-                  child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount:
-                              mediaQueryData.size.width > 900 ? 3 : 2,
-                          mainAxisSpacing: mediaQueryData.size.width * 0.09,
-                          childAspectRatio: 0.8),
-                      itemCount: dataList.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                            padding: EdgeInsets.only(
-                                left: mediaQueryData.size.width * 0.045,
-                                right: mediaQueryData.size.width * 0.045),
-                            child: GridTile(
-                                child: GestureDetector(
-                              onLongPress: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ItemEdit(
-                                            itemName: dataList[index]
-                                                ['itemName'],
-                                            itemPrice: dataList[index]
-                                                ['itemPrice'],
-                                            itemQuantity: dataList[index]
-                                                ['itemQuantity'],
-                                            image: dataList[index]['image'])));
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Colors.pinkAccent.shade100,
-                                      Colors.white,
-                                      Colors.white
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                  border: Border.all(
-                                      style: BorderStyle.solid,
-                                      color: Colors.black,
-                                      width: 1),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 3,
-                                        offset: const Offset(0, 3))
-                                  ],
-                                ),
-                                child: ListView(
-                                    // controller: _scrollController,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Image.network(
-                                            dataList[index]['image'],
-                                            width: 150,
-                                            height: 111,
-                                            fit: BoxFit.fitWidth,
-                                          ),
-                                          Text(
-                                            dataList[index]['itemName'],
-                                            style: const TextStyle(
-                                                fontSize: 20,
-                                                color: Colors.black,
-                                                decoration:
-                                                    TextDecoration.none),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          Text(
-                                            dataList[index]['itemPrice'],
-                                            style: const TextStyle(
-                                                fontSize: 20,
-                                                color: Colors.black,
-                                                decoration:
-                                                    TextDecoration.none),
-                                          ),
-                                          IconButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  dataList.removeAt(index);
-                                                });
-                                                deleteDocumentByValue(
-                                                    'itemDetail',
-                                                    'itemName',
-                                                    dataList[index]['itemName'],
-                                                    dataList[index]['image']);
-                                              },
-                                              icon: const Icon(
-                                                Icons.delete_forever_rounded,
-                                                color: Colors.black,
-                                              ))
+                  child: loading
+                      ? const Center( child: CircularProgressIndicator(
+                          backgroundColor: Colors.grey,
+                          strokeWidth: 8,
+                          valueColor: AlwaysStoppedAnimation(Colors.black),
+                        ))
+                      : GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount:
+                                      mediaQueryData.size.width > 900 ? 3 : 2,
+                                  mainAxisSpacing:
+                                      mediaQueryData.size.width * 0.09,
+                                  childAspectRatio: 0.8),
+                          itemCount: dataList.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                                padding: EdgeInsets.only(
+                                    left: mediaQueryData.size.width * 0.045,
+                                    right: mediaQueryData.size.width * 0.045),
+                                child: GridTile(
+                                    child: GestureDetector(
+                                  onLongPress: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => ItemEdit(
+                                                  itemName: dataList[index]
+                                                      ['itemName'],
+                                                  itemPrice: dataList[index]
+                                                      ['itemPrice'],
+                                                  itemQuantity: dataList[index]
+                                                      ['itemQuantity'],
+                                                  image: dataList[index]
+                                                      ['image'],
+                                                  id: documentId[index],
+                                                )));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Colors.pinkAccent.shade100,
+                                          Colors.white,
+                                          Colors.white
                                         ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
                                       ),
-                                    ]),
-                              ),
-                            )));
-                      }),
+                                      border: Border.all(
+                                          style: BorderStyle.solid,
+                                          color: Colors.black,
+                                          width: 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.5),
+                                            spreadRadius: 2,
+                                            blurRadius: 3,
+                                            offset: const Offset(0, 3))
+                                      ],
+                                    ),
+                                    child: ListView(
+                                        // controller: _scrollController,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Image.network(
+                                                dataList[index]['image'],
+                                                width: 150,
+                                                height: 111,
+                                                fit: BoxFit.fitWidth,
+                                              ),
+                                              Text(
+                                                dataList[index]['itemName'],
+                                                style: const TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    decoration:
+                                                        TextDecoration.none),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                              Text(
+                                                dataList[index]['itemPrice'],
+                                                style: const TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.black,
+                                                    decoration:
+                                                        TextDecoration.none),
+                                              ),
+                                              IconButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      dataList.removeAt(index);
+                                                    });
+                                                    deleteDocumentByValue(
+                                                        'itemDetail',
+                                                        'itemName',
+                                                        dataList[index]
+                                                            ['itemName'],
+                                                        dataList[index]
+                                                            ['image']);
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons
+                                                        .delete_forever_rounded,
+                                                    color: Colors.black,
+                                                  ))
+                                            ],
+                                          ),
+                                        ]),
+                                  ),
+                                )));
+                          }),
                 ),
               ),
             )
@@ -191,32 +226,34 @@ class _EditItemState extends State<EditItem> {
   }
 
   void getDataFromFirestore() {
-    bool t=true;
+    bool t = true;
     FirebaseFirestore.instance
         .collection('itemDetail')
         .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((DocumentSnapshot documentSnapshot) {
         Map<String, dynamic> data =
-        documentSnapshot.data() as Map<String, dynamic>;
+            documentSnapshot.data() as Map<String, dynamic>;
+        String docId = documentSnapshot.id;
         // for(var map in dataList){
-        var name=data['itemName'];
-        for(var s in dataList) {
-          if(s.containsValue(name)){
-            t=false;
+        var name = data['itemName'];
+        for (var s in dataList) {
+          if (s.containsValue(name)) {
+            t = false;
           }
         }
-        if(t){
-        dataList.add(data);
+        if (t) {
+          dataList.add(data);
+          documentId.add(docId);
         }
-
 
         // }
       });
     });
   }
 
-  void deleteDocumentByValue(String collectionName, String fieldName, dynamic value, String imagePath) {
+  void deleteDocumentByValue(String collectionName, String fieldName,
+      dynamic value, String imagePath) {
     FirebaseFirestore.instance
         .collection(collectionName)
         .where(fieldName, isEqualTo: value)
@@ -230,12 +267,15 @@ class _EditItemState extends State<EditItem> {
   }
 
   Future<void> deleteImage(String imagePath) async {
-    final Reference storageRef = FirebaseStorage.instance.ref().child(imagePath);
+    final Reference storageRef =
+        FirebaseStorage.instance.ref().child(imagePath);
     try {
       await storageRef.delete();
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Deleted Successfully")));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Deleted Successfully")));
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar( SnackBar(content: Text("Error deleting image: $e")));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Error deleting image: $e")));
     }
   }
 }
