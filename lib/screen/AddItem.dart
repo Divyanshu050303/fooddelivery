@@ -26,9 +26,9 @@ class _AdditemState extends State<Additem> {
   String _name = "";
   String _price="";
   String _quantity="";
-  TextEditingController _controllerName = TextEditingController();
-  TextEditingController _controllerPrice = TextEditingController();
-  TextEditingController _controllerquantity = TextEditingController();
+  final TextEditingController _controllerName = TextEditingController();
+  final TextEditingController _controllerPrice = TextEditingController();
+  final TextEditingController _controllerquantity = TextEditingController();
   String dropdownValue = list.first;
   File? selectedImage;
   int itemNumber=0;
@@ -71,6 +71,7 @@ class _AdditemState extends State<Additem> {
                       "Add item",
                       style: TextStyle(
                           fontSize: 20,
+                          fontFamily: 'Roboto-Regular',
                           decoration: TextDecoration.none,
                           color: Colors.white),
                     ),
@@ -115,7 +116,8 @@ class _AdditemState extends State<Additem> {
                                     hintText: "ItemName",
                                     label: const Text(
                                       "ItemName",
-                                      style: TextStyle(color: Colors.black),
+                                      style: TextStyle(color: Colors.black,
+                                        fontFamily: 'Roboto-Regular',),
                                     ),
                                     focusColor: Colors.black,
                                   ),
@@ -141,7 +143,8 @@ class _AdditemState extends State<Additem> {
                                     hintText: "Price",
                                     label: const Text(
                                       "Price",
-                                      style: TextStyle(color: Colors.black),
+                                      style: TextStyle(color: Colors.black,
+                                        fontFamily: 'Roboto-Regular',),
                                     ),
                                     focusColor: Colors.black,
                                   ),
@@ -167,7 +170,8 @@ class _AdditemState extends State<Additem> {
                                     hintText: "Quantity",
                                     label: const Text(
                                       "Quantity",
-                                      style: TextStyle(color: Colors.black),
+                                      style: TextStyle(color: Colors.black,
+                                        fontFamily: 'Roboto-Regular',),
                                     ),
                                     focusColor: Colors.black,
                                   ),
@@ -219,7 +223,8 @@ class _AdditemState extends State<Additem> {
                                               left: mediaQueryData.size.width * .008),
                                           child: Text(
                                             value,
-                                            style: TextStyle(fontSize: 15),
+                                            style: const TextStyle(fontSize: 15,
+                                              fontFamily: 'Roboto-Regular',),
                                           ),
                                         ));
                                   }).toList()),

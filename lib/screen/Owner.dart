@@ -51,6 +51,7 @@ class _OwnerState extends State<Owner> {
                     style: TextStyle(
                         fontSize: 24,
                         color: Colors.white,
+                        fontFamily: 'Roboto-Regular',
                         decoration: TextDecoration.none),
                   ),
 
@@ -101,6 +102,7 @@ class _OwnerState extends State<Owner> {
                                     style: TextStyle(
                                       fontSize: 20,
                                       color: Colors.black,
+                                      fontFamily: 'Roboto-Regular',
                                       decoration: TextDecoration.none,
                                     ),
                                   ),
@@ -134,6 +136,8 @@ class _OwnerState extends State<Owner> {
                                   Text("Edit Item",style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.black,
+                                    fontFamily: 'Roboto-Regular',
+
                                     decoration: TextDecoration.none,
                                   ),)]),
                           ),
@@ -166,17 +170,13 @@ class _OwnerState extends State<Owner> {
                             child:  const Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text("0",
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.black,
-                                    decoration: TextDecoration.none,
-                                  ),),
+
                                 Text(
                                   "Sale",
                                   style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.black,
+                                    fontFamily: 'Roboto-Regular',
                                     decoration: TextDecoration.none,
                                   ),
                                 ),
@@ -204,16 +204,12 @@ class _OwnerState extends State<Owner> {
                             child: const Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text("0",
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.black,
-                                    decoration: TextDecoration.none,
-                                  ),),
+
                                 Text("Orders",
                                   style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.black,
+                                    fontFamily: 'Roboto-Regular',
                                     decoration: TextDecoration.none,
                                   ),),
                               ],

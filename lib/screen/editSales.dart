@@ -84,6 +84,7 @@ class _editSaleState extends State<editSale> {
                       " Edit Sale",
                       style: TextStyle(
                           fontSize: 20,
+                          fontFamily: 'Roboto-Regular',
                           decoration: TextDecoration.none,
                           color: Colors.white),
                     ),
@@ -175,6 +176,7 @@ class _editSaleState extends State<editSale> {
                                                 style: const TextStyle(
                                                     fontSize: 20,
                                                     color: Colors.black,
+                                                    fontFamily: 'Roboto-Regular',
                                                     decoration:
                                                     TextDecoration.none),
                                                 overflow: TextOverflow.ellipsis,
@@ -184,6 +186,7 @@ class _editSaleState extends State<editSale> {
                                                 style: const TextStyle(
                                                     fontSize: 20,
                                                     color: Colors.black,
+                                                    fontFamily: 'Roboto-Regular',
                                                     decoration:
                                                     TextDecoration.none),
                                               ),

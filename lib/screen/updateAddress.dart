@@ -104,6 +104,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
+                            fontFamily: 'Roboto-Regular',
                             decoration: TextDecoration.none),
                       )
                     ],
@@ -167,7 +168,8 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                   hintText: "Phone Number (Required)*",
                                   label: const Text(
                                     "Phone Number (Required)*",
-                                    style: TextStyle(color: Colors.black),
+                                    style: TextStyle(color: Colors.black,
+                                      fontFamily: 'Roboto-Regular',),
                                   ),
                                   focusColor: Colors.black,
                                 ),
@@ -194,7 +196,8 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                   hintText: "Pincode  (Required)*",
                                   label: const Text(
                                     "Pincode (Required)*",
-                                    style: TextStyle(color: Colors.black),
+                                    style: TextStyle(color: Colors.black,
+                                      fontFamily: 'Roboto-Regular',),
                                   ),
                                   focusColor: Colors.black,
                                 ),
@@ -224,7 +227,8 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                         hintText: "State (Required)*",
                                         label: const Text(
                                           "State (Required)*",
-                                          style: TextStyle(color: Colors.black),
+                                          style: TextStyle(color: Colors.black,
+                                            fontFamily: 'Roboto-Regular',),
                                         ),
                                         focusColor: Colors.black,
                                       ),
@@ -251,7 +255,8 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                         hintText: "City (Required)*",
                                         label: const Text(
                                           "City (Required)*",
-                                          style: TextStyle(color: Colors.black),
+                                          style: TextStyle(color: Colors.black,
+                                            fontFamily: 'Roboto-Regular',),
                                         ),
                                         focusColor: Colors.black,
                                       ),
@@ -281,7 +286,8 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                   hintText: "House No. Building Name (Required)*",
                                   label: const Text(
                                     "House No. Building Name (Required)*",
-                                    style: TextStyle(color: Colors.black),
+                                    style: TextStyle(color: Colors.black,
+                                      fontFamily: 'Roboto-Regular',),
                                   ),
                                   focusColor: Colors.black,
                                 ),
@@ -309,7 +315,8 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                   hintText: "Road Name, Area, Colony(required*)",
                                   label: const Text(
                                     "Road Name, Area, Colony(required)*",
-                                    style: TextStyle(color: Colors.black),
+                                    style: TextStyle(color: Colors.black,
+                                      fontFamily: 'Roboto-Regular',),
                                   ),
                                   focusColor: Colors.black,
                                 ),

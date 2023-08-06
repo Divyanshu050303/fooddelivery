@@ -39,7 +39,7 @@ class _AddressState extends State<Address> {
             address['_name'],
             style: const TextStyle(
                 fontSize: 22,
-                fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto-Regular',
                 decoration: TextDecoration.none,
                 color: Colors.black),
           ),
@@ -51,6 +51,7 @@ class _AddressState extends State<Address> {
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto-Regular',
                 decoration: TextDecoration.none,
                 color: Colors.black),
           ),
@@ -62,6 +63,7 @@ class _AddressState extends State<Address> {
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto-Regular',
                 decoration: TextDecoration.none,
                 color: Colors.black),
           ),
@@ -70,6 +72,7 @@ class _AddressState extends State<Address> {
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto-Regular',
                 decoration: TextDecoration.none,
                 color: Colors.black),
           ),
@@ -79,6 +82,7 @@ class _AddressState extends State<Address> {
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
                 decoration: TextDecoration.none,
+                fontFamily: 'Roboto-Regular',
                 color: Colors.black),
           ),
           Text(
@@ -87,6 +91,7 @@ class _AddressState extends State<Address> {
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
                 decoration: TextDecoration.none,
+                fontFamily: 'Roboto-Regular',
                 color: Colors.black),
           ),
           Row(
@@ -178,6 +183,7 @@ class _AddressState extends State<Address> {
                     style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
+                        fontFamily: 'Roboto-Regular',
                         decoration: TextDecoration.none),
                   ),
                   SizedBox(
@@ -236,6 +242,7 @@ class _AddressState extends State<Address> {
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
+                                    fontFamily: 'Roboto-Regular',
                                     decoration: TextDecoration.none),
                               )
                             ],

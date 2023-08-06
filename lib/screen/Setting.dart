@@ -62,6 +62,7 @@ class _SettingState extends State<Setting> {
                             style: TextStyle(
                                 fontSize: 24,
                                 color: Colors.white,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           ),
 
@@ -104,7 +105,8 @@ class _SettingState extends State<Setting> {
                                         hintText: "Name",
                                         label:const Text(
                                           "Name",
-                                          style: TextStyle(color: Colors.black),
+                                          style: TextStyle(color: Colors.black,
+                                            fontFamily: 'Roboto-Regular',),
                                         ),
                                         focusColor: Colors.black,
                                         suffixIcon: const Icon(Icons.edit)
@@ -124,7 +126,8 @@ class _SettingState extends State<Setting> {
                                         hintText: "Email",
                                         label:const Text(
                                           "Email",
-                                          style: TextStyle(color: Colors.black),
+                                          style: TextStyle(color: Colors.black,
+                                            fontFamily: 'Roboto-Regular',),
                                         ),
                                         focusColor: Colors.black,
                                           suffixIcon: const Icon(Icons.edit)
@@ -144,7 +147,8 @@ class _SettingState extends State<Setting> {
                                         hintText: "Number",
                                         label:const Text(
                                           "Number",
-                                          style: TextStyle(color: Colors.black),
+                                          style: TextStyle(color: Colors.black,
+                                            fontFamily: 'Roboto-Regular',),
                                         ),
                                         focusColor: Colors.black,
                                           suffixIcon: const Icon(Icons.edit),
@@ -197,7 +201,8 @@ class _SettingState extends State<Setting> {
                                       ),
                                       Text(
                                         "Owner",
-                                        style: TextStyle(fontSize: 25),
+                                        style: TextStyle(fontSize: 25,
+                                          fontFamily: 'Roboto-Regular',),
                                       )
                                     ],
                                   ),
@@ -241,7 +246,8 @@ class _SettingState extends State<Setting> {
                                       ),
                                       Text(
                                         "Address",
-                                        style: TextStyle(fontSize: 25),
+                                        style: TextStyle(fontSize: 25,
+                                          fontFamily: 'Roboto-Regular',),
                                       )
                                     ],
                                   ),
@@ -287,7 +293,8 @@ class _SettingState extends State<Setting> {
                                       ),
                                       Text(
                                         "Logout",
-                                        style: TextStyle(fontSize: 25),
+                                        style: TextStyle(fontSize: 25,
+                                          fontFamily: 'Roboto-Regular',),
                                       )
                                     ],
                                   ),

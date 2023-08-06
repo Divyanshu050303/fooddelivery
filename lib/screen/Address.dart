@@ -77,6 +77,7 @@ class _AddAddressState extends State<AddAddress> {
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
+                              fontFamily: 'Roboto-Regular',
                               decoration: TextDecoration.none),
                         )
                       ],
@@ -122,7 +123,8 @@ class _AddAddressState extends State<AddAddress> {
                                          hintText: "Name (Required)*",
                                          label: const Text(
                                            "Name (Required)*",
-                                           style: TextStyle(color: Colors.black),
+                                           style: TextStyle(color: Colors.black,
+                                             fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
                                        ),
@@ -149,7 +151,8 @@ class _AddAddressState extends State<AddAddress> {
                                          hintText: "Phone Number (Required)*",
                                          label: const Text(
                                            "Phone Number (Required)*",
-                                           style: TextStyle(color: Colors.black),
+                                           style: TextStyle(color: Colors.black,
+                                             fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
                                        ),
@@ -176,7 +179,8 @@ class _AddAddressState extends State<AddAddress> {
                                          hintText: "Pincode  (Required)*",
                                          label: const Text(
                                            "Pincode (Required)*",
-                                           style: TextStyle(color: Colors.black),
+                                           style: TextStyle(color: Colors.black,
+                                             fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
                                        ),
@@ -206,7 +210,8 @@ class _AddAddressState extends State<AddAddress> {
                                                hintText: "State (Required)*",
                                                label: const Text(
                                                  "State (Required)*",
-                                                 style: TextStyle(color: Colors.black),
+                                                 style: TextStyle(color: Colors.black,
+                                                   fontFamily: 'Roboto-Regular',),
                                                ),
                                                focusColor: Colors.black,
                                              ),
@@ -233,7 +238,8 @@ class _AddAddressState extends State<AddAddress> {
                                                hintText: "City (Required)*",
                                                label: const Text(
                                                  "City (Required)*",
-                                                 style: TextStyle(color: Colors.black),
+                                                 style: TextStyle(color: Colors.black,
+                                                   fontFamily: 'Roboto-Regular',),
                                                ),
                                                focusColor: Colors.black,
                                              ),
@@ -263,7 +269,8 @@ class _AddAddressState extends State<AddAddress> {
                                          hintText: "House No. Building Name (Required)*",
                                          label: const Text(
                                            "House No. Building Name (Required)*",
-                                           style: TextStyle(color: Colors.black),
+                                           style: TextStyle(color: Colors.black,
+                                             fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
                                        ),
@@ -290,7 +297,8 @@ class _AddAddressState extends State<AddAddress> {
                                          hintText: "Road Name, Area, Colony(required*)",
                                          label: const Text(
                                            "Road Name, Area, Colony(required)*",
-                                           style: TextStyle(color: Colors.black),
+                                           style: TextStyle(color: Colors.black,
+                                             fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
                                        ),

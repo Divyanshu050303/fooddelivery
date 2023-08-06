@@ -104,7 +104,8 @@ bool result=false;
                       hintText: "Phone Number",
                       label: const Text(
                         "Phone Number",
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black,
+                          fontFamily: 'Roboto-Regular',),
                       ),
                       focusColor: Colors.black,
                     ),

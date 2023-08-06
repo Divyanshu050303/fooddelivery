@@ -47,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Text(
                       "Yummy Delight",
                       style: TextStyle(
+                          fontFamily: 'Roboto-Regular',
                           fontSize: 24,
                           color: Colors.white,
                           decoration: TextDecoration.none),
@@ -79,10 +80,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Padding(
-                              padding: EdgeInsets.only(left: 4),
+                              padding: EdgeInsets.only(left: 10),
                               child: Text(
                                 "South Indian",
-                                style: TextStyle(fontSize: 30, ),
+                                style: TextStyle(fontSize: 30, fontFamily: 'Roboto-Regular'),
                               ),
                             ),
                             Row(

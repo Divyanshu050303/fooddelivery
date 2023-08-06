@@ -74,6 +74,7 @@ class _PaymentState extends State<Payment> {
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.white,
+                            fontFamily: 'Roboto-Regular',
                             decoration: TextDecoration.none),
                       )
                     ],
@@ -107,11 +108,14 @@ class _PaymentState extends State<Payment> {
                                   child: const Text(
                                     "Payment Option",
                                     style: TextStyle(
-                                        fontSize: 24, color: Colors.black),
+                                        fontSize: 24,
+                                        fontFamily: 'Roboto-Regular',
+                                        color: Colors.black),
                                   ),
                                 ),
                                 RadioListTile(
-                                  title: const Text('Phone Pay'),
+                                  title: const Text('Phone Pay', style: TextStyle(
+                                  fontFamily: 'Roboto-Regular',),),
                                   secondary: Image.asset(
                                     "assets/phonepay.png",
                                     width: 35,
@@ -126,7 +130,8 @@ class _PaymentState extends State<Payment> {
                                   },
                                 ),
                                 RadioListTile(
-                                  title: const Text('Paytm'),
+                                  title: const Text('Paytm', style: TextStyle(
+                                    fontFamily: 'Roboto-Regular',)),
                                   value: 'Paytm',
                                   groupValue: selectedOption,
                                   secondary: Image.asset(
@@ -141,7 +146,8 @@ class _PaymentState extends State<Payment> {
                                   },
                                 ),
                                 RadioListTile(
-                                  title: const Text("Google Pay"),
+                                  title: const Text("Google Pay", style: TextStyle(
+                                    fontFamily: 'Roboto-Regular',)),
                                   value: 'Google Pay',
                                   groupValue: selectedOption,
                                   selectedTileColor: Colors.red,
@@ -157,7 +163,8 @@ class _PaymentState extends State<Payment> {
                                   },
                                 ),
                                 RadioListTile(
-                                  title: const Text('Cash on Delivery'),
+                                  title: const Text('Cash on Delivery', style: TextStyle(
+                                    fontFamily: 'Roboto-Regular',)),
                                   value: 'Cash on Delivery',
                                   groupValue: selectedOption,
                                   secondary: Image.asset(
@@ -188,11 +195,12 @@ class _PaymentState extends State<Payment> {
                     children: [
                       Padding(
                           padding: EdgeInsets.only(
-                              right: mediaQueryData.size.width * 0.4),
+                              right: mediaQueryData.size.width * 0.6),
                           child: const Text(
                             "Price Details",
                             style: TextStyle(
                                 fontSize: 20,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none,
                                 color: Colors.black),
                           )),
@@ -218,15 +226,17 @@ class _PaymentState extends State<Payment> {
                                       "Price (1 Item)",
                                       style: TextStyle(
                                           fontSize: 16,
+                                          fontFamily: 'Roboto-Regular',
                                           decoration: TextDecoration.none,
                                           color: Colors.black),
                                     ),
                                     SizedBox(
-                                      width: mediaQueryData.size.width * 0.355,
+                                      width: mediaQueryData.size.width * 0.41,
                                     ),
                                       Text("\u20B9${widget.price}",
                                         style: const TextStyle(
                                             fontSize: 16,
+                                            fontFamily: 'Roboto-Regular',
                                             decoration: TextDecoration.none,
                                             color: Colors.black)),
                                   ],
@@ -243,15 +253,17 @@ class _PaymentState extends State<Payment> {
                                       "Delivery Charges",
                                       style: TextStyle(
                                           fontSize: 16,
+                                          fontFamily: 'Roboto-Regular',
                                           decoration: TextDecoration.none,
                                           color: Colors.black),
                                     ),
                                     SizedBox(
-                                      width: mediaQueryData.size.width * 0.3,
+                                      width: mediaQueryData.size.width * 0.34,
                                     ),
                                     const Text("Free",
                                         style: TextStyle(
                                             fontSize: 16,
+                                            fontFamily: 'Roboto-Regular',
                                             decoration: TextDecoration.none,
                                             color: Colors.green)),
                                   ],
@@ -280,6 +292,7 @@ class _PaymentState extends State<Payment> {
                                     "Amount Payable",
                                     style: TextStyle(
                                         fontSize: 16,
+                                        fontFamily: 'Roboto-Regular',
                                         decoration: TextDecoration.none,
                                         color: Colors.black),
                                   ),
@@ -289,6 +302,7 @@ class _PaymentState extends State<Payment> {
                                     Text("\u20B9${widget.price}",
                                       style: const TextStyle(
                                           fontSize: 16,
+                                          fontFamily: 'Roboto-Regular',
                                           decoration: TextDecoration.none,
                                           color: Colors.black)),
                                 ],
@@ -318,6 +332,7 @@ class _PaymentState extends State<Payment> {
                     "\u20B9${widget.price}",
                     style: const TextStyle(
                         fontSize: 20,
+                        fontFamily: 'Roboto-Regular',
                         color: Colors.black,
                         decoration: TextDecoration.none),
                   ),
@@ -352,6 +367,7 @@ class _PaymentState extends State<Payment> {
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.white,
+                            fontFamily: 'Roboto-Regular',
                             decoration: TextDecoration.none),
                       )),
                     ),

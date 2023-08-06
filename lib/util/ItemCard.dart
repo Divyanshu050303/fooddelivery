@@ -58,7 +58,7 @@ class _ItemCardState extends State<ItemCard> {
             ),
             Text(
               widget.name,
-              style: const TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20, fontFamily: 'Roboto-Regular'),
               overflow: TextOverflow.ellipsis,
             ),
             Text(

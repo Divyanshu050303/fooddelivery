@@ -27,7 +27,8 @@ class _OrdresState extends State<Ordres> {
                 IconButton(onPressed: (){
                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const Owner()), (route) => false);
                 }, icon: const Icon(Icons.arrow_back, color:Colors.white)),
-                const Text("Orders", style: TextStyle(color: Colors.white, decoration: TextDecoration.none, fontSize: 20),)
+                const Text("Orders", style: TextStyle(color: Colors.white,
+                    fontFamily: 'Roboto-Regular',decoration: TextDecoration.none, fontSize: 20),)
               ],
             ),
           ),

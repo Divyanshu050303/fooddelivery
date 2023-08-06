@@ -21,7 +21,7 @@ class _EditItemState extends State<EditItem> {
   bool loading = true;
 
   Future<void> loadData() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     setState(() {
       loading = false;
     });
@@ -84,6 +84,7 @@ class _EditItemState extends State<EditItem> {
                       style: TextStyle(
                           fontSize: 20,
                           decoration: TextDecoration.none,
+                          fontFamily: 'Roboto-Regular',
                           color: Colors.white),
                     ),
                     SizedBox(
@@ -179,6 +180,7 @@ class _EditItemState extends State<EditItem> {
                                                 dataList[index]['itemName'],
                                                 style: const TextStyle(
                                                     fontSize: 20,
+                                                    fontFamily: 'Roboto-Regular',
                                                     color: Colors.black,
                                                     decoration:
                                                         TextDecoration.none),
@@ -189,6 +191,7 @@ class _EditItemState extends State<EditItem> {
                                                 style: const TextStyle(
                                                     fontSize: 20,
                                                     color: Colors.black,
+                                                    fontFamily: 'Roboto-Regular',
                                                     decoration:
                                                         TextDecoration.none),
                                               ),

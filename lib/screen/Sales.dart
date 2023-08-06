@@ -42,6 +42,7 @@ class _SalesState extends State<Sales> {
                   "Add Sale",
                   style: TextStyle(
                       color: Colors.white,
+                      fontFamily: 'Roboto-Regular',
                       decoration: TextDecoration.none,
                       fontSize: 20),
                 )

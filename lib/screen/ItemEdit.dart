@@ -51,7 +51,8 @@ class _ItemEditState extends State<ItemEdit> {
                 IconButton(onPressed:(){
                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>  EditItem()), (route) => false);
                 } , icon: const Icon(Icons.arrow_back, color: Colors.white, size:25,)),
-                const Text("Edit Item", style: TextStyle(fontSize: 20, color: Colors.white, decoration: TextDecoration.none),)
+                const Text("Edit Item", style: TextStyle(fontSize: 20,
+                    fontFamily: 'Roboto-Regular',color: Colors.white, decoration: TextDecoration.none),)
               ],
             ),
           ),
@@ -95,10 +96,6 @@ class _ItemEditState extends State<ItemEdit> {
                                           borderSide:
                                           BorderSide(color: Colors.black, width: 2)),
                                       hintText:widget.itemName ,
-                                      // label:   const Text(
-                                      //   "ItemName",
-                                      //   style: TextStyle(color: Colors.black),
-                                      // ),
                                       focusColor: Colors.black,
                                     ),
                                   )),
@@ -121,10 +118,6 @@ class _ItemEditState extends State<ItemEdit> {
                                           borderSide:
                                           BorderSide(color: Colors.black, width: 2)),
                                       hintText:widget.itemPrice ,
-                                      // label:   const Text(
-                                      //   "Price",
-                                      //   style: TextStyle(color: Colors.black),
-                                      // ),
                                       focusColor: Colors.black,
                                     ),
                                   )),
@@ -147,10 +140,6 @@ class _ItemEditState extends State<ItemEdit> {
                                           borderSide:
                                           BorderSide(color: Colors.black, width: 2)),
                                       hintText: widget.itemQuantity,
-                                      // label:   const Text(
-                                      //   "Quantity",
-                                      //   style: TextStyle(color: Colors.black),
-                                      // ),
                                       focusColor: Colors.black,
                                     ),
                                   )),

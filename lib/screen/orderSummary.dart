@@ -62,6 +62,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                       style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
+                          fontFamily: 'Roboto-Regular',
                           decoration: TextDecoration.none),
                     )
                   ],
@@ -87,7 +88,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                             const Text(
                               "Delivered to:",
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 21,
+
+                                  fontFamily: 'Roboto-Regular',
                                   color: Colors.black,
                                   decoration: TextDecoration.none),
                             ),
@@ -182,6 +185,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                               style: const TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
+                                  fontFamily: 'Roboto-Regular',
                                   decoration: TextDecoration.none),
                             ),
                           ),
@@ -204,16 +208,18 @@ class _OrderSummaryState extends State<OrderSummary> {
                                 const Text(
                                   "5% off ",
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 16,
                                       color: Colors.black,
+                                      fontFamily: 'Roboto-Regular',
                                       decoration: TextDecoration.none),
                                 ),
                                 TextWithLine(),
                                 const Text(
                                   "\u20B9189",
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 16,
                                       color: Colors.black,
+                                      fontFamily: 'Roboto-Regular',
                                       decoration: TextDecoration.none),
                                 )
                               ],
@@ -239,12 +245,13 @@ class _OrderSummaryState extends State<OrderSummary> {
                 child: Column(
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(right: 160.0, top: 10),
+                      padding: EdgeInsets.only(right: 193.0, top: 10),
                       child: Text(
                         "Price Details",
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
+                            fontFamily: 'Roboto-Regular',
                             decoration: TextDecoration.none,
                             color: Colors.black),
                       ),
@@ -253,14 +260,15 @@ class _OrderSummaryState extends State<OrderSummary> {
                       height: 10,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 30.0),
+                      padding: const EdgeInsets.only(left: 32.0),
                       child: Row(
                         children: [
                           const Text(
                             "Price (3 item)",
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 color: Colors.black,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           ),
                           SizedBox(
@@ -269,8 +277,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                             Text(
                             "\u20B9${widget.price}",
                             style: const TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 color: Colors.black,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           )
                         ],
@@ -286,8 +295,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                           const Text(
                             "Discount",
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 color: Colors.black,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           ),
                           SizedBox(
@@ -296,8 +306,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                           const Text(
                             "-\u20B90",
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 color: Colors.green,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           )
                         ],
@@ -315,16 +326,18 @@ class _OrderSummaryState extends State<OrderSummary> {
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           ),
                           SizedBox(
-                            width: mediaQueryData.size.width * 0.33,
+                            width: mediaQueryData.size.width * 0.35,
                           ),
                           const Text(
                             "Free Delivery",
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 color: Colors.green,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           )
                         ],
@@ -344,18 +357,20 @@ class _OrderSummaryState extends State<OrderSummary> {
                           const Text(
                             "Total",
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 color: Colors.black,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           ),
                           SizedBox(
-                            width: mediaQueryData.size.width * 0.65,
+                            width: mediaQueryData.size.width * 0.60,
                           ),
                             Text(
                             "\u20B9${widget.price}",
                             style: const TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 color: Colors.green,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           )
                         ],
@@ -384,6 +399,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                     style: const TextStyle(
                         fontSize: 20,
                         color: Colors.black,
+                        fontFamily: 'Roboto-Regular',
                         decoration: TextDecoration.none),
                   ),
                   SizedBox(
@@ -407,6 +423,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
+                                fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none),
                           )),
                     ),
