@@ -2,7 +2,7 @@ import 'package:easy_upi_payment/easy_upi_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fooddelivery/screen/orderSummary.dart';
-
+import 'package:upi_india/upi_india.dart';
 
 class Payment extends StatefulWidget {
   String image, name, quantity, price;
@@ -20,6 +20,7 @@ class Payment extends StatefulWidget {
 
 class _PaymentState extends State<Payment> {
   String? selectedOption = "Google Pay";
+  UpiIndia _upiIndia = UpiIndia();
 
   @override
   Widget build(BuildContext context) {
@@ -114,8 +115,12 @@ class _PaymentState extends State<Payment> {
                                   ),
                                 ),
                                 RadioListTile(
-                                  title: const Text('Phone Pay', style: TextStyle(
-                                  fontFamily: 'Roboto-Regular',),),
+                                  title: const Text(
+                                    'Phone Pay',
+                                    style: TextStyle(
+                                      fontFamily: 'Roboto-Regular',
+                                    ),
+                                  ),
                                   secondary: Image.asset(
                                     "assets/phonepay.png",
                                     width: 35,
@@ -130,8 +135,10 @@ class _PaymentState extends State<Payment> {
                                   },
                                 ),
                                 RadioListTile(
-                                  title: const Text('Paytm', style: TextStyle(
-                                    fontFamily: 'Roboto-Regular',)),
+                                  title: const Text('Paytm',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto-Regular',
+                                      )),
                                   value: 'Paytm',
                                   groupValue: selectedOption,
                                   secondary: Image.asset(
@@ -146,8 +153,10 @@ class _PaymentState extends State<Payment> {
                                   },
                                 ),
                                 RadioListTile(
-                                  title: const Text("Google Pay", style: TextStyle(
-                                    fontFamily: 'Roboto-Regular',)),
+                                  title: const Text("Google Pay",
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto-Regular',
+                                      )),
                                   value: 'Google Pay',
                                   groupValue: selectedOption,
                                   selectedTileColor: Colors.red,
@@ -163,8 +172,10 @@ class _PaymentState extends State<Payment> {
                                   },
                                 ),
                                 RadioListTile(
-                                  title: const Text('Cash on Delivery', style: TextStyle(
-                                    fontFamily: 'Roboto-Regular',)),
+                                  title: const Text('Cash on Delivery',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto-Regular',
+                                      )),
                                   value: 'Cash on Delivery',
                                   groupValue: selectedOption,
                                   secondary: Image.asset(
@@ -173,7 +184,6 @@ class _PaymentState extends State<Payment> {
                                     height: 35,
                                   ),
                                   onChanged: (value) {
-
                                     setState(() {
                                       selectedOption = value;
                                     });
@@ -188,7 +198,7 @@ class _PaymentState extends State<Payment> {
               ),
               Positioned(
                 top: mediaQueryData.size.height * 0.52,
-                child: Container(
+                child: SizedBox(
                   width: mediaQueryData.size.width,
                   height: mediaQueryData.size.height * 0.2,
                   child: Column(
@@ -233,7 +243,7 @@ class _PaymentState extends State<Payment> {
                                     SizedBox(
                                       width: mediaQueryData.size.width * 0.41,
                                     ),
-                                      Text("\u20B9${widget.price}",
+                                    Text("\u20B9${widget.price}",
                                         style: const TextStyle(
                                             fontSize: 16,
                                             fontFamily: 'Roboto-Regular',
@@ -299,7 +309,7 @@ class _PaymentState extends State<Payment> {
                                   SizedBox(
                                     width: mediaQueryData.size.width * 0.355,
                                   ),
-                                    Text("\u20B9${widget.price}",
+                                  Text("\u20B9${widget.price}",
                                       style: const TextStyle(
                                           fontSize: 16,
                                           fontFamily: 'Roboto-Regular',
@@ -320,15 +330,15 @@ class _PaymentState extends State<Payment> {
             height: mediaQueryData.size.height * 0.0997,
             decoration: BoxDecoration(
                 color: Colors.cyan.shade50,
-                border:
-                    const Border(top: BorderSide(color: Colors.black, width: 0.5))),
+                border: const Border(
+                    top: BorderSide(color: Colors.black, width: 0.5))),
             child: Center(
               child: Row(
                 children: [
                   SizedBox(
                     width: mediaQueryData.size.width * 0.07,
                   ),
-                    Text(
+                  Text(
                     "\u20B9${widget.price}",
                     style: const TextStyle(
                         fontSize: 20,
@@ -340,26 +350,32 @@ class _PaymentState extends State<Payment> {
                     width: mediaQueryData.size.width * 0.4,
                   ),
                   GestureDetector(
-                   onTap: () async{
-                     const EasyUpiPaymentModel _model = EasyUpiPaymentModel(
-                       payeeVpa: 'cheenu.aryan220402@okaxis',
-                       payeeName: 'Divyanshu',
-                       amount: 5.0,
-                       description: 'Testing payment',
-                     );
-                      final res= await EasyUpiPaymentPlatform.instance.startPayment(_model) ;
-                     if (res != null) {
-                       print('Payment successful');
-                     } else {
-                       print('Payment failed');
-                     }
+                    onTap: () async {
+                      // UpiIndia _upiIndia=UpiIndia();
+                      UpiApp app=getApp(selectedOption!);
+                      UpiResponse upiResponse=await initiateTransaction(app);
+                      if(upiResponse.status==UpiPaymentStatus.SUCCESS){
+                        print("Payment Successfully");
+                      }
+                      else if(upiResponse.status==UpiPaymentStatus.FAILURE){
+                        print("Payment fails");
+                      }
+                      else if(upiResponse.status==UpiPaymentStatus.SUBMITTED){
+                        print("Payment submitted wait for confirmation");
+                      }
+                      else if(upiResponse.status==UpiPaymentStatus.OTHER){
+                        print("Payment Cancel");
+                      }
+                      else{
+                        print("Transition response in null");
+                      }
                     },
                     child: Container(
                       width: mediaQueryData.size.width * 0.33,
                       height: mediaQueryData.size.height * 0.07,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                      color: Colors.black,
+                        color: Colors.black,
                       ),
                       child: const Center(
                           child: Text(
@@ -380,7 +396,59 @@ class _PaymentState extends State<Payment> {
       ),
     );
   }
+
   // Create a function to initiate the UPI payment
-
-
+  Future<UpiResponse> initiateTransaction(UpiApp app) async {
+    return _upiIndia.startTransaction(
+        app: app,
+        receiverUpiId: "cheenu.aryan220402@okaxis",
+        receiverName: "Divyanshu Singh",
+        transactionRefId: "",
+        amount: 10,
+        merchantId:
+    );
+  }
+  String _upiErrorHandler(error) {
+    switch (error) {
+      case UpiIndiaAppNotInstalledException:
+        return 'Requested app not installed on device';
+      case UpiIndiaUserCancelledException:
+        return 'You cancelled the transaction';
+      case UpiIndiaNullResponseException:
+        return 'Requested app didn\'t return any response';
+      case UpiIndiaInvalidParametersException:
+        return 'Requested app cannot handle the transaction';
+      default:
+        return 'An Unknown error has occurred';
+    }
+  }
+  void _checkTxnStatus(String status) {
+    switch (status) {
+      case UpiPaymentStatus.SUCCESS:
+        print('Transaction Successful');
+        break;
+      case UpiPaymentStatus.SUBMITTED:
+        print('Transaction Submitted');
+        break;
+      case UpiPaymentStatus.FAILURE:
+        print('Transaction Failed');
+        break;
+      default:
+        print('Received an Unknown transaction status');
+    }
+  }
+  UpiApp getApp(String app){
+    if(app=="Google Pay"){
+      return UpiApp.googlePay;
+    }
+    else if(app=="Phone Pay"){
+      return UpiApp.phonePe;
+    }
+    else if(app=="Paytm"){
+      return UpiApp.paytm;
+    }
+    else{
+      return UpiApp.bhim;
+    }
+  }
 }
