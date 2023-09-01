@@ -1,8 +1,14 @@
 import 'package:easy_upi_payment/easy_upi_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:fooddelivery/screen/TransactionSuccess.dart';
 import 'package:fooddelivery/screen/orderSummary.dart';
 import 'package:upi_india/upi_india.dart';
+
+import 'TransactionFailed.dart';
+import 'TransactionSubmitted.dart';
 
 class Payment extends StatefulWidget {
   String image, name, quantity, price;
@@ -354,21 +360,7 @@ class _PaymentState extends State<Payment> {
                       // UpiIndia _upiIndia=UpiIndia();
                       UpiApp app=getApp(selectedOption!);
                       UpiResponse upiResponse=await initiateTransaction(app);
-                      if(upiResponse.status==UpiPaymentStatus.SUCCESS){
-                        print("Payment Successfully");
-                      }
-                      else if(upiResponse.status==UpiPaymentStatus.FAILURE){
-                        print("Payment fails");
-                      }
-                      else if(upiResponse.status==UpiPaymentStatus.SUBMITTED){
-                        print("Payment submitted wait for confirmation");
-                      }
-                      else if(upiResponse.status==UpiPaymentStatus.OTHER){
-                        print("Payment Cancel");
-                      }
-                      else{
-                        print("Transition response in null");
-                      }
+                     _checkTxnStatus(upiResponse);
                     },
                     child: Container(
                       width: mediaQueryData.size.width * 0.33,
@@ -405,7 +397,7 @@ class _PaymentState extends State<Payment> {
         receiverName: "Divyanshu Singh",
         transactionRefId: "",
         amount: 10,
-        merchantId:
+        merchantId:"time"
     );
   }
   String _upiErrorHandler(error) {
@@ -422,20 +414,43 @@ class _PaymentState extends State<Payment> {
         return 'An Unknown error has occurred';
     }
   }
-  void _checkTxnStatus(String status) {
-    switch (status) {
-      case UpiPaymentStatus.SUCCESS:
-        print('Transaction Successful');
-        break;
-      case UpiPaymentStatus.SUBMITTED:
-        print('Transaction Submitted');
-        break;
-      case UpiPaymentStatus.FAILURE:
-        print('Transaction Failed');
-        break;
-      default:
-        print('Received an Unknown transaction status');
+  void _checkTxnStatus(UpiResponse upiResponse) {
+    if(upiResponse!=null){
+      if(upiResponse.status==UpiPaymentStatus.SUCCESS){
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionSuccess()), (route) => false);
+      }
+      else if(upiResponse.status==UpiPaymentStatus.FAILURE){
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionFailed()), (route) => false);
+      }
+      else if(upiResponse.status==UpiPaymentStatus.SUBMITTED){
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionSubmitted()), (route) => false);
+      }
+      else{
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionFailed()), (route) => false);
+      }
     }
+    else{
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionFailed()), (route) => false);
+    }
+
+    // switch (status) {
+    //   case UpiPaymentStatus.SUCCESS:
+    //     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionSuccess()), (route) => false);
+    //     break;
+    //   case UpiPaymentStatus.SUBMITTED:
+    //     // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionSubmitted()), (route) => false);
+    //     break;
+    //   case UpiPaymentStatus.FAILURE:
+    //     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionFailed()), (route) => false);
+    //     break;
+    //   default:
+    //     Fluttertoast.showToast(  msg: "Something Went Wrong",
+    //         toastLength: Toast.LENGTH_SHORT,
+    //         textColor: Colors.black,
+    //         timeInSecForIosWeb: 1,
+    //         backgroundColor: Colors.white,
+    //         gravity: ToastGravity.BOTTOM);
+    // }
   }
   UpiApp getApp(String app){
     if(app=="Google Pay"){
