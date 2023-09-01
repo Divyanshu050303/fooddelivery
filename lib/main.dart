@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/screen/SignIn.dart';
 import 'package:fooddelivery/screen/SplashScreen.dart';
+import 'package:fooddelivery/screen/TransactionFailed.dart';
+import 'package:fooddelivery/screen/TransactionSuccess.dart';
 import 'package:provider/provider.dart';
 import 'NavBar.dart';
 import 'Services/SigningClass.dart';
