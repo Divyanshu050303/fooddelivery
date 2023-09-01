@@ -10,12 +10,13 @@ class AddCart extends StatefulWidget {
 }
 
 class _AddCartState extends State<AddCart> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   var priceTotal = 0;
   var allItemPrice = 0;
 
   @override
   void initState() {
+    super.initState();
     // TODO: implement initState
     setState(() {
       for (int i = 0; i < ItemList.length; i++) {
@@ -256,7 +257,7 @@ class _AddCartState extends State<AddCart> {
                                                                       index]
                                                                   ['price']) -
                                                               priceTotal;
-                                                      print(allItemPrice);
+
                                                     });
                                                   },
                                                   child: Container(
@@ -359,7 +360,7 @@ class _AddCartState extends State<AddCart> {
                                   ItemList.isEmpty
                                       ? "0"
                                       : allItemPrice.toString(),
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
