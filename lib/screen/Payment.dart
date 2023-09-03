@@ -1,23 +1,21 @@
-import 'package:easy_upi_payment/easy_upi_payment.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 import 'package:fooddelivery/screen/TransactionSuccess.dart';
 import 'package:fooddelivery/screen/orderSummary.dart';
+import 'package:fooddelivery/util/ItemCard.dart';
 import 'package:upi_india/upi_india.dart';
 
 import 'TransactionFailed.dart';
 import 'TransactionSubmitted.dart';
 
 class Payment extends StatefulWidget {
-  String image, name, quantity, price;
+ int price;
 
   Payment(
       {super.key,
-      required this.name,
-      required this.image,
-      required this.quantity,
       required this.price});
 
   @override
@@ -64,11 +62,7 @@ class _PaymentState extends State<Payment> {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => OrderSummary(
-                                          image: widget.image,
-                                          name: widget.name,
-                                          quantity: widget.quantity,
-                                          price: widget.price,
+                                    builder: (context) => OrderSummary( itemDetailsList: datalist,
                                         )),
                                 (route) => false);
                           },
