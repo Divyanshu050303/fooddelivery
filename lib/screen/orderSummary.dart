@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:fooddelivery/NavBar.dart';
 import 'package:fooddelivery/screen/Payment.dart';
 import 'package:fooddelivery/screen/SelectedAddress.dart';
+import 'package:fooddelivery/util/ItemCard.dart';
 
 class OrderSummary extends StatefulWidget {
-  String image, name, quantity, price;
+  List<Map<String, dynamic>>itemDetailsList;
   OrderSummary(
       {super.key,
-      required this.image,
-      required this.name,
-      required this.quantity,
-      required this.price  });
+      required  this.itemDetailsList });
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
 }
@@ -18,9 +16,18 @@ String addressName="";
 String allAddress="";
 
 class _OrderSummaryState extends State<OrderSummary> {
-  Map<dynamic, dynamic> map={};
+  int totalPrice=0;
+ @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    for(int i=0;i<widget.itemDetailsList.length;i++){
+      totalPrice+=int.parse(widget.itemDetailsList[i]["price"]);
+    }
+  }
   @override
   Widget build(BuildContext context) {
+
     MediaQueryData mediaQueryData = MediaQuery.of(context);
     return Container(
       width: mediaQueryData.size.width,
@@ -104,7 +111,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                              SelectAddress(name: widget.name, quantity: widget.quantity, price: widget.price, image: widget.image,)));
+                                              SelectAddress(dataListItemDetails: datalist,)));
                               },
                               child: Container(
                                 height: 30,
@@ -150,90 +157,103 @@ class _OrderSummaryState extends State<OrderSummary> {
               top: mediaQueryData.size.height * 0.33,
               child: Container(
                 width: mediaQueryData.size.width,
-                height: mediaQueryData.size.height * 0.2,
+                height: mediaQueryData.size.height * 0.4,
                 decoration: BoxDecoration(
                     color: Colors.cyan.shade50,
                     border: const Border(top: BorderSide(color: Colors.black,width: 0.3))
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 120,
-                        height: 120,
-                        decoration: const BoxDecoration(boxShadow: [
-                          BoxShadow(
-                              blurRadius: 2,
-                              spreadRadius: 2,
-                              color: Colors.black45)
-                        ]),
-                        child: Image.asset(
-                          widget.image,
-                          width: 50,
-                          height: 50,
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: mediaQueryData.size.width * 0.1,
-                                top: 30.0),
-                            child: Text(
-                              widget.name,
-                              style: const TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontFamily: 'Roboto-Regular',
-                                  decoration: TextDecoration.none),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: mediaQueryData.size.width * 0.08,
-                                top: 10.0),
-                            child: Text(
-                              widget.quantity,
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  decoration: TextDecoration.none),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 19.0, top: 10),
-                            child: Row(
-                              children: [
-                                const Text(
-                                  "5% off ",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontFamily: 'Roboto-Regular',
-                                      decoration: TextDecoration.none),
-                                ),
-                                TextWithLine(),
-                                const Text(
-                                  "\u20B9189",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontFamily: 'Roboto-Regular',
-                                      decoration: TextDecoration.none),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+                child: GridView.builder(
+                  gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
                   ),
+                  itemCount: widget.itemDetailsList.length,
+                    itemBuilder: (context, index){
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 25.0),
+                        child: Row(
+                          children: [
+                            Stack(
+                              children:[
+                                Container(
+                                  width: 120,
+                                  height: 120,
+                                  decoration: const BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 2,
+                                        spreadRadius: 2,
+                                        color: Colors.black45)
+                                  ]),
+                                  child: Image.asset(
+                                      widget.itemDetailsList[index]["image"],
+                                      width: 50,
+                                      height: 50,
+                                    ),
+
+                                ),
+                        ]
+                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: mediaQueryData.size.width * 0.1,
+                                      ),
+                                  child: Text(
+                                    widget.itemDetailsList[index]["name"],
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                        fontFamily: 'Roboto-Regular',
+                                        decoration: TextDecoration.none),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: mediaQueryData.size.width * 0.08,
+                                      top: 10.0),
+                                  child: Text(
+                                    widget.itemDetailsList[index]["quantity"],
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        decoration: TextDecoration.none),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 19.0, top: 10),
+                                  child: Row(
+                                    children: [
+                                      const Text(
+                                        "5% off ",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black,
+                                            fontFamily: 'Roboto-Regular',
+                                            decoration: TextDecoration.none),
+                                      ),
+                                      TextWithLine(),
+                                        Text(
+                                        "\u20B9${widget.itemDetailsList[index]["price"]}",
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black,
+                                            fontFamily: 'Roboto-Regular',
+                                            decoration: TextDecoration.none),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      );
+                    },
                 ),
               ),
             ),
             Positioned(
-              top:mediaQueryData.size.height*0.53,child:
+              top:mediaQueryData.size.height*0.64,child:
             Container(
                 width: mediaQueryData.size.width,
                 height: mediaQueryData.size.height * 0.24,
@@ -275,7 +295,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                             width: mediaQueryData.size.width * 0.4,
                           ),
                             Text(
-                            "\u20B9${widget.price}",
+                            "\u20B9$totalPrice",
                             style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -366,7 +386,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                             width: mediaQueryData.size.width * 0.60,
                           ),
                             Text(
-                            "\u20B9${widget.price}",
+                            "\u20B9$totalPrice",
                             style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.green,
@@ -395,7 +415,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                     width: mediaQueryData.size.width * 0.07,
                   ),
                     Text(
-                    "\u20B9${widget.price}",
+                    "\u20B9$totalPrice",
                     style: const TextStyle(
                         fontSize: 20,
                         color: Colors.black,
@@ -407,7 +427,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                   ),
                   GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Payment(name: widget.name, image: widget.image, quantity: widget.quantity, price: widget.price)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Payment(price: totalPrice,)));
                     },
                     child: Container(
                       width: mediaQueryData.size.width * 0.33,
