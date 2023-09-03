@@ -3,17 +3,15 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/screen/orderSummary.dart';
+import 'package:fooddelivery/util/ItemCard.dart';
 import 'Address.dart';
 
 class SelectAddress extends StatefulWidget {
-  String image, name, quantity, price;
+  List<Map<String, dynamic>> dataListItemDetails;
 
   SelectAddress(
       {super.key,
-      required this.image,
-      required this.name,
-      required this.quantity,
-      required this.price});
+      required this.dataListItemDetails});
 
   @override
   State<SelectAddress> createState() => _SelectAddressState();
@@ -125,10 +123,7 @@ class _SelectAddressState extends State<SelectAddress> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => OrderSummary(
-                                      name: widget.name,
-                                      price: widget.price,
-                                      image: widget.image,
-                                      quantity: widget.quantity,
+                                       itemDetailsList: datalist,
                                     )),
                             (route) => false);
                       },
