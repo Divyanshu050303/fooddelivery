@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddelivery/screen/orderSummary.dart';
 
 import '../util/ItemCard.dart';
 
@@ -364,30 +365,38 @@ class _AddCartState extends State<AddCart> {
                                   textAlign: TextAlign.center,
                                 ),
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Colors.black,
-                                        blurRadius: 3,
-                                        spreadRadius: 2,
-                                        offset: Offset(0, 3),
-                                      )
-                                    ],
-                                    border: Border.all(
-                                        style: BorderStyle.solid,
-                                        color: Colors.black,
-                                        width: 1)),
-                                width: 120,
-                                height: 40,
-                                // color: Colors.white,
-                                // alignment: Alignment.bottomLeft,
-                                child: const Text("buy",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.white)),
+                              GestureDetector(
+                                onTap: (){
+                                  for(int i=0;i<ItemList.length;i++){
+                                    datalist.add(ItemList[i]);
+                                  }
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderSummary(itemDetailsList: datalist)));
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Colors.black,
+                                          blurRadius: 3,
+                                          spreadRadius: 2,
+                                          offset: Offset(0, 3),
+                                        )
+                                      ],
+                                      border: Border.all(
+                                          style: BorderStyle.solid,
+                                          color: Colors.black,
+                                          width: 1)),
+                                  width: 120,
+                                  height: 40,
+                                  // color: Colors.white,
+                                  // alignment: Alignment.bottomLeft,
+                                  child: const Text("buy",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                ),
                               ),
                             ],
                           ),
