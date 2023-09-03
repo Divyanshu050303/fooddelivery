@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fooddelivery/screen/orderSummary.dart';
 
 List<Map<String, dynamic>> ItemList = [];
+List<Map<String, dynamic>>datalist=[];
 
 class ItemCard extends StatefulWidget {
   final String name;
@@ -291,7 +292,15 @@ class _ItemCardState extends State<ItemCard> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(image: widget.image,name: widget.name,quantity: widget.quantity, price: widget.price,)));
+
+                          Map<String, dynamic> datalistItem={
+                              "name":widget.name,
+                              "image":widget.image,
+                              "quantity":widget.quantity,
+                              "price":widget.price
+                            };
+                          datalist.add(datalistItem);
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary( itemDetailsList: datalist,)));
                           },
                           child: Container(
                             decoration: BoxDecoration(
