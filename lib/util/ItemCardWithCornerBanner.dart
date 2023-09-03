@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddelivery/util/ItemCard.dart';
 import 'package:super_banners/super_banners.dart';
 
 import '../screen/orderSummary.dart';
@@ -300,7 +301,7 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(image:widget.image, name: widget.name,quantity:widget.quantity,price: widget.price,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>  OrderSummary(itemDetailsList: datalist,)));
                       },
                       child: Container(
                         decoration: BoxDecoration(
