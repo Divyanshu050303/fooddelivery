@@ -1,8 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:im_animations/im_animations.dart';
+import 'package:fooddelivery/main.dart';
 
 class TransactionSuccess extends StatefulWidget {
-  const TransactionSuccess({super.key});
+  List<Map<String, dynamic>> itemDetails;
+  String addressName, allAddress;
+    TransactionSuccess({super.key, required this.itemDetails, required this.addressName, required this.allAddress});
 
   @override
   State<TransactionSuccess> createState() => _TransactionSuccessState();
@@ -15,19 +18,29 @@ class _TransactionSuccessState extends State<TransactionSuccess>
   late AnimationController _textAnimationController;
   late Animation<double> _textAnimation;
   String _text = "Have A Nice Day";
+  final databaseref= FirebaseDatabase.instance.ref("Orders");
+  final DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
 
   @override
   void initState() {
     _animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1000));
+        vsync: this, duration: const Duration(milliseconds: 1000));
     _animation = Tween<double>(begin: 1.0, end: 1.2).animate(
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
     _animationController.repeat(reverse: true);
     _textAnimationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _textAnimation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
         parent: _textAnimationController, curve: Curves.easeInOut));
     _textAnimationController.repeat(reverse: true);
+
+    // backend order address and item
+   Map<String, dynamic> orderSummary={
+     "AddressName":widget.addressName,
+     "AddressDetails":widget.allAddress,
+     "ItemDetails":widget.itemDetails
+   };
+    databaseReference.child("orders").set(orderSummary);
     super.initState();
   }
 
@@ -55,7 +68,9 @@ class _TransactionSuccessState extends State<TransactionSuccess>
             child: Row(
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>  HomePage()), (route) => false);
+                    },
                     icon: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
