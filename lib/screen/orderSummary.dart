@@ -427,7 +427,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                   ),
                   GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Payment(price: totalPrice,)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Payment(price: totalPrice,allAddress: allAddress, addressName: addressName,itemDetails: datalist,)));
                     },
                     child: Container(
                       width: mediaQueryData.size.width * 0.33,
