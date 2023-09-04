@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 
 import 'package:fooddelivery/screen/TransactionSuccess.dart';
 import 'package:fooddelivery/screen/orderSummary.dart';
@@ -12,11 +10,16 @@ import 'TransactionFailed.dart';
 import 'TransactionSubmitted.dart';
 
 class Payment extends StatefulWidget {
- int price;
+  List<Map<String, dynamic>> itemDetails;
+  String addressName, allAddress;
+  int price;
 
   Payment(
       {super.key,
-      required this.price});
+      required this.price,
+      required this.itemDetails,
+      required this.allAddress,
+      required this.addressName});
 
   @override
   State<Payment> createState() => _PaymentState();
@@ -24,7 +27,7 @@ class Payment extends StatefulWidget {
 
 class _PaymentState extends State<Payment> {
   String? selectedOption = "Google Pay";
-  UpiIndia _upiIndia = UpiIndia();
+  final UpiIndia _upiIndia = UpiIndia();
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +65,8 @@ class _PaymentState extends State<Payment> {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => OrderSummary( itemDetailsList: datalist,
+                                    builder: (context) => OrderSummary(
+                                          itemDetailsList: datalist,
                                         )),
                                 (route) => false);
                           },
@@ -352,9 +356,22 @@ class _PaymentState extends State<Payment> {
                   GestureDetector(
                     onTap: () async {
                       // UpiIndia _upiIndia=UpiIndia();
-                      UpiApp app=getApp(selectedOption!);
-                      UpiResponse upiResponse=await initiateTransaction(app);
-                     _checkTxnStatus(upiResponse);
+                      if (selectedOption == "Cash on Delivery") {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TransactionSuccess(
+                                      addressName: widget.addressName,
+                                      allAddress: widget.allAddress,
+                                      itemDetails: widget.itemDetails,
+                                    )),
+                            (route) => false);
+                      } else {
+                        UpiApp app = getApp(selectedOption!);
+                        UpiResponse upiResponse =
+                            await initiateTransaction(app);
+                        _checkTxnStatus(upiResponse);
+                      }
                     },
                     child: Container(
                       width: mediaQueryData.size.width * 0.33,
@@ -391,9 +408,9 @@ class _PaymentState extends State<Payment> {
         receiverName: "Divyanshu Singh",
         transactionRefId: "",
         amount: 10,
-        merchantId:"time"
-    );
+        merchantId: "time");
   }
+
   String _upiErrorHandler(error) {
     switch (error) {
       case UpiIndiaAppNotInstalledException:
@@ -408,55 +425,50 @@ class _PaymentState extends State<Payment> {
         return 'An Unknown error has occurred';
     }
   }
-  void _checkTxnStatus(UpiResponse upiResponse) {
-    if(upiResponse!=null){
-      if(upiResponse.status==UpiPaymentStatus.SUCCESS){
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionSuccess()), (route) => false);
-      }
-      else if(upiResponse.status==UpiPaymentStatus.FAILURE){
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionFailed()), (route) => false);
-      }
-      else if(upiResponse.status==UpiPaymentStatus.SUBMITTED){
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionSubmitted()), (route) => false);
-      }
-      else{
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionFailed()), (route) => false);
-      }
-    }
-    else{
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionFailed()), (route) => false);
-    }
 
-    // switch (status) {
-    //   case UpiPaymentStatus.SUCCESS:
-    //     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionSuccess()), (route) => false);
-    //     break;
-    //   case UpiPaymentStatus.SUBMITTED:
-    //     // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionSubmitted()), (route) => false);
-    //     break;
-    //   case UpiPaymentStatus.FAILURE:
-    //     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TransactionFailed()), (route) => false);
-    //     break;
-    //   default:
-    //     Fluttertoast.showToast(  msg: "Something Went Wrong",
-    //         toastLength: Toast.LENGTH_SHORT,
-    //         textColor: Colors.black,
-    //         timeInSecForIosWeb: 1,
-    //         backgroundColor: Colors.white,
-    //         gravity: ToastGravity.BOTTOM);
-    // }
+  void _checkTxnStatus(UpiResponse upiResponse) {
+    if (upiResponse != null) {
+      if (upiResponse.status == UpiPaymentStatus.SUCCESS) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) =>   TransactionSuccess(
+              addressName: widget.addressName,
+              allAddress: widget.allAddress,
+              itemDetails: widget.itemDetails,)),
+            (route) => false);
+      } else if (upiResponse.status == UpiPaymentStatus.FAILURE) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const TransactionFailed()),
+            (route) => false);
+      } else if (upiResponse.status == UpiPaymentStatus.SUBMITTED) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const TransactionSubmitted()),
+            (route) => false);
+      } else {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const TransactionFailed()),
+            (route) => false);
+      }
+    } else {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const TransactionFailed()),
+          (route) => false);
+    }
   }
-  UpiApp getApp(String app){
-    if(app=="Google Pay"){
+
+  UpiApp getApp(String app) {
+    if (app == "Google Pay") {
       return UpiApp.googlePay;
-    }
-    else if(app=="Phone Pay"){
+    } else if (app == "Phone Pay") {
       return UpiApp.phonePe;
-    }
-    else if(app=="Paytm"){
+    } else if (app == "Paytm") {
       return UpiApp.paytm;
-    }
-    else{
+    } else {
       return UpiApp.bhim;
     }
   }
