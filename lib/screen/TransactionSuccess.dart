@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/main.dart';
+import 'package:fooddelivery/util/ItemCard.dart';
 
 class TransactionSuccess extends StatefulWidget {
   List<Map<String, dynamic>> itemDetails;
@@ -40,7 +42,9 @@ class _TransactionSuccessState extends State<TransactionSuccess>
      "AddressDetails":widget.allAddress,
      "ItemDetails":widget.itemDetails
    };
-    databaseReference.child("orders").set(orderSummary);
+    final uniqueKey=databaseReference.child("orders").child(FirebaseAuth.instance.currentUser!.uid).push().key;
+    databaseref.child(FirebaseAuth.instance.currentUser!.uid).child(uniqueKey!).set(orderSummary);
+    datalist.clear();
     super.initState();
   }
 
