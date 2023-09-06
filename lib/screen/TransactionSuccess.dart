@@ -43,7 +43,7 @@ class _TransactionSuccessState extends State<TransactionSuccess>
      "ItemDetails":widget.itemDetails
    };
     final uniqueKey=databaseReference.child("orders").child(FirebaseAuth.instance.currentUser!.uid).push().key;
-    databaseref.child(FirebaseAuth.instance.currentUser!.uid).child(uniqueKey!).set(orderSummary);
+    databaseref.child(uniqueKey!).set(orderSummary);
     datalist.clear();
     super.initState();
   }
@@ -108,7 +108,7 @@ class _TransactionSuccessState extends State<TransactionSuccess>
                     ),
                     SizedBox(
                       width: mediaQueryData.size.width,
-                      height: mediaQueryData.size.height * 0.4,
+                      height: mediaQueryData.size.height * 0.5,
                       child: Column(
                         children: [
                           AnimatedBuilder(
