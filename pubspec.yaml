@@ -62,6 +62,7 @@ dependencies:
   google_fonts: ^5.1.0
   upi_india: ^3.0.1
   im_animations: ^0.1.2
+  firebase_messaging: ^14.6.7
 
 
 
