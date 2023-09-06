@@ -105,6 +105,7 @@ class _AddCartState extends State<AddCart> {
                               child: GridTile(
                                   child: Container(
                                 decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
                                   gradient: LinearGradient(
                                     colors: [
                                       Colors.pinkAccent.shade100,
@@ -131,12 +132,16 @@ class _AddCartState extends State<AddCart> {
                                     children: [
                                       Column(
                                         children: [
-                                          Image.asset(
-                                            ItemList[index]['image'],
-                                            width: 150,
-                                            height: 101,
-                                            fit: BoxFit.fitWidth,
-                                          ),
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(10),
+                                            child: Image.asset(
+                                              ItemList[index]['image'],
+                                              width: 150,
+                                              height: 101,
+                                              fit: BoxFit.fitWidth,
+                                            ),
+                                          )
+                                          ,
                                           Text(
                                             ItemList[index]['name'],
                                             style: const TextStyle(
