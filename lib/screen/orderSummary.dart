@@ -5,29 +5,32 @@ import 'package:fooddelivery/screen/SelectedAddress.dart';
 import 'package:fooddelivery/util/ItemCard.dart';
 
 class OrderSummary extends StatefulWidget {
-  List<Map<String, dynamic>>itemDetailsList;
-  OrderSummary(
-      {super.key,
-      required  this.itemDetailsList });
+  List<Map<String, dynamic>> itemDetailsList;
+
+  OrderSummary({super.key, required this.itemDetailsList});
+
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
 }
-String addressName="";
-String allAddress="";
+
+String addressName = "";
+String allAddress = "";
 
 class _OrderSummaryState extends State<OrderSummary> {
-  int totalPrice=0;
- @override
+  int totalPrice = 0;
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    for(int i=0;i<widget.itemDetailsList.length;i++){
-      totalPrice+=int.parse(widget.itemDetailsList[i]["price"]);
+    for (int i = 0; i < widget.itemDetailsList.length; i++) {
+      totalPrice += int.parse(widget.itemDetailsList[i]["quantity"]) *
+          int.parse(widget.itemDetailsList[i]["price"]);
     }
   }
+
   @override
   Widget build(BuildContext context) {
-
     MediaQueryData mediaQueryData = MediaQuery.of(context);
     return Container(
       width: mediaQueryData.size.width,
@@ -57,7 +60,11 @@ class _OrderSummaryState extends State<OrderSummary> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>NavBar(count: 0)), (route) => false);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NavBar(count: 0)),
+                              (route) => false);
                         },
                         icon: const Icon(
                           Icons.arrow_back,
@@ -70,6 +77,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                           fontSize: 20,
                           color: Colors.white,
                           fontFamily: 'Roboto-Regular',
+                          fontWeight: FontWeight.normal,
                           decoration: TextDecoration.none),
                     )
                   ],
@@ -83,9 +91,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                 child: Container(
                   height: mediaQueryData.size.height * 0.85,
                   width: mediaQueryData.size.width,
-
-                      color: Colors.cyan.shade50,
-
+                  color: Colors.cyan.shade50,
                   child: Column(
                     children: [
                       Padding(
@@ -96,9 +102,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                               "Delivered to:",
                               style: TextStyle(
                                   fontSize: 21,
-
                                   fontFamily: 'Roboto-Regular',
                                   color: Colors.black,
+                                  fontWeight: FontWeight.normal,
                                   decoration: TextDecoration.none),
                             ),
                             SizedBox(
@@ -110,8 +116,9 @@ class _OrderSummaryState extends State<OrderSummary> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                              SelectAddress(dataListItemDetails: datalist,)));
+                                        builder: (context) => SelectAddress(
+                                              dataListItemDetails: datalist,
+                                            )));
                               },
                               child: Container(
                                 height: 30,
@@ -132,22 +139,38 @@ class _OrderSummaryState extends State<OrderSummary> {
                           ],
                         ),
                       ),
-                        Padding(
-                          padding: const EdgeInsets.only(left:25.0),
-                          child: Row(
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25.0),
+                        child: Row(
                           children: [
-                            Text(addressName, style: const TextStyle(fontSize: 20, decoration: TextDecoration.none, color: Colors.black),),
+                            Text(
+                              addressName,
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  decoration: TextDecoration.none,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black),
+                            ),
                           ],
-                      ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left:25, top: 7),
-                          child: Row(
-                          children: [
-                            Text(allAddress, style: const TextStyle(fontSize: 14, decoration: TextDecoration.none, color: Colors.black),),
-                          ],
                       ),
-                        )
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25, top: 7),
+                        child: Row(
+                          children: [
+                            Text(
+                              allAddress,
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  decoration: TextDecoration.none,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -160,292 +183,305 @@ class _OrderSummaryState extends State<OrderSummary> {
                 height: mediaQueryData.size.height * 0.4,
                 decoration: BoxDecoration(
                     color: Colors.cyan.shade50,
-                    border: const Border(top: BorderSide(color: Colors.black,width: 0.3))
-                ),
-                child: GridView.builder(
-                  gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                  ),
-                  itemCount: widget.itemDetailsList.length,
-                    itemBuilder: (context, index){
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 25.0),
-                        child: Row(
-                          children: [
-                            Stack(
-                              children:[
-                                Container(
-                                  width: 120,
-                                  height: 120,
-                                  decoration: const BoxDecoration(boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 2,
-                                        spreadRadius: 2,
-                                        color: Colors.black45)
-                                  ]),
-                                  child: Image.asset(
-                                      widget.itemDetailsList[index]["image"],
-                                      width: 50,
-                                      height: 50,
+                    border: const Border(
+                        top: BorderSide(color: Colors.black, width: 0.3))),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        bottom: mediaQueryData.size.height * 0.08),
+                    child: Column(
+                      children: [
+                        for (int i = 0; i < widget.itemDetailsList.length; i++)
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: mediaQueryData.size.height * 0.02,
+                                    left: mediaQueryData.size.width * 0.07),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      decoration:
+                                          const BoxDecoration(boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey,
+                                            spreadRadius: 2,
+                                            offset: Offset(1, 3),
+                                            blurRadius: 3)
+                                      ]),
+                                      child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          child: Image.asset(
+                                            widget.itemDetailsList[i]["image"],
+                                            width: 100,
+                                            height: 100,
+                                          )),
                                     ),
-
-                                ),
-                        ]
-                            ),
-                            Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: mediaQueryData.size.width * 0.1,
-                                      ),
-                                  child: Text(
-                                    widget.itemDetailsList[index]["name"],
-                                    style: const TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                        fontFamily: 'Roboto-Regular',
-                                        decoration: TextDecoration.none),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: mediaQueryData.size.width * 0.08,
-                                      top: 10.0),
-                                  child: Text(
-                                    widget.itemDetailsList[index]["quantity"],
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.black,
-                                        decoration: TextDecoration.none),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 19.0, top: 10),
-                                  child: Row(
-                                    children: [
-                                      const Text(
-                                        "5% off ",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.black,
-                                            fontFamily: 'Roboto-Regular',
-                                            decoration: TextDecoration.none),
-                                      ),
-                                      TextWithLine(),
+                                    SizedBox(
+                                      width: mediaQueryData.size.width * 0.1,
+                                    ),
+                                    Column(
+                                      children: [
                                         Text(
-                                        "\u20B9${widget.itemDetailsList[index]["price"]}",
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.black,
-                                            fontFamily: 'Roboto-Regular',
-                                            decoration: TextDecoration.none),
-                                      )
-                                    ],
-                                  ),
+                                          "${widget.itemDetailsList[i]["name"]}\n ${widget.itemDetailsList[i]["quantity"]}",
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              decoration: TextDecoration.none,
+                                              fontFamily: 'Roboto-Regular',
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black),
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              "5%",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontFamily: 'Roboto-Regular',
+                                                  fontWeight: FontWeight.normal,
+                                                  decoration:
+                                                      TextDecoration.none,
+                                                  color: Colors.black),
+                                            ),
+                                            TextWithLine(),
+                                            Text(
+                                              "\u20B9${widget.itemDetailsList[i]["price"]}",
+                                              style: const TextStyle(
+                                                  fontSize: 20,
+                                                  fontFamily: 'Roboto-Regular',
+                                                  fontWeight: FontWeight.normal,
+                                                  decoration:
+                                                      TextDecoration.none,
+                                                  color: Colors.black),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    )
+                                  ],
                                 ),
-                              ],
-                            )
-                          ],
-                        ),
-                      );
-                    },
+                              ),
+                              SizedBox(
+                                height: mediaQueryData.size.height * 0.02,
+                              )
+                            ],
+                          ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
             Positioned(
-              top:mediaQueryData.size.height*0.64,child:
-            Container(
-                width: mediaQueryData.size.width,
-                height: mediaQueryData.size.height * 0.24,
+              top: mediaQueryData.size.height * 0.64,
+              child: Container(
+                  width: mediaQueryData.size.width,
+                  height: mediaQueryData.size.height * 0.25,
+                  decoration: BoxDecoration(
+                      color: Colors.cyan.shade50,
+                      border: const Border(
+                          top: BorderSide(color: Colors.black, width: 0.3))),
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(right: 193.0, top: 10),
+                        child: Text(
+                          "Price Details",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Roboto-Regular',
 
-                decoration: BoxDecoration(
-                    color: Colors.cyan.shade50,
-                  border: const Border(top: BorderSide(color: Colors.black,width: 0.3))
-                ),
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(right: 193.0, top: 10),
-                      child: Text(
-                        "Price Details",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Roboto-Regular',
-                            decoration: TextDecoration.none,
-                            color: Colors.black),
+                              decoration: TextDecoration.none,
+                              color: Colors.black),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 32.0),
-                      child: Row(
-                        children: [
-                          const Text(
-                            "Price (3 item)",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontFamily: 'Roboto-Regular',
-                                decoration: TextDecoration.none),
-                          ),
-                          SizedBox(
-                            width: mediaQueryData.size.width * 0.4,
-                          ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 32.0),
+                        child: Row(
+                          children: [
+                            const Text(
+                              "Price (3 item)",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none),
+                            ),
+                            SizedBox(
+                              width: mediaQueryData.size.width * 0.4,
+                            ),
                             Text(
-                            "\u20B9$totalPrice",
-                            style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontFamily: 'Roboto-Regular',
-                                decoration: TextDecoration.none),
-                          )
-                        ],
+                              "\u20B9$totalPrice",
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30.0),
-                      child: Row(
-                        children: [
-                          const Text(
-                            "Discount",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontFamily: 'Roboto-Regular',
-                                decoration: TextDecoration.none),
-                          ),
-                          SizedBox(
-                            width: mediaQueryData.size.width * 0.53,
-                          ),
-                          const Text(
-                            "-\u20B90",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.green,
-                                fontFamily: 'Roboto-Regular',
-                                decoration: TextDecoration.none),
-                          )
-                        ],
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30.0),
-                      child: Row(
-                        children: [
-                          const Text(
-                            "Delivery",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                                fontFamily: 'Roboto-Regular',
-                                decoration: TextDecoration.none),
-                          ),
-                          SizedBox(
-                            width: mediaQueryData.size.width * 0.35,
-                          ),
-                          const Text(
-                            "Free Delivery",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.green,
-                                fontFamily: 'Roboto-Regular',
-                                decoration: TextDecoration.none),
-                          )
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30.0),
+                        child: Row(
+                          children: [
+                            const Text(
+                              "Discount",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none),
+                            ),
+                            SizedBox(
+                              width: mediaQueryData.size.width * 0.53,
+                            ),
+                            const Text(
+                              "-\u20B90",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.green,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    LineWidget(),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30.0),
-                      child: Row(
-                        children: [
-                          const Text(
-                            "Total",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontFamily: 'Roboto-Regular',
-                                decoration: TextDecoration.none),
-                          ),
-                          SizedBox(
-                            width: mediaQueryData.size.width * 0.60,
-                          ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30.0),
+                        child: Row(
+                          children: [
+                            const Text(
+                              "Delivery",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none),
+                            ),
+                            SizedBox(
+                              width: mediaQueryData.size.width * 0.35,
+                            ),
+                            const Text(
+                              "Free Delivery",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.green,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      LineWidget(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30.0),
+                        child: Row(
+                          children: [
+                            const Text(
+                              "Total",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none),
+                            ),
+                            SizedBox(
+                              width: mediaQueryData.size.width * 0.60,
+                            ),
                             Text(
-                            "\u20B9$totalPrice",
-                            style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.green,
-                                fontFamily: 'Roboto-Regular',
-                                decoration: TextDecoration.none),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                )),)
-
+                              "\u20B9$totalPrice",
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.green,
+                                  fontFamily: 'Roboto-Regular',
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  )),
+            )
           ]),
-
           Container(
             width: mediaQueryData.size.width,
             height: mediaQueryData.size.height * 0.0997,
             decoration: BoxDecoration(
                 color: Colors.cyan.shade50,
-                border:
-                const Border(top: BorderSide(color: Colors.black, width: 0.5))),
+                border: const Border(
+                    top: BorderSide(color: Colors.black, width: 0.5))),
             child: Center(
               child: Row(
                 children: [
                   SizedBox(
                     width: mediaQueryData.size.width * 0.07,
                   ),
-                    Text(
+                  Text(
                     "\u20B9$totalPrice",
                     style: const TextStyle(
                         fontSize: 20,
                         color: Colors.black,
                         fontFamily: 'Roboto-Regular',
+                        fontWeight: FontWeight.normal,
                         decoration: TextDecoration.none),
                   ),
                   SizedBox(
                     width: mediaQueryData.size.width * 0.4,
                   ),
                   GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Payment(price: totalPrice,allAddress: allAddress, addressName: addressName,itemDetails: datalist,)));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Payment(
+                                    price: totalPrice,
+                                    allAddress: allAddress,
+                                    addressName: addressName,
+                                    itemDetails: datalist,
+                                  )));
                     },
                     child: Container(
                       width: mediaQueryData.size.width * 0.33,
                       height: mediaQueryData.size.height * 0.07,
-
                       decoration: BoxDecoration(
                           color: Colors.black,
-                          borderRadius: BorderRadius.circular(10)
-                      ),
+                          borderRadius: BorderRadius.circular(10)),
                       child: const Center(
                           child: Text(
-                            "Continue",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontFamily: 'Roboto-Regular',
-                                decoration: TextDecoration.none),
-                          )),
+                        "Continue",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: 'Roboto-Regular',
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none),
+                      )),
                     ),
                   )
                 ],
@@ -466,7 +502,9 @@ class TextWithLine extends StatelessWidget {
         const Text(
           '\u20B9199 ',
           style: TextStyle(
-              fontSize: 14.0,
+              fontSize: 20.0,
+              fontFamily: 'Roboto-Regular',
+              fontWeight: FontWeight.normal,
               decoration: TextDecoration.none,
               color: Colors.black),
         ),
