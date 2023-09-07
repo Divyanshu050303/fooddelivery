@@ -184,6 +184,7 @@ class _AddressState extends State<Address> {
                         fontSize: 20,
                         color: Colors.white,
                         fontFamily: 'Roboto-Regular',
+                        fontWeight: FontWeight.normal,
                         decoration: TextDecoration.none),
                   ),
                   SizedBox(
@@ -243,6 +244,7 @@ class _AddressState extends State<Address> {
                                     fontSize: 20,
                                     color: Colors.white,
                                     fontFamily: 'Roboto-Regular',
+                                    fontWeight: FontWeight.normal,
                                     decoration: TextDecoration.none),
                               )
                             ],

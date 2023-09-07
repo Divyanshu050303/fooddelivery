@@ -85,6 +85,7 @@ class _editSaleState extends State<editSale> {
                       style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'Roboto-Regular',
+                          fontWeight: FontWeight.normal,
                           decoration: TextDecoration.none,
                           color: Colors.white),
                     ),
@@ -177,6 +178,7 @@ class _editSaleState extends State<editSale> {
                                                     fontSize: 20,
                                                     color: Colors.black,
                                                     fontFamily: 'Roboto-Regular',
+                                                    fontWeight: FontWeight.normal,
                                                     decoration:
                                                     TextDecoration.none),
                                                 overflow: TextOverflow.ellipsis,
@@ -187,6 +189,7 @@ class _editSaleState extends State<editSale> {
                                                     fontSize: 20,
                                                     color: Colors.black,
                                                     fontFamily: 'Roboto-Regular',
+                                                    fontWeight: FontWeight.normal,
                                                     decoration:
                                                     TextDecoration.none),
                                               ),

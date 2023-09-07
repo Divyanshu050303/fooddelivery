@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'Owner.dart';
 
@@ -38,6 +37,7 @@ class _OrdresState extends State<Ordres> {
               style: const TextStyle(
                   fontSize: 22,
                   fontFamily: 'Roboto-Regular',
+                  fontWeight: FontWeight.normal,
                   decoration: TextDecoration.none,
                   color: Colors.black),
             ),
@@ -60,6 +60,7 @@ class _OrdresState extends State<Ordres> {
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
                     fontFamily: 'Roboto-Regular',
+
                     decoration: TextDecoration.none,
                     color: Colors.black),
               ),
@@ -85,7 +86,7 @@ class _OrdresState extends State<Ordres> {
                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const Owner()), (route) => false);
                 }, icon: const Icon(Icons.arrow_back, color:Colors.white)),
                 const Text("Orders", style: TextStyle(color: Colors.white,
-                    fontFamily: 'Roboto-Regular',decoration: TextDecoration.none, fontSize: 20),)
+                    fontFamily: 'Roboto-Regular',decoration: TextDecoration.none,   fontWeight: FontWeight.normal,fontSize: 20),)
               ],
             ),
           ),

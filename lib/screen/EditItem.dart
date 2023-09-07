@@ -85,6 +85,7 @@ class _EditItemState extends State<EditItem> {
                           fontSize: 20,
                           decoration: TextDecoration.none,
                           fontFamily: 'Roboto-Regular',
+                          fontWeight: FontWeight.normal,
                           color: Colors.white),
                     ),
                     SizedBox(
@@ -181,6 +182,7 @@ class _EditItemState extends State<EditItem> {
                                                 style: const TextStyle(
                                                     fontSize: 20,
                                                     fontFamily: 'Roboto-Regular',
+                                                    fontWeight: FontWeight.normal,
                                                     color: Colors.black,
                                                     decoration:
                                                         TextDecoration.none),
@@ -192,6 +194,7 @@ class _EditItemState extends State<EditItem> {
                                                     fontSize: 20,
                                                     color: Colors.black,
                                                     fontFamily: 'Roboto-Regular',
+                                                    fontWeight: FontWeight.normal,
                                                     decoration:
                                                         TextDecoration.none),
                                               ),

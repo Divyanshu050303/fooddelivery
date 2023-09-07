@@ -80,6 +80,7 @@ class _PaymentState extends State<Payment> {
                             fontSize: 20,
                             color: Colors.white,
                             fontFamily: 'Roboto-Regular',
+                            fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none),
                       )
                     ],
@@ -115,6 +116,7 @@ class _PaymentState extends State<Payment> {
                                     style: TextStyle(
                                         fontSize: 24,
                                         fontFamily: 'Roboto-Regular',
+                                        fontWeight: FontWeight.normal,
                                         color: Colors.black),
                                   ),
                                 ),
@@ -123,6 +125,7 @@ class _PaymentState extends State<Payment> {
                                     'Phone Pay',
                                     style: TextStyle(
                                       fontFamily: 'Roboto-Regular',
+                                      fontWeight: FontWeight.normal,
                                     ),
                                   ),
                                   secondary: Image.asset(
@@ -142,6 +145,7 @@ class _PaymentState extends State<Payment> {
                                   title: const Text('Paytm',
                                       style: TextStyle(
                                         fontFamily: 'Roboto-Regular',
+                                        fontWeight: FontWeight.normal,
                                       )),
                                   value: 'Paytm',
                                   groupValue: selectedOption,
@@ -160,6 +164,7 @@ class _PaymentState extends State<Payment> {
                                   title: const Text("Google Pay",
                                       style: TextStyle(
                                         fontFamily: 'Roboto-Regular',
+                                        fontWeight: FontWeight.normal,
                                       )),
                                   value: 'Google Pay',
                                   groupValue: selectedOption,
@@ -179,6 +184,7 @@ class _PaymentState extends State<Payment> {
                                   title: const Text('Cash on Delivery',
                                       style: TextStyle(
                                         fontFamily: 'Roboto-Regular',
+                                        fontWeight: FontWeight.normal,
                                       )),
                                   value: 'Cash on Delivery',
                                   groupValue: selectedOption,
@@ -214,6 +220,7 @@ class _PaymentState extends State<Payment> {
                             "Price Details",
                             style: TextStyle(
                                 fontSize: 20,
+                                fontWeight: FontWeight.normal,
                                 fontFamily: 'Roboto-Regular',
                                 decoration: TextDecoration.none,
                                 color: Colors.black),
@@ -240,6 +247,7 @@ class _PaymentState extends State<Payment> {
                                       "Price (1 Item)",
                                       style: TextStyle(
                                           fontSize: 16,
+                                          fontWeight: FontWeight.normal,
                                           fontFamily: 'Roboto-Regular',
                                           decoration: TextDecoration.none,
                                           color: Colors.black),
@@ -251,6 +259,7 @@ class _PaymentState extends State<Payment> {
                                         style: const TextStyle(
                                             fontSize: 16,
                                             fontFamily: 'Roboto-Regular',
+                                            fontWeight: FontWeight.normal,
                                             decoration: TextDecoration.none,
                                             color: Colors.black)),
                                   ],
@@ -268,6 +277,7 @@ class _PaymentState extends State<Payment> {
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontFamily: 'Roboto-Regular',
+                                          fontWeight: FontWeight.normal,
                                           decoration: TextDecoration.none,
                                           color: Colors.black),
                                     ),
@@ -307,6 +317,7 @@ class _PaymentState extends State<Payment> {
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'Roboto-Regular',
+                                        fontWeight: FontWeight.normal,
                                         decoration: TextDecoration.none,
                                         color: Colors.black),
                                   ),
@@ -317,6 +328,7 @@ class _PaymentState extends State<Payment> {
                                       style: const TextStyle(
                                           fontSize: 16,
                                           fontFamily: 'Roboto-Regular',
+                                          fontWeight: FontWeight.normal,
                                           decoration: TextDecoration.none,
                                           color: Colors.black)),
                                 ],
@@ -347,6 +359,7 @@ class _PaymentState extends State<Payment> {
                     style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'Roboto-Regular',
+                        fontWeight: FontWeight.normal,
                         color: Colors.black,
                         decoration: TextDecoration.none),
                   ),
@@ -387,6 +400,7 @@ class _PaymentState extends State<Payment> {
                             fontSize: 20,
                             color: Colors.white,
                             fontFamily: 'Roboto-Regular',
+                            fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none),
                       )),
                     ),

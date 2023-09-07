@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/util/ItemCardWithCornerBanner.dart';
 
@@ -11,13 +12,25 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
+late bool owner;
 class _HomeScreenState extends State<HomeScreen> {
   final String _sale = "";
 
+@override
+  void initState() {
+    // TODO: implement initState
+ owner = FirebaseAuth.instance.currentUser?.email ==
+      "divyanshusingh6747@gmail.com" ||
+      FirebaseAuth.instance.currentUser?.phoneNumber == "7451047019"
+      ? true
+      : false;
+ print(owner);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
+
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -48,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       "Yummy Delight",
                       style: TextStyle(
                           fontFamily: 'Roboto-Regular',
+                          fontWeight: FontWeight.normal,
                           fontSize: 24,
                           color: Colors.white,
                           decoration: TextDecoration.none),
@@ -83,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
                                 "South Indian",
-                                style: TextStyle(fontSize: 30, fontFamily: 'Roboto-Regular'),
+                                style: TextStyle(fontSize: 30, fontFamily: 'Roboto-Regular',  fontWeight: FontWeight.normal,),
                               ),
                             ),
                             Row(

@@ -25,7 +25,7 @@ class ItemCardWithCornerBanner extends StatefulWidget {
 }
 
 class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
-  String _sale="sdfgh";
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -144,7 +144,7 @@ class _ItemCardWithCornerBannerState extends State<ItemCardWithCornerBanner> {
                                 blurRadius: 2,
                                 offset: Offset(0, 3)),
                           ], borderRadius: BorderRadius.circular(10)),
-                          child: Image.asset(widget.image, width: 150)),
+                          child: ClipRRect(borderRadius:BorderRadius.circular(20),child: Image.asset(widget.image, width: 150,))),
                       Column(
                         children: [
                           Padding(

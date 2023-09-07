@@ -72,6 +72,7 @@ class _AdditemState extends State<Additem> {
                       style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'Roboto-Regular',
+                          fontWeight: FontWeight.normal,
                           decoration: TextDecoration.none,
                           color: Colors.white),
                     ),
@@ -117,6 +118,7 @@ class _AdditemState extends State<Additem> {
                                     label: const Text(
                                       "ItemName",
                                       style: TextStyle(color: Colors.black,
+                                        fontWeight: FontWeight.normal,
                                         fontFamily: 'Roboto-Regular',),
                                     ),
                                     focusColor: Colors.black,
@@ -144,6 +146,7 @@ class _AdditemState extends State<Additem> {
                                     label: const Text(
                                       "Price",
                                       style: TextStyle(color: Colors.black,
+                                        fontWeight: FontWeight.normal,
                                         fontFamily: 'Roboto-Regular',),
                                     ),
                                     focusColor: Colors.black,
@@ -171,6 +174,7 @@ class _AdditemState extends State<Additem> {
                                     label: const Text(
                                       "Quantity",
                                       style: TextStyle(color: Colors.black,
+                                        fontWeight: FontWeight.normal,
                                         fontFamily: 'Roboto-Regular',),
                                     ),
                                     focusColor: Colors.black,
@@ -224,6 +228,7 @@ class _AdditemState extends State<Additem> {
                                           child: Text(
                                             value,
                                             style: const TextStyle(fontSize: 15,
+                                              fontWeight: FontWeight.normal,
                                               fontFamily: 'Roboto-Regular',),
                                           ),
                                         ));
@@ -458,8 +463,4 @@ class _AdditemState extends State<Additem> {
        });
     }
   }
-  // bool isSnackBarVisible(BuildContext context) {
-  //   final scaffoldMessenger = ScaffoldMessenger.of(context).mounted ;
-  //   return scaffoldMessenger.hasCurrentSnackBar;
-  // }
 }

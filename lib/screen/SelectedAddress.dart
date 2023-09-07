@@ -47,7 +47,7 @@ class _SelectAddressState extends State<SelectAddress> {
            Padding(
              padding: const EdgeInsets.only(right: 58.0),
              child: Text(address['_name'],style: const TextStyle(fontSize: 20,
-               fontFamily: 'Roboto-Regular', ),textAlign: TextAlign.start,),
+               fontFamily: 'Roboto-Regular',  fontWeight: FontWeight.normal, ),textAlign: TextAlign.start,),
            ),
                     Padding(
                       padding: const EdgeInsets.only(top:20.0),
@@ -64,7 +64,7 @@ class _SelectAddressState extends State<SelectAddress> {
                           "Phone Number" +
                           ":" +
                           address['_phoneNumber'], style: const TextStyle(
-                      fontFamily: 'Roboto-Regular',),),
+                      fontFamily: 'Roboto-Regular',  fontWeight: FontWeight.normal,),),
                     ),
                   ],
                 ),
@@ -137,6 +137,7 @@ class _SelectAddressState extends State<SelectAddress> {
                         fontSize: 20,
                         color: Colors.white,
                         fontFamily: 'Roboto-Regular',
+                        fontWeight: FontWeight.normal,
                         decoration: TextDecoration.none),
                   ),
                   SizedBox(
@@ -196,6 +197,7 @@ class _SelectAddressState extends State<SelectAddress> {
                                     fontSize: 20,
                                     color: Colors.white,
                                     fontFamily: 'Roboto-Regular',
+                                    fontWeight: FontWeight.normal,
                                     decoration: TextDecoration.none),
                               )
                             ],

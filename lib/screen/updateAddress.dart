@@ -105,6 +105,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                             color: Colors.white,
                             fontSize: 20,
                             fontFamily: 'Roboto-Regular',
+                            fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none),
                       )
                     ],
@@ -169,7 +170,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                   label: const Text(
                                     "Phone Number (Required)*",
                                     style: TextStyle(color: Colors.black,
-                                      fontFamily: 'Roboto-Regular',),
+                                      fontFamily: 'Roboto-Regular',fontWeight: FontWeight.normal,),
                                   ),
                                   focusColor: Colors.black,
                                 ),
@@ -197,7 +198,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                   label: const Text(
                                     "Pincode (Required)*",
                                     style: TextStyle(color: Colors.black,
-                                      fontFamily: 'Roboto-Regular',),
+                                      fontFamily: 'Roboto-Regular',fontWeight: FontWeight.normal,),
                                   ),
                                   focusColor: Colors.black,
                                 ),
@@ -228,7 +229,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                         label: const Text(
                                           "State (Required)*",
                                           style: TextStyle(color: Colors.black,
-                                            fontFamily: 'Roboto-Regular',),
+                                            fontFamily: 'Roboto-Regular',fontWeight: FontWeight.normal,),
                                         ),
                                         focusColor: Colors.black,
                                       ),
@@ -256,7 +257,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                         label: const Text(
                                           "City (Required)*",
                                           style: TextStyle(color: Colors.black,
-                                            fontFamily: 'Roboto-Regular',),
+                                            fontFamily: 'Roboto-Regular',fontWeight: FontWeight.normal,),
                                         ),
                                         focusColor: Colors.black,
                                       ),
@@ -287,7 +288,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                   label: const Text(
                                     "House No. Building Name (Required)*",
                                     style: TextStyle(color: Colors.black,
-                                      fontFamily: 'Roboto-Regular',),
+                                      fontFamily: 'Roboto-Regular',fontWeight: FontWeight.normal,),
                                   ),
                                   focusColor: Colors.black,
                                 ),
@@ -316,7 +317,7 @@ class _UpdateAddressState extends State<UpdateAddress> {
                                   label: const Text(
                                     "Road Name, Area, Colony(required)*",
                                     style: TextStyle(color: Colors.black,
-                                      fontFamily: 'Roboto-Regular',),
+                                      fontFamily: 'Roboto-Regular',fontWeight: FontWeight.normal,),
                                   ),
                                   focusColor: Colors.black,
                                 ),

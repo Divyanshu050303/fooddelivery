@@ -105,7 +105,7 @@ bool result=false;
                       label: const Text(
                         "Phone Number",
                         style: TextStyle(color: Colors.black,
-                          fontFamily: 'Roboto-Regular',),
+                          fontFamily: 'Roboto-Regular',  fontWeight: FontWeight.normal,),
                       ),
                       focusColor: Colors.black,
                     ),
@@ -153,17 +153,7 @@ bool result=false;
                         height: 40,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: (){
-                        // final provider =Provider.of<SingingAuth>(context, listen: false);
-                        // provider.FacebookLogin();
-                      },
-                      child: Image.asset(
-                        "assets/facebook.png",
-                        width: 40,
-                        height: 40,
-                      ),
-                    ),
+
                   ],
                 ),
               ],

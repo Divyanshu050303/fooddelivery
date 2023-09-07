@@ -73,6 +73,7 @@ class _AddCartState extends State<AddCart> {
                             fontSize: 24,
                             color: Colors.white,
                             fontFamily: 'Roboto-Regular',
+                            fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none),
                       ),
                     ],

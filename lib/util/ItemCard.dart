@@ -22,7 +22,7 @@ class ItemCard extends StatefulWidget {
 }
 
 class _ItemCardState extends State<ItemCard> {
-  String _sale="sdfgh";
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -136,7 +136,7 @@ class _ItemCardState extends State<ItemCard> {
                                   blurRadius: 2,
                                   offset: Offset(0, 3)),
                             ], borderRadius: BorderRadius.circular(10)),
-                            child: Image.asset(widget.image, width: 150)),
+                            child: ClipRRect(borderRadius:BorderRadius.circular(10),child: Image.asset(widget.image, width: 150))),
                         Column(
                           children: [
                             Padding(

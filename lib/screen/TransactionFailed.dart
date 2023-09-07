@@ -58,6 +58,8 @@ class _TransactionFailedState extends State<TransactionFailed> with SingleTicker
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'Roboto-Regular',
                       decoration: TextDecoration.none),
                 )
               ],
@@ -102,9 +104,12 @@ class _TransactionFailedState extends State<TransactionFailed> with SingleTicker
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 25,
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily: 'Roboto-Regular',
                                   decoration: TextDecoration.none),
                             ),
-                            Text("Try Again", style: TextStyle(color: Colors.grey, decoration: TextDecoration.none, fontSize: 20),)
+                            const Text("Try Again", style: TextStyle(color: Colors.grey, decoration: TextDecoration.none, fontWeight: FontWeight.normal,
+                                fontFamily: 'Roboto-Regular',fontSize: 20),)
 
                           ],
                         ),

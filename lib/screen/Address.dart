@@ -78,6 +78,7 @@ class _AddAddressState extends State<AddAddress> {
                               color: Colors.white,
                               fontSize: 20,
                               fontFamily: 'Roboto-Regular',
+                              fontWeight: FontWeight.normal,
                               decoration: TextDecoration.none),
                         )
                       ],
@@ -124,6 +125,7 @@ class _AddAddressState extends State<AddAddress> {
                                          label: const Text(
                                            "Name (Required)*",
                                            style: TextStyle(color: Colors.black,
+                                             fontWeight: FontWeight.normal,
                                              fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
@@ -152,6 +154,7 @@ class _AddAddressState extends State<AddAddress> {
                                          label: const Text(
                                            "Phone Number (Required)*",
                                            style: TextStyle(color: Colors.black,
+                                             fontWeight: FontWeight.normal,
                                              fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
@@ -180,6 +183,7 @@ class _AddAddressState extends State<AddAddress> {
                                          label: const Text(
                                            "Pincode (Required)*",
                                            style: TextStyle(color: Colors.black,
+                                             fontWeight: FontWeight.normal,
                                              fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
@@ -211,6 +215,7 @@ class _AddAddressState extends State<AddAddress> {
                                                label: const Text(
                                                  "State (Required)*",
                                                  style: TextStyle(color: Colors.black,
+                                                   fontWeight: FontWeight.normal,
                                                    fontFamily: 'Roboto-Regular',),
                                                ),
                                                focusColor: Colors.black,
@@ -239,6 +244,7 @@ class _AddAddressState extends State<AddAddress> {
                                                label: const Text(
                                                  "City (Required)*",
                                                  style: TextStyle(color: Colors.black,
+                                                   fontWeight: FontWeight.normal,
                                                    fontFamily: 'Roboto-Regular',),
                                                ),
                                                focusColor: Colors.black,
@@ -270,6 +276,7 @@ class _AddAddressState extends State<AddAddress> {
                                          label: const Text(
                                            "House No. Building Name (Required)*",
                                            style: TextStyle(color: Colors.black,
+                                             fontWeight: FontWeight.normal,
                                              fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
@@ -298,6 +305,7 @@ class _AddAddressState extends State<AddAddress> {
                                          label: const Text(
                                            "Road Name, Area, Colony(required)*",
                                            style: TextStyle(color: Colors.black,
+                                             fontWeight: FontWeight.normal,
                                              fontFamily: 'Roboto-Regular',),
                                          ),
                                          focusColor: Colors.black,
