@@ -43,41 +43,5 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAiLEieDhAsfi5tFpVyIvGmabNV-OCQxoc',
-    appId: '1:256494617093:web:8efbbddfc9e01101ce926c',
-    messagingSenderId: '256494617093',
-    projectId: 'food-c1a5f',
-    authDomain: 'food-c1a5f.firebaseapp.com',
-    storageBucket: 'food-c1a5f.appspot.com',
-    measurementId: 'G-94YN34P3N3',
-  );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB67JS2MWb3y4BlQ82S7uH_5Ty0KTYF2mU',
-    appId: '1:256494617093:android:518d00fe548cfee8ce926c',
-    messagingSenderId: '256494617093',
-    projectId: 'food-c1a5f',
-    storageBucket: 'food-c1a5f.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAvpAxLY5vzf4PFfGRJqPg-44U4J4QYnTI',
-    appId: '1:256494617093:ios:66bec88f3e363df7ce926c',
-    messagingSenderId: '256494617093',
-    projectId: 'food-c1a5f',
-    storageBucket: 'food-c1a5f.appspot.com',
-    iosClientId: '256494617093-aleedqsc8l2bqt68piimbtkcngj280u1.apps.googleusercontent.com',
-    iosBundleId: 'com.example.fooddelivery',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAvpAxLY5vzf4PFfGRJqPg-44U4J4QYnTI',
-    appId: '1:256494617093:ios:b323f73a3c74718cce926c',
-    messagingSenderId: '256494617093',
-    projectId: 'food-c1a5f',
-    storageBucket: 'food-c1a5f.appspot.com',
-    iosClientId: '256494617093-d433mkqkeacfvpqvmstfhadn47qbfb3l.apps.googleusercontent.com',
-    iosBundleId: 'com.example.fooddelivery.RunnerTests',
-  );
 }
