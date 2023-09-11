@@ -5,6 +5,7 @@ import 'package:fooddelivery/util/ItemCardWithCornerBanner.dart';
 import '../Services/JsonData.dart';
 import '../util/ItemCard.dart';
 import 'MoreItem.dart';
+import 'Search.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -55,9 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: EdgeInsets.only(
                     bottom: mediaQueryData.size.height * 0.77, left: 30),
-                child: Row(
+                child: const Row(
                   children: [
-                    const Text(
+                    Text(
                       "Yummy Delight",
                       style: TextStyle(
                           fontFamily: 'Roboto-Regular',
@@ -66,15 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                           decoration: TextDecoration.none),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 92.0),
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.search,
-                            color: Colors.white,
-                          )),
-                    )
+
                   ],
                 ),
               ),
