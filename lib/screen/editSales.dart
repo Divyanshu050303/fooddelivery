@@ -132,8 +132,7 @@ class _editSaleState extends State<editSale> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => Sales(
-                                              sale: dataListsale[index]
-                                              ['sale'],
+                                              sale: dataListsale[index]['sale'],
                                               id: documentIdsale[index],
                                             )));
                                   },
